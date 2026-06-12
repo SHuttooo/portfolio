@@ -5,9 +5,9 @@
 
 const CATS = {
   robotics: { fr:'Robotique', en:'Robotics',  color:'#1a2fff', bg:'#f0f2ff', icon:'🤖' },
-  software: { fr:'Logiciel',  en:'Software',  color:'#6d28d9', bg:'#f5f3ff', icon:'💻' },
-  hardware: { fr:'Hardware',  en:'Hardware',  color:'#e8192c', bg:'#fff0f1', icon:'⚙️' },
-  web:      { fr:'Web',       en:'Web',       color:'#0891b2', bg:'#f0fdff', icon:'🌐' },
+  software: { fr:'Logiciel',  en:'Software',  color:'#475569', bg:'#f1f5f9', icon:'💻' },
+  hardware: { fr:'Hardware',  en:'Hardware',  color:'#475569', bg:'#f1f5f9', icon:'⚙️' },
+  web:      { fr:'Web',       en:'Web',       color:'#475569', bg:'#f1f5f9', icon:'🌐' },
   other:    { fr:'Autre',     en:'Other',     color:'#6b7280', bg:'#f9fafb', icon:'📦' },
 };
 
@@ -97,14 +97,21 @@ function renderProjects() {
       : '';
     const s = (typeof SOURCES !== 'undefined' && SOURCES[p.source]) ? SOURCES[p.source] : null;
     const sourceBadge = s
-      ? `<span class="source-badge" style="color:${s.color};background:${s.bg}">${s.icon} <span class="fr">${s.fr}</span><span class="en">${s.en}</span></span>`
+      ? `<span class="source-badge" style="color:${s.color};background:${s.bg}"><span class="fr">${s.fr}</span><span class="en">${s.en}</span></span>`
+      : '';
+    const repo = (p.link && p.link.includes('github.com')) ? p.link : null;
+    const repoLink = repo
+      ? `<a class="proj-gh" href="${repo}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="GitHub">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Code
+        </a>`
       : '';
     return `
       <div class="proj-card rv" style="transition-delay:${i * .05}s" onclick="openProject('${p.id}')">
         ${media}
         <div class="proj-body">
           <div class="proj-card-top">
-            <div class="proj-tag" style="color:${c.color};background:${c.bg};border-color:${c.color}30">${c.icon} ${c[lang]}</div>
+            <div class="proj-tag" style="color:${c.color};background:${c.bg};border-color:${c.color}30">${c[lang]}</div>
             ${sourceBadge}
           </div>
           <div class="proj-title">${title}</div>
@@ -114,7 +121,10 @@ function renderProjects() {
           </div>
           <div class="proj-stack">${(p.stack||[]).map(t=>`<span class="sb">${t}</span>`).join('')}</div>
           ${wipBadge}
-          <div class="proj-more"><span class="fr">Voir le projet</span><span class="en">View project</span> &rarr;</div>
+          <div class="proj-foot">
+            <div class="proj-more"><span class="fr">Voir le projet</span><span class="en">View project</span> &rarr;</div>
+            ${repoLink}
+          </div>
         </div>
       </div>`;
   }).join('');
@@ -177,7 +187,7 @@ function renderBlocks(blocks) {
       const caption = (lang === 'en' && b.captionEn) ? b.captionEn : (b.captionFr || b.caption || '');
       return `
       <div class="block-video">
-        <video controls src="${b.src}" style="width:100%;border-radius:14px;display:block"></video>
+        <video controls src="${b.src}" style="width:100%;border-radius:6px;display:block"></video>
         ${caption ? `<div class="caption">${caption}</div>` : ''}
       </div>`;
     }
@@ -197,7 +207,7 @@ function renderBlocks(blocks) {
         ${(b.videos||[]).map(v => {
           const cap = (lang==='en' && v.captionEn) ? v.captionEn : (v.captionFr||'');
           return `<div class="block-video-duo-item">
-            <video controls src="${v.src}" style="width:100%;border-radius:12px;display:block"></video>
+            <video controls src="${v.src}" style="width:100%;border-radius:6px;display:block"></video>
             ${cap ? `<div class="caption">${cap}</div>` : ''}
           </div>`;
         }).join('')}
@@ -230,7 +240,7 @@ function openProject(id) {
   const c = CATS[p.category] || CATS.other;
   const title = lang === 'fr' ? p.titleFr : p.titleEn;
   document.getElementById('detail-content').innerHTML = `
-    <div class="detail-tag" style="color:${c.color};background:${c.bg};border-color:${c.color}30">${c.icon} ${c[lang]}</div>
+    <div class="detail-tag" style="color:${c.color};background:${c.bg};border-color:${c.color}30">${c[lang]}</div>
     <h1 class="detail-title">${title}</h1>
     <div class="detail-stack">${(p.stack||[]).map(t=>`<span class="sb" style="font-size:.78rem;padding:.25rem .7rem">${t}</span>`).join('')}</div>
     ${(() => {
@@ -373,7 +383,8 @@ function buildLink(url) {
   const isYT = url.includes('youtube') || url.includes('youtu.be');
   const isHF = url.includes('huggingface.co');
   const isWiki = url.includes('wiki') || url.includes('fablab') || url.includes('BookStack');
-  const style = 'display:inline-flex;align-items:center;gap:.6rem;background:var(--blue-f);border:1.5px solid rgba(26,47,255,.2);color:var(--blue);padding:.65rem 1.3rem;border-radius:10px;font-weight:600;text-decoration:none;font-size:.88rem;margin-top:2rem;';
+  const isDemo = url.includes('demo.matthieu-vinet.fr');
+  const style = 'display:inline-flex;align-items:center;gap:.6rem;background:var(--red-f);border:1.5px solid rgba(232,25,44,.22);color:var(--red);padding:.65rem 1.3rem;border-radius:4px;font-weight:600;text-decoration:none;font-size:.88rem;margin-top:2rem;';
   if (isWiki) {
     return `<a href="${url}" target="_blank" class="detail-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
@@ -392,10 +403,34 @@ function buildLink(url) {
       <span class="fr">Voir la vid&#233;o d&#8217;inspiration</span><span class="en">Watch the inspiration video</span>
     </a>`;
   }
+  if (isDemo) {
+    return `<a href="${url}" target="_blank" rel="noopener" class="detail-link" style="${style}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      <span class="fr">Voir la démo en ligne</span><span class="en">View live demo</span>
+    </a>`;
+  }
   return `<a href="${url}" target="_blank" class="detail-link" style="${style}">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
     <span class="fr">Voir le code sur GitHub</span><span class="en">View code on GitHub</span>
   </a>`;
+}
+
+// ── EXPÉRIENCES : voir plus / voir moins ──
+function toggleExp(btn) {
+  const wrap = document.getElementById('exp-extra');
+  if (!wrap) return;
+  const open = !wrap.classList.toggle('collapsed');
+  const arrow = btn.querySelector('.exp-arrow');
+  if (arrow) arrow.style.transform = open ? 'rotate(180deg)' : '';
+  btn.querySelector('.fr').textContent = open ? "Voir moins d'expériences" : "Voir plus d'expériences";
+  btn.querySelector('.en').textContent = open ? 'Show less experience' : 'Show more experience';
+}
+
+// ── CV DOWNLOAD (langue active) ──
+function goCV(e) {
+  const a = e.currentTarget;
+  a.href = lang === 'en' ? 'cv-matthieu-vinet-en.pdf' : 'cv-matthieu-vinet-fr.pdf';
+  return true;
 }
 
 // ── TOGGLE PROJECT DESC ──

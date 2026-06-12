@@ -3,10 +3,33 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Matthieu Vinet — Ingénieur Robotique</title>
-  <meta name="description" content="Matthieu Vinet — Étudiant ingénieur en Robotique à Polytech Sorbonne. Projets robotique, navigation autonome, ROS2, systèmes embarqués."/>
+
+  <!-- ── SEO ── -->
+  <title>Matthieu Vinet — Ingénieur Robotique | ROS2 · Navigation autonome</title>
+  <meta name="description" content="Étudiant ingénieur en Robotique à Polytech Sorbonne, en stage chez Botshare.ai (Berlin). Projets ROS2, navigation autonome, SLAM, vision et systèmes embarqués. Recherche stage 5A robotique — Paris, 2027."/>
+  <meta name="author" content="Matthieu Vinet"/>
+  <meta name="theme-color" content="#1a2fff"/>
+  <link rel="canonical" href="https://matthieu-vinet.fr/"/>
+
+  <!-- ── Open Graph / partage ── -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://matthieu-vinet.fr/"/>
+  <meta property="og:title" content="Matthieu Vinet — Ingénieur Robotique"/>
+  <meta property="og:description" content="Robotique, navigation autonome (ROS2 · SLAM · GPS RTK), vision et systèmes embarqués. En stage chez Botshare.ai (Berlin). Recherche stage 5A — Paris, 2027."/>
+  <meta property="og:image" content="https://matthieu-vinet.fr/og-image.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:locale" content="fr_FR"/>
+  <meta property="og:locale:alternate" content="en_US"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Matthieu Vinet — Ingénieur Robotique"/>
+  <meta name="twitter:description" content="Robotique, navigation autonome (ROS2 · SLAM · GPS RTK), vision et systèmes embarqués. Recherche stage 5A — Paris, 2027."/>
+  <meta name="twitter:image" content="https://matthieu-vinet.fr/og-image.jpg"/>
+
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body class="lang-fr">
@@ -46,19 +69,23 @@
       <div class="hero-ctas">
         <a href="#projects" class="btn-p"><span class="fr">Voir mes projets</span><span class="en">See my projects</span></a>
         <a href="#contact"  class="btn-o"><span class="fr">Me contacter</span><span class="en">Get in touch</span></a>
+        <a href="cv-matthieu-vinet-fr.pdf" class="btn-cv" download onclick="return goCV(event)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="fr">Télécharger le CV</span><span class="en">Download CV</span>
+        </a>
       </div>
       <div class="hero-tags">
-        <div class="tag">&#x1F916; Robotics</div>
-        <div class="tag">&#x1F4BB; C / C++ / Python</div>
-        <div class="tag">&#x2699;&#xFE0F; ROS2</div>
-        <div class="tag">&#x1F4D0; SolidWorks</div>
-        <div class="tag">&#x1F4CD; Paris</div>
+        <div class="tag">Robotics</div>
+        <div class="tag">C / C++ / Python</div>
+        <div class="tag">ROS2</div>
+        <div class="tag">SolidWorks</div>
+        <div class="tag">Paris</div>
       </div>
     </div>
     <div class="hero-card">
       <div class="card-stripe"></div>
       <div class="card-body">
-        <div class="card-av">MV</div>
+        <div class="card-photo"><img src="images/profil.jpg" alt="Matthieu Vinet — Ingénieur Robotique" onerror="this.closest('.card-photo').style.display='none'"/></div>
         <div class="card-name">Matthieu Vinet</div>
         <div class="card-sub"><span class="fr">Ingénieur Robotique - Polytech Sorbonne</span><span class="en">Robotics Engineer - Polytech Sorbonne</span></div>
         <div class="card-status">
@@ -155,6 +182,21 @@
                 <div class="tl-dot on"></div>
                 <div class="tl-content">
                   <div class="tl-period">
+                    <span class="fr">Avr. 2026 &ndash; auj.</span><span class="en">Apr. 2026 &ndash; now</span>
+                    <span class="tl-now"><span class="fr">En cours</span><span class="en">Current</span></span>
+                  </div>
+                  <div class="tl-title">Botshare.ai &mdash; Berlin</div>
+                  <div class="tl-org"><span class="fr">Stagiaire Ingénieur Robotique &middot; Sur site</span><span class="en">Robotics Engineering Intern &middot; On-site</span></div>
+                  <div class="tl-desc"><span class="fr">Projet open-source OpenAMRobot (robot mobile autonome). Conception du système de docking de précision pour recharge sans fil (caméra + bundle d'AprilTags, asservissement visuel) ; développement et documentation du package ROS2 <code>openamrobot_docking</code> (simulation Gazebo, intégration Nav2). ROS2 · Nav2 · Gazebo · Python · C/C++ · AprilTag · Vision.</span><span class="en">Open-source project OpenAMRobot (autonomous mobile robot). Designed the precision docking system for wireless charging (camera + AprilTag bundle, visual servoing); developed and documented the ROS2 package <code>openamrobot_docking</code> (Gazebo simulation, Nav2 integration). ROS2 · Nav2 · Gazebo · Python · C/C++ · AprilTag · Vision.</span></div>
+                </div>
+              </div>
+
+              <div class="tl-spacer"></div>
+
+              <div class="tl-item">
+                <div class="tl-dot on"></div>
+                <div class="tl-content">
+                  <div class="tl-period">
                     <span class="fr">Sept. 2024 &ndash; auj.</span><span class="en">Sept. 2024 &ndash; now</span>
                     <span class="tl-now"><span class="fr">En cours</span><span class="en">Current</span></span>
                   </div>
@@ -165,6 +207,7 @@
               </div>
 
               <div class="tl-spacer"></div>
+              <div id="exp-extra" class="exp-more-wrap collapsed">
               <div class="tl-item">
                 <div class="tl-dot purple"></div>
                 <div class="tl-content">
@@ -204,6 +247,11 @@
                   <div class="tl-org"><span class="fr">Stage d'observation de 3ème</span><span class="en">Middle-school discovery internship</span></div>
                 </div>
               </div>
+              </div><!-- /#exp-extra -->
+              <button class="exp-more-btn" onclick="toggleExp(this)">
+                <span class="fr">Voir plus d'expériences</span><span class="en">Show more experience</span>
+                <span class="exp-arrow">▼</span>
+              </button>
         </div>
       </div>
     </div>

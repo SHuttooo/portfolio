@@ -22,7 +22,7 @@ const SKILL_GROUPS = [
     nameFr: 'Robotique & Navigation',
     nameEn: 'Robotics & Navigation',
     icon: '🤖',
-    color: '#059669',
+    color: '#1a2fff',
     skills: ['ROS2', 'Modélisation cinématique', 'SLAM', 'Odométrie', 'Suivi de trajectoire', 'PID · Correcteur P', 'Machine à états'],
     skillsEn: ['ROS2', 'Kinematic modelling', 'SLAM', 'Odometry', 'Path following', 'PID · P controller', 'State machine'],
     levels: [3, 2, 2, 2, 2, 3, 2]
@@ -31,7 +31,7 @@ const SKILL_GROUPS = [
     nameFr: 'Traitement du signal & Vision',
     nameEn: 'Signal Processing & Vision',
     icon: '👁️',
-    color: '#7b6fff',
+    color: '#1a2fff',
     skills: ['OpenCV', 'Image processing', 'Analyse de Fourier', 'Filtrage numérique', 'Reinforcement Learning', 'Apprentissage par imitation'],
     skillsEn: ['OpenCV', 'Image processing', 'Fourier analysis', 'Digital filtering', 'Reinforcement Learning', 'Imitation learning'],
     levels: [2, 2, 2, 2, 2, 1]
@@ -40,7 +40,7 @@ const SKILL_GROUPS = [
     nameFr: 'Mécanique & CAO',
     nameEn: 'Mechanics & CAD',
     icon: '⚙️',
-    color: '#e8192c',
+    color: '#1a2fff',
     skills: ['SolidWorks', 'Éléments finis', 'Laser cutting', '3D printing', 'Mécanique des solides', 'Conception de mécanismes'],
     skillsEn: ['SolidWorks', 'Finite elements', 'Laser cutting', '3D printing', 'Solid mechanics', 'Mechanism design'],
     levels: [3, 1, 3, 2, 2, 3]
@@ -49,7 +49,7 @@ const SKILL_GROUPS = [
     nameFr: 'Électronique & Embarqué',
     nameEn: 'Electronics & Embedded',
     icon: '⚡',
-    color: '#d97706',
+    color: '#1a2fff',
     skills: ['Analog electronics', 'Électronique de puissance', 'Arduino · ESP32', 'Capteurs · Actionneurs', 'CAN Bus · PWM', 'Servomoteurs · Brushless'],
     skillsEn: ['Analog electronics', 'Power electronics', 'Arduino · ESP32', 'Sensors · Actuators', 'CAN Bus · PWM', 'Servomotors · Brushless'],
     levels: [2, 2, 3, 3, 2, 2]
@@ -58,7 +58,7 @@ const SKILL_GROUPS = [
     nameFr: 'Automatique & Maths',
     nameEn: 'Control Theory & Maths',
     icon: '📊',
-    color: '#0076A8',
+    color: '#1a2fff',
     skills: ['Matlab / Simulink', 'Systèmes linéaires', 'Identification paramétrique', 'Probabilités · Statistiques', 'Filtre de Kalman', 'Minimax · Monte Carlo'],
     skillsEn: ['Matlab / Simulink', 'Linear systems', 'Parameter identification', 'Probability · Statistics', 'Kalman filter', 'Minimax · Monte Carlo'],
     levels: [2, 2, 1, 2, 2, 2]
@@ -66,10 +66,10 @@ const SKILL_GROUPS = [
 ];
 
 const SOURCES = {
-  industrial: { fr:'Projet industriel', en:'Industrial project', color:'#0891b2', bg:'#f0fdff', icon:'🏭' },
-  school:     { fr:'Projet de cours',   en:'Course project',     color:'#6d28d9', bg:'#f5f3ff', icon:'🎓' },
-  robotech:   { fr:'Robotech',          en:'Robotech',           color:'#059669', bg:'#f0fdf4', icon:'🔧' },
-  perso:      { fr:'Projet perso',      en:'Personal project',   color:'#d97706', bg:'#fffbeb', icon:'⚡' },
+  industrial: { fr:'Projet industriel', en:'Industrial project', color:'#475569', bg:'#f1f5f9', icon:'🏭' },
+  school:     { fr:'Projet de cours',   en:'Course project',     color:'#475569', bg:'#f1f5f9', icon:'🎓' },
+  robotech:   { fr:'Robotech',          en:'Robotech',           color:'#475569', bg:'#f1f5f9', icon:'🔧' },
+  perso:      { fr:'Projet perso',      en:'Personal project',   color:'#475569', bg:'#f1f5f9', icon:'⚡' },
 };
 
 const PROJECTS = [
@@ -110,6 +110,24 @@ const PROJECTS = [
     link: 'https://github.com/SHuttooo/ros2_ws',
     wip: false,
     blocks: [
+      // ── EN BREF : Problème → Approche → Résultat ──
+      {
+        type: 'text',
+        contentFr: `## En bref
+
+**Problème —** Polytech Sorbonne exploite une serre connectée sur le campus de Saint-Cyr, distant de Jussieu. Besoin : un robot mobile autonome capable de surveiller visuellement les cultures et d'être téléopéré à distance, en intérieur comme en extérieur, sur terrain mixte (herbe/gravier) et par tous temps.
+
+**Approche —** Base mobile étanche Curt Mini (IP68), localisation GPS RTK fusionnée par filtre de Kalman étendu (EKF), LiDAR reconverti en bouclier de sécurité, et simulation Gazebo fidèle au site réel. Mon périmètre personnel : l'IHM web de téléopération (conçue de A à Z) et la conception/fabrication du bras pantographe motorisé.
+
+**Résultat —** Dashboard web fonctionnel (flux vidéo < 0,5 s de latence, téléopération + contrôle PTZ, missions de navigation sur carte 2D, galerie synchronisée hors-ligne, accès sécurisé Tailscale) ; bras pantographe (prototype MDF) asservi en position et piloté depuis l'IHM ; localisation GPS RTK vérifiée à 1–5 cm (40 points croisés). Structure finale en plexiglas découpée au laser (assemblage à venir). Projet open-source, 4 documentations livrées, défendu en avril 2026.`,
+        contentEn: `## At a glance
+
+**Problem —** Polytech Sorbonne runs a connected greenhouse on the Saint-Cyr campus, far from Jussieu. The need: an autonomous mobile robot able to visually monitor crops and be teleoperated remotely, indoors and outdoors, on mixed terrain (grass/gravel) and in any weather.
+
+**Approach —** Waterproof Curt Mini mobile base (IP68), RTK GPS localization fused with an Extended Kalman Filter (EKF), LiDAR repurposed as a safety shield, and a Gazebo simulation faithful to the real site. My personal scope: the web teleoperation HMI (built from scratch) and the design/fabrication of the motorized pantograph arm.
+
+**Result —** Functional web dashboard (video stream < 0.5 s latency, teleoperation + PTZ control, 2D-map navigation missions, offline-synced gallery, secure Tailscale access); pantograph arm (MDF prototype) under position control and driven from the HMI; RTK GPS localization verified at 1–5 cm (40 cross-checked points). Final plexiglass structure laser-cut (assembly pending). Open-source project, 4 documentations delivered, defended in April 2026.`
+      },
       // ── INTRO ──
       {
         type: 'text',
@@ -590,6 +608,54 @@ void loop() {
   }
   delay(10);
 }`
+      },
+    ]
+  },
+
+  // ── PERSO : SITES VITRINES (FREELANCE) ────────────────────────
+  {
+    id: 'sites-vitrines',
+    titleFr: 'Sites web vitrines — conception & déploiement',
+    titleEn: 'Showcase websites — design & deployment',
+    category: 'web',
+    source: 'perso',
+    descFr: 'Projet personnel : je conçois, déploie et industrialise des sites vitrines de A à Z. Preuve concrète de compétences transférables — autonomie, livraison end-to-end et mise en production réelle.',
+    descEn: 'Personal project: I design, deploy and industrialize showcase websites end-to-end. Concrete proof of transferable skills — autonomy, end-to-end delivery and real production deployment.',
+    stack: ['HTML/CSS/JS','Cloudflare Pages','Git','Responsive','SEO'],
+    thumb: null,
+    link: 'https://demo.matthieu-vinet.fr',
+    wip: false,
+    blocks: [
+      {
+        type: 'text',
+        contentFr: `## Objectif
+
+En parallèle de mes études, je conçois des sites web vitrines complets — de la page blanche à la mise en production. L'intérêt ici n'est pas commercial : c'est une **preuve concrète de compétences transférables** utiles en ingénierie, qui montre que je sais **livrer un produit de A à Z, en autonomie et avec rigueur**.
+
+## Ce que je gère de bout en bout
+
+- **Conception** : structure, design responsive et accessible
+- **Développement** : intégration HTML/CSS/JS, optimisation des performances (chargement, images, lazy-loading)
+- **Mise en production** : déploiement sur **Cloudflare Pages**, configuration du domaine et du HTTPS, intégration continue via Git
+- **Industrialisation** : structure réutilisable, déploiement automatisé, maintenance et itérations
+
+## Compétences démontrées
+
+Autonomie complète, sens du produit fini, rigueur et capacité à livrer dans un vrai cadre de production — les mêmes réflexes que ceux que j'applique à mes projets robotique. Ce portfolio en est lui-même un exemple.`,
+        contentEn: `## Goal
+
+Alongside my studies, I build complete showcase websites — from blank page to production. The point here is not commercial: it is **concrete proof of transferable skills** relevant to engineering, showing that I can **ship a product end-to-end, autonomously and rigorously**.
+
+## What I handle end-to-end
+
+- **Design**: structure, responsive and accessible design
+- **Development**: HTML/CSS/JS integration, performance optimization (loading, images, lazy-loading)
+- **Production deployment**: deployment on **Cloudflare Pages**, domain and HTTPS setup, continuous integration via Git
+- **Industrialization**: reusable structure, automated deployment, maintenance and iterations
+
+## Skills demonstrated
+
+Full autonomy, a product mindset, rigor and the ability to deliver in a real production setting — the same reflexes I apply to my robotics projects. This very portfolio is one example.`
       },
     ]
   },
