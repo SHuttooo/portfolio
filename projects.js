@@ -77,6 +77,7 @@ const PROJECTS = [
   // ── PERSO : ROBOT SEGWAY ──────────────────────────────────────
   {
     id: 'segway',
+    concept: true,
     titleFr: 'Robot segway autonome',
     titleEn: 'Autonomous Segway Robot',
     category: 'robotics',
@@ -103,6 +104,8 @@ const PROJECTS = [
     titleEn: 'AGRI-BOT — Agricultural Supervision Mobile Robot',
     category: 'robotics',
     source: 'industrial',
+    featured: true,
+    date: '2026-04',
     descFr: 'Projet industriel ROB4 — AGRI-BOT, robot mobile autonome pour la télésurveillance de la serre connectée de Polytech Sorbonne. Navigation GPS RTK, téléopération, flux vidéo temps réel. Soutenance avril 2026.',
     descEn: 'Industrial project ROB4 — AGRI-BOT, autonomous mobile robot for remote supervision of Polytech Sorbonne\'s connected greenhouse. GPS RTK navigation, teleoperation, real-time video. Defended April 2026.',
     stack: ['ROS2','Python','C++','HTML/CSS/JS','GPS RTK','LiDAR','Arduino','Gazebo','SolidWorks'],
@@ -308,6 +311,7 @@ I designed and built the **pantograph arm** to adjust camera height from 30 cm (
   // ── COURS : TP REINFORCEMENT LEARNING (EASY21) ───────────────
   {
     id: 'easy21-rl',
+    date: '2026-03',
     titleFr: 'Apprentissage par renforcement — Easy21',
     titleEn: 'Reinforcement Learning — Easy21',
     category: 'software',
@@ -362,6 +366,7 @@ The fundamental difference between **on-policy** (Sarsa, which learns the policy
   // ── ROBOTECH : AVION RC POLYSTYRÈNE ────────────────────────────
   {
     id: 'avion-rc',
+    date: '2026-02',
     titleFr: 'Avion RC en polystyrène',
     titleEn: 'Polystyrene RC Plane',
     category: 'hardware',
@@ -426,6 +431,7 @@ Project in progress — motor tests are successful, flight tests are in preparat
   // ── ROBOTECH : VOITURE ESP32 ────────────────────────────────────
   {
     id: 'voitures-rc',
+    date: '2026-01',
     titleFr: 'Robot mobile télécommandé via ESP-NOW',
     titleEn: 'ESP-NOW Remote-Controlled Robot',
     category: 'robotics',
@@ -619,8 +625,10 @@ void loop() {
     titleEn: 'Showcase websites — design & deployment',
     category: 'web',
     source: 'perso',
-    descFr: 'Projet personnel : je conçois, déploie et industrialise des sites vitrines de A à Z. Preuve concrète de compétences transférables — autonomie, livraison end-to-end et mise en production réelle.',
-    descEn: 'Personal project: I design, deploy and industrialize showcase websites end-to-end. Concrete proof of transferable skills — autonomy, end-to-end delivery and real production deployment.',
+    featured: true,
+    date: '2026-06',
+    descFr: 'Activité menée en parallèle de mes études : je conçois et déploie des sites vitrines pour artisans, de la page blanche à la mise en production. Objectif assumé — en faire une source de revenus, en livrant un site qui vaut plus que ce que je facture.',
+    descEn: 'A venture I run alongside my studies: I design and deploy showcase websites for craftspeople, from blank page to production. An upfront goal — to make it a source of income, delivering a site worth more than what I charge.',
     stack: ['HTML/CSS/JS','Cloudflare Pages','Git','Responsive','SEO'],
     thumb: null,
     link: 'https://demo.matthieu-vinet.fr',
@@ -630,7 +638,9 @@ void loop() {
         type: 'text',
         contentFr: `## Objectif
 
-En parallèle de mes études, je conçois des sites web vitrines complets — de la page blanche à la mise en production. L'intérêt ici n'est pas commercial : c'est une **preuve concrète de compétences transférables** utiles en ingénierie, qui montre que je sais **livrer un produit de A à Z, en autonomie et avec rigueur**.
+En parallèle de mes études, j'ai lancé une activité de **création de sites web vitrines pour artisans**, gérée de A à Z — de la page blanche à la mise en production.
+
+Le but est assumé : **en faire une source de revenus**, tout en livrant à chaque client **un site qui vaut plus que ce que je facture** (design soigné, performances, accompagnement). C'est aussi la preuve concrète que je sais **concevoir et livrer un produit complet, en autonomie et avec rigueur** — les mêmes réflexes que sur mes projets d'ingénierie.
 
 ## Ce que je gère de bout en bout
 
@@ -644,7 +654,9 @@ En parallèle de mes études, je conçois des sites web vitrines complets — de
 Autonomie complète, sens du produit fini, rigueur et capacité à livrer dans un vrai cadre de production — les mêmes réflexes que ceux que j'applique à mes projets robotique. Ce portfolio en est lui-même un exemple.`,
         contentEn: `## Goal
 
-Alongside my studies, I build complete showcase websites — from blank page to production. The point here is not commercial: it is **concrete proof of transferable skills** relevant to engineering, showing that I can **ship a product end-to-end, autonomously and rigorously**.
+Alongside my studies, I launched a venture **building showcase websites for craftspeople**, handled end-to-end — from blank page to production.
+
+The goal is upfront: **to make it a source of income**, while delivering each client **a site worth more than what I charge** (careful design, performance, support). It is also concrete proof that I can **design and ship a complete product, autonomously and rigorously** — the same reflexes as on my engineering projects.
 
 ## What I handle end-to-end
 
@@ -663,6 +675,7 @@ Full autonomy, a product mindset, rigor and the ability to deliver in a real pro
   // ── ROBOTECH : SO-101 (HUGGING FACE) ──────────────────────────
   {
     id: 'so101',
+    date: '2026-01',
     titleFr: 'Robot SO-101 — Hugging Face',
     titleEn: 'SO-101 Robot — Hugging Face',
     category: 'robotics',
@@ -711,6 +724,7 @@ All structural parts were 3D-printed at Polytech's FabLab. Two robots were built
   // ── ROBOTECH : MOTEUR BRUSHLESS DIY ───────────────────────────
   {
     id: 'moteur-brushless',
+    date: '2025-12',
     titleFr: 'Moteur brushless DIY',
     titleEn: 'DIY Brushless Motor',
     category: 'hardware',
@@ -752,6 +766,7 @@ The motor's efficiency is not great — which is expected for a first handmade a
   // ── ROBOTECH : BORNE D'ARCADE ──────────────────────────────────
   {
     id: 'arcade',
+    date: '2025-12',
     titleFr: 'Borne d\'arcade',
     titleEn: 'Arcade Cabinet',
     category: 'hardware',
@@ -796,6 +811,7 @@ The cabinet is currently awaiting paint, to be handled by the Bureau des Arts (B
   // ── COURS : MINISHELL ─────────────────────────────────────────
   {
     id: 'minishell',
+    date: '2025-11',
     titleFr: 'Mini Shell en C',
     titleEn: 'Mini Shell in C',
     category: 'software',
@@ -846,6 +862,7 @@ Each token is duplicated with \`strdup\` and freed after use. Separation between
   // ── COURS : COMPTAGE VOITURES OPENCV ─────────────────────────
   {
     id: 'comptage-voitures',
+    date: '2025-11',
     titleFr: 'Comptage de voitures par traitement d\'image',
     titleEn: 'Car Counting via Image Processing',
     category: 'software',
@@ -886,6 +903,7 @@ Project carried out as part of the ROS2 / autonomous systems module at Polytech 
   // ── COURS : ROBOT MOBILE AVEC BRAS (ROB3) ─────────────────────
   {
     id: 'robot-bras',
+    date: '2025-05',
     titleFr: 'Robot mobile autonome avec bras et pince (ROB3)',
     titleEn: 'Autonomous Mobile Robot with Arm and Gripper (ROB3)',
     category: 'robotics',
@@ -968,6 +986,7 @@ On the software side: proportional controller for the arm, beacon detection, 90\
   // ── COURS : PAN-TILT RECONNAISSANCE DE GESTES ─────────────────
   {
     id: 'pan-tilt-gestes',
+    date: '2025-04',
     titleFr: 'Cam\u00e9ra pan-tilt avec reconnaissance de gestes',
     titleEn: 'Pan-Tilt Camera with Gesture Recognition',
     category: 'robotics',
@@ -1012,6 +1031,7 @@ Position commands are sent to an Arduino which drives the two pan-tilt servomoto
   // ── COURS : JEU D'ÉCHECS ──────────────────────────────────────
   {
     id: 'echecs',
+    date: '2025-01',
     titleFr: "Jeu d'\u00e9checs en C avec IA",
     titleEn: 'Chess Game in C with AI',
     category: 'software',
@@ -1062,6 +1082,7 @@ The AI is not very strong \u2014 but it plays legal moves, has basic strategy, a
   // ── COURS : POKER IA ──────────────────────────────────────────
   {
     id: 'poker',
+    date: '2024',
     titleFr: 'Poker IA — Monte Carlo',
     titleEn: 'Poker AI — Monte Carlo',
     category: 'software',
@@ -1084,6 +1105,7 @@ The AI is not very strong \u2014 but it plays legal moves, has basic strategy, a
   // ── COURS : ROBOT D'EXPLORATION MÉTÉO ────────────────────────
   {
     id: 'ros2-labs',
+    date: '2023',
     titleFr: "Robot d'exploration avec capteurs m\u00e9t\u00e9o",
     titleEn: 'Weather Exploration Robot',
     category: 'robotics',

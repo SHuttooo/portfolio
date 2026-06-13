@@ -27,6 +27,7 @@ const FILTERS = [
   { id:'ai',         labelFr:'IA · ML',           labelEn:'AI · ML',           match:['IA','Reinforcement Learning','LeRobot','Monte-Carlo','Monte Carlo','Minimax'] },
 ];
 let activeFilter = 'all';
+let projSort = 'featured'; // 'featured' (à la une puis récents) | 'recent'
 
 function stackMatchesFilter(stack, filter) {
   if (!filter || !filter.match) return true;
@@ -79,10 +80,38 @@ function setFilter(id) {
   renderProjects();
 }
 
+// ── TRI DES PROJETS ──
+// 'featured' : projets épinglés (featured:true) d'abord — dans l'ordre du tableau —
+//              puis tous les autres du plus récent au plus ancien (champ date "AAAA-MM").
+// 'recent'   : tout par date décroissante, sans tenir compte de l'épinglage.
+function sortProjects(list) {
+  const byDateDesc = (a, b) => (b.date || '').localeCompare(a.date || '');
+  if (projSort === 'recent') return list.slice().sort(byDateDesc);
+  const featured = list.filter(p => p.featured);
+  const others   = list.filter(p => !p.featured).sort(byDateDesc);
+  return [...featured, ...others];
+}
+const SORTS = [
+  { id:'featured', labelFr:'À la une',     labelEn:'Featured' },
+  { id:'recent',   labelFr:'Plus récents', labelEn:'Most recent' },
+];
+function renderSort() {
+  const c = document.getElementById('proj-sort');
+  if (!c) return;
+  c.innerHTML = `<span class="sort-label"><span class="fr">Trier :</span><span class="en">Sort:</span></span>` +
+    SORTS.map(s => `<button class="sort-btn${s.id === projSort ? ' active' : ''}" onclick="setSort('${s.id}')">${lang === 'fr' ? s.labelFr : s.labelEn}</button>`).join('');
+}
+function setSort(id) {
+  projSort = id;
+  projExpanded = false;
+  renderSort();
+  renderProjects();
+}
+
 // ── PROJECTS GRID ──
 function renderProjects() {
   const filter = FILTERS.find(f => f.id === activeFilter) || FILTERS[0];
-  const visible = PROJECTS.filter(p => stackMatchesFilter(p.stack, filter));
+  const visible = sortProjects(PROJECTS.filter(p => stackMatchesFilter(p.stack, filter)));
   document.getElementById('proj-g').innerHTML = visible.map((p, i) => {
     const c = CATS[p.category] || CATS.other;
     const title = lang === 'fr' ? p.titleFr : p.titleEn;
@@ -93,7 +122,9 @@ function renderProjects() {
       ? `<img class="proj-thumb-img" src="${thumb}" alt="${title}" loading="lazy"/>`
       : `<div class="proj-thumb-ph">${c.icon}</div>`;
     const wipBadge = p.wip
-      ? `<span class="wip-badge"><span class="wip-dot"></span><span class="fr">En cours</span><span class="en">In progress</span></span>`
+      ? `<span class="wip-badge"><span class="wip-dot"></span>${p.concept
+          ? `<span class="fr">Concept · à venir</span><span class="en">Concept · upcoming</span>`
+          : `<span class="fr">En cours</span><span class="en">In progress</span>`}</span>`
       : '';
     const s = (typeof SOURCES !== 'undefined' && SOURCES[p.source]) ? SOURCES[p.source] : null;
     const sourceBadge = s
@@ -107,12 +138,13 @@ function renderProjects() {
         </a>`
       : '';
     return `
-      <div class="proj-card rv" style="transition-delay:${i * .05}s" onclick="openProject('${p.id}')">
+      <div class="proj-card rv${p.featured ? ' featured' : ''}" style="transition-delay:${i * .05}s" onclick="openProject('${p.id}')">
         ${media}
         <div class="proj-body">
           <div class="proj-card-top">
             <div class="proj-tag" style="color:${c.color};background:${c.bg};border-color:${c.color}30">${c[lang]}</div>
             ${sourceBadge}
+            ${p.featured ? `<span class="feat-badge">★ <span class="fr">À la une</span><span class="en">Featured</span></span>` : ''}
           </div>
           <div class="proj-title">${title}</div>
           <div class="proj-desc-wrap" onclick="event.stopPropagation()">
@@ -297,6 +329,7 @@ function setLang(l) {
   renderProjects();
   renderSkills();
   renderFilters();
+  renderSort();
   if (currentProjectId) openProject(currentProjectId);
 }
 function applyLang() {
@@ -445,6 +478,7 @@ function toggleDesc(id, btn) {
 initTheme();
 applyLang();
 renderFilters();
+renderSort();
 renderSkills();
 renderProjects();
 observe();

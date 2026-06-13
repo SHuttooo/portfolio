@@ -294,6 +294,19 @@ html.dark .sk-card { background:var(--surface); border-color:var(--border); }
 .proj-filter-btn.active { background:var(--red); border-color:var(--red); color:white; }
 html.dark .proj-filter-btn.active { background:var(--red); color:white; }
 
+/* ── TRI VISITEUR ── */
+#proj-sort { display:flex; align-items:center; gap:.5rem; margin-bottom:1.8rem; margin-top:-.6rem; flex-wrap:wrap; }
+.sort-label { font-family:'JetBrains Mono',monospace; font-size:.7rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+.sort-btn { padding:.3rem .8rem; border-radius:4px; border:1.5px solid var(--border); background:transparent; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:.72rem; font-weight:600; cursor:pointer; transition:all .2s; }
+.sort-btn:hover { border-color:var(--red); color:var(--red); }
+.sort-btn.active { background:var(--red); border-color:var(--red); color:#fff; }
+
+/* ── BADGE « À LA UNE » + CARTE ÉPINGLÉE ── */
+.feat-badge { display:inline-flex; align-items:center; gap:.25rem; padding:.2rem .55rem; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:.62rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--blue); background:var(--blue-f); border:1px solid rgba(26,47,255,.18); }
+html.dark .feat-badge { background:rgba(77,111,255,.12); border-color:rgba(77,111,255,.25); }
+.proj-card.featured { border-color:rgba(26,47,255,.35); }
+html.dark .proj-card.featured { border-color:rgba(77,111,255,.4); }
+
 /* ── PROJECTS GRID ── */
 #projects { background:white; }
 .proj-g { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1.4rem; }
