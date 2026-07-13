@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import { FILTERS, SORTS } from '../lib/config';
+import ProjectCard from './ProjectCard.astro';
+
+const entries = await getCollection('projects');
+const projects = entries.map((e) => e.data);
+
+// Ordre initial "À la une" : projets épinglés d'abord, puis les autres, par date décroissante.
+const byDateDesc = (a: any, b: any) => (b.date ?? '').localeCompare(a.date ?? '');
+const featured = projects.filter((p) => p.featured).sort(byDateDesc);
+const others = projects.filter((p) => !p.featured).sort(byDateDesc);
+const ordered = [...featured, ...others];
+---
+
+<section id="projects" style="background:white">
+  <div class="sw">
+    <div class="rv">
+      <div class="sec-ey"><span class="fr">Projets</span><span class="en">Projects</span></div>
+      <h2 class="sec-h2"><span class="fr">Ce que j'ai <em>construit</em></span><span class="en">What I've <em>built</em></span></h2>
+    </div>
+
+    <div id="proj-filters">
+      {FILTERS.map((f) => (
+        <button class:list={['proj-filter-btn', { active: f.id === 'all' }]} data-filter={f.id} data-match={f.match ? f.match.join('|') : ''}>
+          <span class="fr">{f.labelFr}</span><span class="en">{f.labelEn}</span>
+        </button>
+      ))}
+    </div>
+
+    <div id="proj-sort">
+      <span class="sort-label"><span class="fr">Trier :</span><span class="en">Sort:</span></span>
+      {SORTS.map((s) => (
+        <button class:list={['sort-btn', { active: s.id === 'featured' }]} data-sort={s.id}>
+          <span class="fr">{s.labelFr}</span><span class="en">{s.labelEn}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="proj-g" id="proj-g">
+      {ordered.map((p, i) => <ProjectCard p={p} index={i} />)}
+    </div>
+
+    <div id="proj-more-btn" style="display:none">
+      <span class="proj-more-label"><span class="fr">Voir tous les projets</span><span class="en">View all projects</span></span>
+      <span class="proj-more-arrow">▼</span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+{
+  "id": "minishell",
+  "date": "2025-11",
+  "titleFr": "Mini Shell en C",
+  "titleEn": "Mini Shell in C",
+  "category": "software",
+  "source": "school",
+  "descFr": "Implémentation d'un mini shell en C — gestion des pipes, redirections, exécution en arrière-plan et builtins (cd, pwd, exit). Projet de cours systèmes d'information.",
+  "descEn": "Mini shell implemented in C — pipes, redirections, background execution and builtins (cd, pwd, exit). Systems programming course project.",
+  "stack": [
+    "C",
+    "Fork",
+    "Pipe",
+    "Dup2",
+    "Execvp",
+    "Linux"
+  ],
+  "thumb": null,
+  "link": "https://github.com/SHuttooo/TP4-INFO-SYS",
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Projet de cours en systèmes d'information — implémentation d'un mini shell en C capable de lire et exécuter des commandes avec les fonctionnalités essentielles d'un vrai shell Unix.\n\n**Fonctionnalités implémentées**\n\n- **Pipe (`|`)** : fork double avec `pipe()` et `dup2` pour connecter le `stdout` de la commande 1 au `stdin` de la commande 2.\n- **Redirection (`>`)** : fork + `open()` + `dup2` sur stdout vers un fichier.\n- **Arrière-plan (`&`)** : exécution sans attendre la fin du processus enfant.\n- **Séquences (`;`)** : découpage et exécution de plusieurs commandes en série.\n- **Builtins** : `cd` exécuté dans le parent (nécessaire pour changer le répertoire courant), `pwd`, `exit`.\n\n**Gestion mémoire**\n\nChaque token est dupliqué avec `strdup` et libéré après usage. La séparation entre analyse (`parse_input`), orchestration (`execution_cmd`) et exécution (`executefork`) évite les doubles libérations.\n\n**Piste d'amélioration** : gérer plusieurs pipes chaînés (`cmd1 | cmd2 | cmd3`).",
+      "contentEn": "Systems programming course project — implementation of a mini shell in C capable of reading and executing commands with the core features of a real Unix shell.\n\n**Implemented features**\n\n- **Pipe (`|`)** : double fork with `pipe()` and `dup2` to connect stdout of command 1 to stdin of command 2.\n- **Redirection (`>`)** : fork + `open()` + `dup2` on stdout to a file.\n- **Background (`&`)** : execution without waiting for the child process to finish.\n- **Sequences (`;`)** : split and run multiple commands in series.\n- **Builtins** : `cd` runs in the parent process (required to actually change the working directory), `pwd`, `exit`.\n\n**Memory management**\n\nEach token is duplicated with `strdup` and freed after use. Separation between parsing (`parse_input`), orchestration (`execution_cmd`) and execution (`executefork`) prevents double-free issues.\n\n**Improvement path**: handle multiple chained pipes (`cmd1 | cmd2 | cmd3`)."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "sites-vitrines",
+  "titleFr": "Sites web vitrines — conception & déploiement",
+  "titleEn": "Showcase websites — design & deployment",
+  "category": "web",
+  "source": "perso",
+  "featured": false,
+  "date": "2026-06",
+  "descFr": "Activité menée en parallèle de mes études : je conçois et déploie des sites vitrines pour artisans, de la page blanche à la mise en production. Objectif assumé — en faire une source de revenus, en livrant un site qui vaut plus que ce que je facture.",
+  "descEn": "A venture I run alongside my studies: I design and deploy showcase websites for craftspeople, from blank page to production. An upfront goal — to make it a source of income, delivering a site worth more than what I charge.",
+  "stack": [
+    "HTML/CSS/JS",
+    "Cloudflare Pages",
+    "Git",
+    "Responsive",
+    "SEO"
+  ],
+  "thumb": null,
+  "link": "https://demo.matthieu-vinet.fr",
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "## Objectif\n\nEn parallèle de mes études, j'ai lancé une activité de **création de sites web vitrines pour artisans**, gérée de A à Z — de la page blanche à la mise en production.\n\nLe but est assumé : **en faire une source de revenus**, tout en livrant à chaque client **un site qui vaut plus que ce que je facture** (design soigné, performances, accompagnement). C'est aussi la preuve concrète que je sais **concevoir et livrer un produit complet, en autonomie et avec rigueur** — les mêmes réflexes que sur mes projets d'ingénierie.\n\n## Ce que je gère de bout en bout\n\n- **Conception** : structure, design responsive et accessible\n- **Développement** : intégration HTML/CSS/JS, optimisation des performances (chargement, images, lazy-loading)\n- **Mise en production** : déploiement sur **Cloudflare Pages**, configuration du domaine et du HTTPS, intégration continue via Git\n- **Industrialisation** : structure réutilisable, déploiement automatisé, maintenance et itérations\n\n## Compétences démontrées\n\nAutonomie complète, sens du produit fini, rigueur et capacité à livrer dans un vrai cadre de production — les mêmes réflexes que ceux que j'applique à mes projets robotique. Ce portfolio en est lui-même un exemple.",
+      "contentEn": "## Goal\n\nAlongside my studies, I launched a venture **building showcase websites for craftspeople**, handled end-to-end — from blank page to production.\n\nThe goal is upfront: **to make it a source of income**, while delivering each client **a site worth more than what I charge** (careful design, performance, support). It is also concrete proof that I can **design and ship a complete product, autonomously and rigorously** — the same reflexes as on my engineering projects.\n\n## What I handle end-to-end\n\n- **Design**: structure, responsive and accessible design\n- **Development**: HTML/CSS/JS integration, performance optimization (loading, images, lazy-loading)\n- **Production deployment**: deployment on **Cloudflare Pages**, domain and HTTPS setup, continuous integration via Git\n- **Industrialization**: reusable structure, automated deployment, maintenance and iterations\n\n## Skills demonstrated\n\nFull autonomy, a product mindset, rigor and the ability to deliver in a real production setting — the same reflexes I apply to my robotics projects. This very portfolio is one example."
+    }
+  ]
+}

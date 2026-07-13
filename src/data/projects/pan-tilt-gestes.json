@@ -1,0 +1,34 @@
+{
+  "id": "pan-tilt-gestes",
+  "date": "2025-04",
+  "titleFr": "Caméra pan-tilt avec reconnaissance de gestes",
+  "titleEn": "Pan-Tilt Camera with Gesture Recognition",
+  "category": "robotics",
+  "source": "school",
+  "descFr": "Système pan-tilt motorisé : une caméra suit la main en temps réel par traitement d'image (Python/OpenCV), et déclenche des mouvements préenregistrés si un geste est maintenu 3 secondes. Servomoteurs pilotés via Arduino en C++.",
+  "descEn": "Motorized pan-tilt system: a camera tracks the hand in real time via image processing (Python/OpenCV), and triggers pre-recorded movements if a gesture is held for 3 seconds. Servomotors controlled via Arduino in C++.",
+  "stack": [
+    "Python",
+    "OpenCV",
+    "C++",
+    "Arduino",
+    "Servomotors",
+    "Vision"
+  ],
+  "thumb": "pan_tilt_gestes/images/thumb.jpg",
+  "link": null,
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Projet de cours réalisé à Polytech Sorbonne.\n\nLe système repose sur un **pan-tilt** (2 axes, horizontal et vertical) monté sur une caméra. Deux parties distinctes communiquent ensemble :\n\n**Traitement d'image (Python / OpenCV)**\nReconnaissance des gestes de la main en temps réel grâce à un modèle de détection de la main fourni par OpenCV. La caméra suit le centre de la main en continu (suivi pan-tilt).\n\n**Contrôle des servomoteurs (C++ / Arduino)**\nLes commandes de position sont envoyées à une Arduino qui pilote les deux servomoteurs du pan-tilt. Lorsqu'un geste spécifique est détecté et maintenu pendant au moins **3 secondes**, le robot exécute un mouvement préenregistré correspondant.",
+      "contentEn": "Course project at Polytech Sorbonne.\n\nThe system uses a **pan-tilt** (2 axes, horizontal and vertical) mounted on a camera. Two separate components work together:\n\n**Image processing (Python / OpenCV)**\nReal-time hand gesture recognition using an OpenCV hand detection model. The camera continuously tracks the center of the hand (pan-tilt tracking).\n\n**Servo control (C++ / Arduino)**\nPosition commands are sent to an Arduino which drives the two pan-tilt servomotors. When a specific gesture is detected and held for at least **3 seconds**, the robot executes the corresponding pre-recorded movement."
+    },
+    {
+      "type": "video",
+      "src": "pan_tilt_gestes/videos/demo.mp4",
+      "captionFr": "Démonstration — suivi de main et déclenchement sur geste",
+      "captionEn": "Demo — hand tracking and gesture-triggered movement"
+    }
+  ]
+}

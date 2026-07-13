@@ -1,0 +1,32 @@
+{
+  "id": "poker",
+  "date": "2024",
+  "titleFr": "Poker IA — Monte Carlo",
+  "titleEn": "Poker AI — Monte Carlo",
+  "category": "software",
+  "source": "school",
+  "descFr": "Jeu de poker Texas Hold'em en Python avec interface graphique et une IA adversaire basée sur la méthode de Monte Carlo. Nombre de joueurs et agressivité de l'IA paramétrables. (Polytech Tours, PEIP — 2024)",
+  "descEn": "Python Texas Hold'em game with a graphical interface and an opponent AI based on the Monte Carlo method. Configurable number of players and AI aggressiveness.",
+  "stack": [
+    "Python",
+    "Monte Carlo",
+    "IA",
+    "Matplotlib",
+    "Interface graphique"
+  ],
+  "thumb": null,
+  "link": "https://github.com/natiroir/Poker-algorithme",
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Projet développé lors de ma première année de cycle préparatoire (PEIP) à Polytech Tours.\n\nIl s'agit d'un jeu de poker (Texas Hold'em) codé en Python, avec interface graphique, implémentant une intelligence artificielle adversaire. L'IA utilise une **méthode de Monte Carlo** pour simuler aléatoirement de nombreuses fins de parties possibles et estimer statistiquement sa probabilité de victoire avant de prendre une décision (se coucher, suivre ou relancer).",
+      "contentEn": "Project from my first preparatory year (PEIP) at Polytech Tours.\n\nA Texas Hold'em poker game in Python with a graphical interface and an adversarial AI. The AI uses a **Monte Carlo method** to randomly simulate many possible endings and statistically estimate its winning probability before deciding to fold, call or raise."
+    },
+    {
+      "type": "text",
+      "contentFr": "## Le programme\n\n- **Interface graphique** pour jouer contre des adversaires virtuels\n- **IA paramétrable** : nombre de joueurs et niveau d'agressivité réglables via un fichier de configuration\n- **Décision par simulation Monte Carlo** — l'IA échantillonne un grand nombre de scénarios pour estimer sa cote avant chaque action\n- **Visualisations matplotlib** (probabilités, statistiques de parties)\n- Multi-plateforme (Windows, macOS, Linux), installation `pip install -r requirements.txt`\n\nUn de mes premiers projets d'algorithmique et d'IA — l'occasion de manipuler les probabilités, l'échantillonnage aléatoire et la structuration d'un programme en modules.",
+      "contentEn": "## The program\n\n- **Graphical interface** to play against virtual opponents\n- **Configurable AI**: number of players and aggressiveness level tunable via a config file\n- **Monte Carlo decision-making** — the AI samples many scenarios to estimate its odds before each action\n- **Matplotlib visualizations** (probabilities, game statistics)\n- Cross-platform (Windows, macOS, Linux), install via `pip install -r requirements.txt`\n\nOne of my first algorithmics and AI projects — a chance to work with probability, random sampling and structuring a program into modules."
+    }
+  ]
+}

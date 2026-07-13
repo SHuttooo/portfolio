@@ -1,0 +1,79 @@
+---
+import { CATS, SOURCES } from '../lib/config';
+import { media } from '../lib/render';
+
+interface Props { p: any; index?: number; }
+const { p, index = 0 } = Astro.props;
+
+const c = CATS[p.category] ?? CATS.other;
+const s = p.source ? SOURCES[p.source] : null;
+
+const imgBlock = (p.blocks ?? []).find((b: any) => b.type === 'image');
+const thumb = p.thumb || (imgBlock && imgBlock.src) || null;
+
+const repo = p.link && String(p.link).includes('github.com') ? p.link : null;
+const dataStack = (p.stack ?? []).join('|');
+---
+
+<div
+  class:list={['proj-card', 'rv', { featured: p.featured }]}
+  style={`transition-delay:${index * 0.05}s`}
+  data-href={`/projets/${p.id}/`}
+  data-stack={dataStack}
+  data-date={p.date ?? ''}
+  data-featured={p.featured ? '1' : '0'}
+  role="link"
+  tabindex="0"
+>
+  {thumb
+    ? <img class="proj-thumb-img" src={media(thumb)} alt={p.titleFr} loading="lazy" />
+    : <div class="proj-thumb-ph">{c.icon}</div>}
+
+  <div class="proj-body">
+    <div class="proj-card-top">
+      <div class="proj-tag" style={`color:${c.color};background:${c.bg};border-color:${c.color}30`}>
+        <span class="fr">{c.fr}</span><span class="en">{c.en}</span>
+      </div>
+      {s && (
+        <span class="source-badge" style={`color:${s.color};background:${s.bg}`}>
+          <span class="fr">{s.fr}</span><span class="en">{s.en}</span>
+        </span>
+      )}
+      {p.featured && (
+        <span class="feat-badge">★ <span class="fr">À la une</span><span class="en">Featured</span></span>
+      )}
+    </div>
+
+    <div class="proj-title"><span class="fr">{p.titleFr}</span><span class="en">{p.titleEn}</span></div>
+
+    <div class="proj-desc-wrap" data-stop>
+      <div class="proj-desc collapsed" id={`desc-${p.id}`}>
+        <span class="fr">{p.descFr}</span><span class="en">{p.descEn}</span>
+      </div>
+      <button class="proj-desc-toggle" onclick={`toggleDesc('${p.id}',this)`}>▼</button>
+    </div>
+
+    <div class="proj-stack">
+      {(p.stack ?? []).map((t: string) => <span class="sb">{t}</span>)}
+    </div>
+
+    {p.wip && (
+      <span class="wip-badge">
+        <span class="wip-dot"></span>
+        {p.concept
+          ? <><span class="fr">Concept · à venir</span><span class="en">Concept · upcoming</span></>
+          : <><span class="fr">En cours</span><span class="en">In progress</span></>}
+      </span>
+    )}
+
+    <div class="proj-foot">
+      <div class="proj-more"><span class="fr">Voir le projet</span><span class="en">View project</span> &rarr;</div>
+      {repo && (
+        <a class="proj-gh" href={repo} target="_blank" rel="noopener" data-stop onclick="event.stopPropagation()" title="GitHub">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Code
+        </a>
+      )}
+    </div>
+  </div>
+</div>

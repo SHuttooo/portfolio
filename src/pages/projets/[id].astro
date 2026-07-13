@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Blocks from '../../components/blocks/Blocks.astro';
+import ProjectLink from '../../components/ProjectLink.astro';
+import { CATS } from '../../lib/config';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('projects');
+  return entries.map((e) => ({ params: { id: e.data.id }, props: { p: e.data } }));
+}
+
+const { p } = Astro.props;
+const c = CATS[p.category] ?? CATS.other;
+
+// Bloc "Crédits" en dernier : on l'affiche APRÈS le lien (comme l'ancien site).
+const blocks = p.blocks ?? [];
+const last = blocks[blocks.length - 1];
+const isCredits = last && last.type === 'text' && (last.contentFr ?? last.content ?? '').includes('Cr');
+const mainBlocks = isCredits ? blocks.slice(0, -1) : blocks;
+const creditBlock = isCredits ? [last] : [];
+---
+<Base title={`${p.titleFr} — Matthieu Vinet`} description={p.descFr} path={`/projets/${p.id}/`}>
+  <Nav />
+  <div id="view-project" style="display:block">
+    <div class="proj-detail">
+      <a class="back-btn" href="/#projects">
+        &larr; <span class="fr">Retour aux projets</span><span class="en">Back to projects</span>
+      </a>
+      <div id="detail-content">
+        <div class="detail-tag" style={`color:${c.color};background:${c.bg};border-color:${c.color}30`}>
+          <span class="fr">{c.fr}</span><span class="en">{c.en}</span>
+        </div>
+        <h1 class="detail-title"><span class="fr">{p.titleFr}</span><span class="en">{p.titleEn}</span></h1>
+        <div class="detail-stack">
+          {(p.stack ?? []).map((t: string) => <span class="sb" style="font-size:.78rem;padding:.25rem .7rem">{t}</span>)}
+        </div>
+
+        <Blocks blocks={mainBlocks} />
+        {p.link && <ProjectLink url={p.link} />}
+        <Blocks blocks={creditBlock} />
+      </div>
+    </div>
+  </div>
+</Base>

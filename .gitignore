@@ -1,1 +1,11 @@
 .claude/
+
+# Dépendances & build (générés, jamais committés)
+node_modules/
+dist/
+.astro/
+
+# Divers
+*.log
+.DS_Store
+.env

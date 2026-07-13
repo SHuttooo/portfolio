@@ -1,0 +1,37 @@
+{
+  "id": "moteur-brushless",
+  "date": "2025-12",
+  "titleFr": "Moteur brushless DIY",
+  "titleEn": "DIY Brushless Motor",
+  "category": "hardware",
+  "source": "robotech",
+  "descFr": "Fabrication d'un moteur brushless entièrement à la main — bobinage, rotor, stator. Rendement limité mais très instructif pour comprendre le fonctionnement de ce type d'actionneur.",
+  "descEn": "Fully handmade brushless motor — winding, rotor, stator. Limited efficiency but very educational to understand how this type of actuator works.",
+  "stack": [
+    "Electronics",
+    "Mechanics",
+    "Winding",
+    "3D printing"
+  ],
+  "thumb": "moteur_brushless/images/moteur.jpg",
+  "link": "https://www.youtube.com/watch?v=OZarwftUh8w",
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Dans le cadre de l'association Robotech, j'ai voulu comprendre les entrailles d'un des actionneurs les plus utilisés en robotique en le fabriquant de zéro.\n\nChaque composant a été conçu et assemblé manuellement : impression des supports de bobine en 3D, bobinage méthodique du stator en fils de cuivre émaillé, et assemblage des aimants permanents du rotor.\n\nLe rendement du moteur n'est pas très bon — ce qui est attendu pour une première réalisation artisanale. Mais ce projet est surtout **très instructif** pour comprendre concrètement le fonctionnement d'un moteur brushless : les phases, la commutation, les forces magnétiques en jeu.",
+      "contentEn": "At Robotech, I wanted to truly understand one of the most widely used actuators in robotics by building one from scratch.\n\nEvery component was hand-built: 3D-printed coil supports, methodical stator winding with enameled copper wire, and assembly of permanent rotor magnets.\n\nThe motor's efficiency is not great — which is expected for a first handmade attempt. But the real value of this project is how **educational** it is: you understand phases, commutation and magnetic forces in a very concrete way."
+    },
+    {
+      "type": "video",
+      "src": "moteur_brushless/videos/demo.mp4",
+      "captionFr": "Le moteur brushless DIY en fonctionnement",
+      "captionEn": "DIY brushless motor running"
+    },
+    {
+      "type": "text",
+      "contentFr": "**Crédits** : Inspiré de la vidéo YouTube ci-dessous.",
+      "contentEn": "**Credits**: Inspired by the YouTube video below."
+    }
+  ]
+}

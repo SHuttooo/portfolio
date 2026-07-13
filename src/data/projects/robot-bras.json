@@ -1,0 +1,63 @@
+{
+  "id": "robot-bras",
+  "date": "2025-05",
+  "titleFr": "Robot mobile autonome avec bras et pince (ROB3)",
+  "titleEn": "Autonomous Mobile Robot with Arm and Gripper (ROB3)",
+  "category": "robotics",
+  "source": "school",
+  "descFr": "Projet ROB3 — Robot mobile autonome capable de détecter, saisir et déposer un objet dans une arène. Suivi de mur, bras 1DDL en parallélogramme, pince préhensile. Plus gros projet de 1ère année spécialité Robotique.",
+  "descEn": "ROB3 Project — Autonomous mobile robot capable of detecting, grasping and placing an object in an arena. Wall following, 1-DOF parallelogram arm, gripper. Biggest project of 1st year Robotics specialty.",
+  "stack": [
+    "C++",
+    "Arduino",
+    "SolidWorks",
+    "Découpe laser",
+    "CAN Bus",
+    "Capteurs IR",
+    "Correcteur P"
+  ],
+  "thumb": "robot_bras_rob3/images/robot.jpg",
+  "link": "https://wiki.fablab.sorbonne-universite.fr/BookStack/books/projet-rob3-2025/page/projet-rob3-diyana-emile-rayan-matthieu-pierre-louis-esteban",
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Projet ROB3, le plus gros projet de première année spécialité Robotique à Polytech Sorbonne (3ème année post-bac), réalisé en équipe de 6 : Diyana, Émile, Rayan, Matthieu, Pierre-Louis, Esteban.\n\n**Objectif** : concevoir un robot mobile autonome capable de se déplacer dans une arène, détecter un objet (totem) dont la position est inconnue à l'avance, le saisir précisément et le déposer à un emplacement défini, sans aucune interaction humaine.\n\nLe robot est composé d'un chariot unicycle, d'un bras à 1 DDL en parallélogramme vertical et d'une pince montée à l'avant.",
+      "contentEn": "ROB3 Project, the biggest project of the first year Robotics specialty at Polytech Sorbonne (3rd year post-bac), carried out by a team of 6: Diyana, Émile, Rayan, Matthieu, Pierre-Louis, Esteban.\n\n**Goal**: design an autonomous mobile robot capable of navigating an arena, detecting an object (totem) at an unknown position, grasping it precisely and dropping it at a defined location, with no human interaction.\n\nThe robot consists of a unicycle cart, a 1-DOF parallelogram vertical arm and a gripper mounted at the front."
+    },
+    {
+      "type": "image",
+      "src": "robot_bras_rob3/images/robot.jpg",
+      "captionFr": "Le robot assemblé — châssis bois, bras en arc, pince et Arduino CAN Bus",
+      "captionEn": "Assembled robot — wood chassis, arc arm, gripper and Arduino CAN Bus"
+    },
+    {
+      "type": "text",
+      "contentFr": "**Mon rôle : Pôle mécanique (principal) + Informatique**\n\nCôté mécanique, j'ai été responsable de la conception et de la réalisation de l'ensemble des pièces du robot :\n\n- **Bras en parallélogramme** : 2 bielles alignées fixées au châssis via des supports et des cales. La bielle avant est vissée au moteur, la bielle arrière est maintenue entre deux supports à serrage. J'ai résolu le problème de collision bras/câblage en adoptant une **forme arquée** pour la pièce supportant la pince.\n- **Châssis** : modelé sur SolidWorks, usiné par découpe laser (bois 6 mm), avec découpes rectangulaires pour emboîter les supports par serrage avec cales — assemblage rigide mais démontable.\n- **Toutes les pièces** : bielle, pièce arquée, support moteur, support bielle, cales — modelées sur SolidWorks et découpées laser.\n- **Élastique de rappel** : ajouté pour aider le moteur à remonter le bras (couple insuffisant seul).\n\nCôté informatique : correcteur proportionnel du bras, détection des balises, rotation à 90°, balayage pour détecter le totem, fonctions d'attrapage et de lâcher.",
+      "contentEn": "**My role: Mechanical (lead) + Software**\n\nOn the mechanical side, I designed and manufactured all robot parts:\n\n- **Parallelogram arm**: 2 aligned links fixed to the chassis via supports and wedges. Front link screwed to the motor, rear one held between two clamping supports. I solved the collision issue by using an **arc-shaped part** to hold the gripper.\n- **Chassis**: modeled in SolidWorks, laser-cut (6 mm wood), with rectangular cutouts to slot the supports in with wedges — rigid but removable assembly.\n- **All parts**: link, arc part, motor support, link support, wedges — modeled in SolidWorks and laser-cut.\n- **Return spring**: added to help the motor lift the arm (insufficient torque alone).\n\nOn the software side: proportional controller for the arm, beacon detection, 90° rotation, scanning to detect the totem, grasp and release functions."
+    },
+    {
+      "type": "gallery",
+      "columns": 2,
+      "images": [
+        "robot_bras_rob3/images/pince.jpg",
+        "robot_bras_rob3/images/support_mdf.jpg",
+        "robot_bras_rob3/images/croquis_bras.jpg"
+      ],
+      "captionFr": "Pince SolidWorks · Support MDF avec cales · Croquis de conception du bras",
+      "captionEn": "SolidWorks gripper · MDF support with wedges · Arm design sketch"
+    },
+    {
+      "type": "video",
+      "src": "robot_bras_rob3/videos/bras_proportionnel.mp4",
+      "captionFr": "Bras contrôlé en position par un correcteur proportionnel",
+      "captionEn": "Arm controlled in position with a proportional controller"
+    },
+    {
+      "type": "video",
+      "src": "robot_bras_rob3/videos/robot_mur.mp4",
+      "captionFr": "Robot suivant un mur avec un correcteur PID",
+      "captionEn": "Robot following a wall with a PID controller"
+    }
+  ]
+}

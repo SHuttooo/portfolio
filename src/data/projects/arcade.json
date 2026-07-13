@@ -1,0 +1,41 @@
+{
+  "id": "arcade",
+  "date": "2025-12",
+  "titleFr": "Borne d'arcade",
+  "titleEn": "Arcade Cabinet",
+  "category": "hardware",
+  "source": "robotech",
+  "descFr": "Conception et fabrication d'une borne d'arcade complète en MDF — Raspberry Pi 4, boutons rétroéclairés, RetroPie. En attente de peinture.",
+  "descEn": "Design and build of a full MDF arcade cabinet — Raspberry Pi 4, backlit buttons, RetroPie. Awaiting paint.",
+  "stack": [
+    "MDF 6mm",
+    "Raspberry Pi 4",
+    "RetroPie",
+    "Electronics",
+    "Laser cutting"
+  ],
+  "thumb": "borne_arcade/images/arcade_2.jpg",
+  "link": null,
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Conception et fabrication d'une borne d'arcade complète au sein de l'association Robotech, avec Maxence Santos — et l'aide de plusieurs membres dont les deux Maxime au cours de la construction.\n\nLa structure a été découpée au laser dans des plaques de MDF 6 mm et assemblée manuellement. L'interface de contrôle intègre deux joysticks et des boutons authentiques rétroéclairés, câblés via des drivers dédiés, ainsi qu'un bouton on/off et une multiprise intégrée.\n\nLe système est piloté par une Raspberry Pi 4 sous RetroPie, configurée pour faire tourner une large sélection de jeux open-source classiques. L'écran provient des ressources de Polytech Sorbonne.\n\nLa borne est actuellement en attente de peinture, qui sera prise en charge par le Bureau des Arts (BdA).",
+      "contentEn": "Design and build of a full arcade cabinet at Robotech, with Maxence Santos — and the help of several members including both Maximes during the build.\n\nThe structure was laser-cut from 6 mm MDF boards and assembled by hand. The control panel features two joysticks and authentic backlit arcade buttons wired through dedicated drivers, plus an on/off button and integrated power strip.\n\nThe system runs on a Raspberry Pi 4 with RetroPie, configured to play a wide selection of classic open-source games. The screen was provided by Polytech Sorbonne.\n\nThe cabinet is currently awaiting paint, to be handled by the Bureau des Arts (BdA)."
+    },
+    {
+      "type": "image",
+      "src": "borne_arcade/images/arcade_1.jpg"
+    },
+    {
+      "type": "gallery",
+      "images": [
+        "borne_arcade/images/arcade_2.jpg",
+        "borne_arcade/images/arcade_3.jpg",
+        "borne_arcade/images/arcade_4.jpg"
+      ],
+      "captionFr": "Borne d'arcade construite au FabLab de Polytech Sorbonne — MDF 6mm, Raspberry Pi 4, boutons rétroéclairés, RetroPie.",
+      "captionEn": "Arcade cabinet built at Polytech Sorbonne FabLab — 6mm MDF, Raspberry Pi 4, backlit buttons, RetroPie."
+    }
+  ]
+}

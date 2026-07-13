@@ -1,0 +1,59 @@
+{
+  "id": "avion-rc",
+  "date": "2026-02",
+  "titleFr": "Avion RC en polystyrène",
+  "titleEn": "Polystyrene RC Plane",
+  "category": "hardware",
+  "source": "robotech",
+  "descFr": "Avion radiocommandé en polystyrène — moteur brushless, batterie LiPo 3S, ESC 30A, ESP32. En cours de développement avec Maxime Bondil.",
+  "descEn": "Polystyrene RC plane — brushless motor, 3S LiPo battery, 30A ESC, ESP32. In development with Maxime Bondil.",
+  "stack": [
+    "Polystyrène",
+    "Brushless",
+    "ESC 30A",
+    "LiPo 3S",
+    "ESP32",
+    "Servomotors"
+  ],
+  "thumb": "avion_rc_polystyrene/images/avion_1.jpg",
+  "link": "https://www.youtube.com/watch?v=cA379JRswz8",
+  "linkLabel": "<span class=\"fr\">Vidéo d'inspiration (YouTube)</span><span class=\"en\">Inspiration video (YouTube)</span>",
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Réalisation d'un avion radiocommandé en polystyrène, inspiré en partie d'un tutoriel YouTube, avec Maxime Bondil dans le cadre de Robotech.\n\nLa structure de l'avion est taillée dans du polystyrène expansé et renforcée au ruban adhésif. La chaîne de propulsion complète a été intégrée à l'intérieur du fuselage :\n\n- **Moteur brushless** + hélice jaune pour la propulsion\n- **Contrôleur brushless (ESC) 30A** pour piloter le moteur\n- **Batterie LiPo 3S 2200 mAh** comme source d'énergie\n- **ESP32** pour la réception des commandes RC\n- **Réducteur de tension** pour alimenter l'électronique\n- **Bouton on/off** pour la mise sous tension\n\nProjet en cours — les essais moteur sont concluants, les vols test sont en préparation.",
+      "contentEn": "Construction of a polystyrene RC plane, partly inspired by a YouTube tutorial, with Maxime Bondil at Robotech.\n\nThe airframe is carved from expanded polystyrene and reinforced with adhesive tape. The full propulsion chain is integrated inside the fuselage:\n\n- **Brushless motor** + yellow propeller for thrust\n- **30A Brushless ESC** to drive the motor\n- **3S 2200 mAh LiPo battery** as power source\n- **ESP32** for RC command reception\n- **Voltage regulator** to power electronics\n- **On/off switch** for power control\n\nProject in progress — motor tests are successful, flight tests are in preparation."
+    },
+    {
+      "type": "gallery",
+      "images": [
+        "avion_rc_polystyrene/images/avion_1.jpg",
+        "avion_rc_polystyrene/images/avion_2.jpg"
+      ],
+      "captionFr": "L'avion assemblé — structure polystyrène, moteur brushless et hélice",
+      "captionEn": "Assembled plane — polystyrene structure, brushless motor and propeller"
+    },
+    {
+      "type": "video-duo",
+      "videos": [
+        {
+          "src": "avion_rc_polystyrene/videos/test_moteur.mp4",
+          "captionFr": "Test du moteur brushless",
+          "captionEn": "Brushless motor test"
+        },
+        {
+          "src": "avion_rc_polystyrene/videos/avion_2.mp4",
+          "captionFr": "Tour de l'avion — assemblage en cours",
+          "captionEn": "Walk-around — assembly in progress"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "src": "avion_rc_polystyrene/videos/final.mp4",
+      "captionFr": "Vidéo finale",
+      "captionEn": "Final video"
+    }
+  ]
+}

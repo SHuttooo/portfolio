@@ -1,0 +1,20 @@
+---
+// Barre de navigation + sélecteur de langue / dark mode.
+// Les liens pointent vers /#ancre pour fonctionner depuis n'importe quelle page.
+---
+<div class="lang-sw">
+  <button class="dark-toggle" onclick="toggleDark()" title="Dark mode" aria-label="Basculer le mode sombre">🌙</button>
+  <button onclick="setLang('fr')" data-l="fr" class="on">FR</button>
+  <button onclick="setLang('en')" data-l="en">EN</button>
+</div>
+
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-dot"></div>Matthieu Vinet</a>
+  <ul id="nav-ul">
+    <li><a href="/#about"><span class="fr">À propos</span><span class="en">About</span></a></li>
+    <li><a href="/#skills"><span class="fr">Compétences</span><span class="en">Skills</span></a></li>
+    <li><a href="/#projects"><span class="fr">Projets</span><span class="en">Projects</span></a></li>
+    <li><a href="/#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hbg" onclick="toggleNav()" role="button" tabindex="0" aria-label="Ouvrir le menu"><span></span><span></span><span></span></div>
+</nav>

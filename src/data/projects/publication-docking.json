@@ -1,0 +1,56 @@
+{
+  "id": "publication-docking",
+  "titleFr": "Publication — Comment un robot autonome trouve son chargeur",
+  "titleEn": "Publication — How an Autonomous Robot Finds Its Charger",
+  "category": "robotics",
+  "source": "stage",
+  "featured": false,
+  "date": "2026-06",
+  "descFr": "Article technique public rédigé en anglais pour le blog de Botshare, à partir de mon travail de stage. Il explique la démarche d'ingénieur derrière l'accostage autonome sur station de recharge sans fil — et pourquoi la robustesse prime sur la précision brute. Publié en juin 2026.",
+  "descEn": "Public technical article written in English for the Botshare blog, based on my internship work. It explains the engineering approach behind autonomous docking onto a wireless charging station — and why robustness beats raw precision. Published June 2026.",
+  "stack": [
+    "AprilTag",
+    "Vision",
+    "Asservissement visuel",
+    "ROS2",
+    "Rédaction technique"
+  ],
+  "thumb": "openamr/images/publication-thumb.png",
+  "link": "https://www.botshare.blog/how-an-autonomous-robot-finds-its-charger/",
+  "wip": false,
+  "blocks": [
+    {
+      "type": "image",
+      "hero": true,
+      "src": "openamr/images/publication-titre.png",
+      "captionFr": "Bandeau de l'article publié sur le blog de Botshare (juin 2026)",
+      "captionEn": "Header of the article published on the Botshare blog (June 2026)"
+    },
+    {
+      "type": "text",
+      "contentFr": "## En bref\n\n**Le sujet —** Un robot d'entrepôt sait naviguer, mais s'aligner au millimètre sur son chargeur reste un vrai problème d'ingénierie. J'ai écrit cet article public pour expliquer *comment* on résout ce problème, et surtout *comment on devrait le mesurer*.\n\n**L'angle —** L'idée forte : atteindre une précision au centimètre en laboratoire est facile ; la **maintenir sous conditions réelles** (éblouissement, faible éclairage, marqueur partiellement masqué) est le vrai enjeu. Le bon critère d'acceptation n'est donc pas la précision moyenne, mais la **répétabilité** — l'écart-type sur de nombreux essais dans les pires conditions.\n\n**Pourquoi ça compte pour un portfolio —** au-delà de la technique, cet article prouve que je sais **prendre du recul, structurer une analyse et la vulgariser en anglais** pour une audience large — et le partager en open-source pour que d'autres équipes réutilisent le raisonnement plutôt que de le refaire.",
+      "contentEn": "## At a glance\n\n**The subject —** A warehouse robot can navigate, but aligning to the millimetre on its charger remains a genuine engineering problem. I wrote this public article to explain *how* that problem is solved, and above all *how it should be measured*.\n\n**The angle —** The key idea: reaching centimetre precision in a lab is easy; **holding it under real conditions** (glare, dim light, a partially masked marker) is the real challenge. So the right acceptance metric isn't average accuracy, but **repeatability** — the standard deviation over many attempts under the hardest conditions.\n\n**Why it matters for a portfolio —** beyond the technique, this article proves I can **step back, structure an analysis and communicate it in English** for a broad audience — and share it open-source so other teams reuse the reasoning rather than redoing it."
+    },
+    {
+      "type": "text",
+      "contentFr": "L'article est né directement de mon stage chez Botshare sur la plateforme open-source **OpenAMRobot**. Parce que le projet est ouvert, mon tuteur m'a proposé de transformer mon étude d'architecture capteur en **article technique public**, pour que d'autres équipes (PME, chercheurs) puissent réutiliser l'analyse plutôt que de la refaire.\n\nÉcrire pour un public large m'a obligé à **clarifier mon propre raisonnement** : trier l'essentiel, expliquer les compromis, illustrer par des schémas. C'est aussi la meilleure façon que j'ai trouvée de construire un modèle mental clair d'un système complexe.",
+      "contentEn": "The article came directly out of my Botshare internship on the open-source **OpenAMRobot** platform. Because the project is open, my mentor suggested turning my sensor-architecture study into a **public technical article**, so other teams (SMEs, researchers) could reuse the analysis rather than redo it.\n\nWriting for a broad audience forced me to **clarify my own reasoning**: sort out what matters, explain the trade-offs, illustrate with diagrams. It's also the best way I've found to build a clear mental model of a complex system."
+    },
+    {
+      "type": "video",
+      "src": "openamr/videos/accostage-final.mp4",
+      "captionFr": "Le sujet de l'article en action — l'accostage final par asservissement visuel sur le robot réel",
+      "captionEn": "The subject of the article in action — final visual-servoing docking on the real robot"
+    },
+    {
+      "type": "text",
+      "contentFr": "## Le contenu, en bref\n\n- **La cible est imposée par le chargeur —** un tableau comparatif de quatre familles de chargeurs sans fil commerciaux montre des tolérances de l'ordre de **±20 à ±50 mm**. J'en déduis une cible de conception prudente et *vendor-agnostic* : **±10 mm de position, ±2° d'angle**.\n- **Robustesse > précision —** pourquoi la fiabilité dans le pire cas compte plus que la meilleure mesure ponctuelle, et pourquoi la **répétabilité** est le vrai critère d'acceptation (à mesurer sur matériel réel, pas en simulation).\n- **L'architecture recommandée —** une caméra frontale lisant un **faisceau large de plusieurs AprilTags** : la solution la plus simple, peu coûteuse, sans instrumentation du sol, qui attaque l'axe difficile (l'orientation) par la géométrie plutôt que par un capteur en plus. Astuce : des grands tags extérieurs (lisibles de loin) et un petit tag central (dans le champ jusqu'au bout).\n- **La séquence d'accostage** décrite phase par phase, et la gestion des « derniers centimètres » où les capteurs perdent leur cible.\n\n**Illustrations de l'article :** robot en approche dans la simulation avec le faisceau de trois AprilTags, et phase d'alignement final avec la ligne verte marquant l'axe d'approche.",
+      "contentEn": "## The content, in brief\n\n- **The target is set by the charger —** a comparison table of four families of commercial wireless chargers shows tolerances around **±20 to ±50 mm**. From this I derive a conservative, *vendor-agnostic* design target: **±10 mm position, ±2° yaw**.\n- **Robustness > precision —** why worst-case reliability matters more than the best single measurement, and why **repeatability** is the real acceptance metric (to be measured on real hardware, not in simulation).\n- **The recommended architecture —** a forward camera reading a **wide bundle of several AprilTags**: the simplest, lowest-cost option, no floor instrumentation, attacking the hard axis (orientation) with geometry rather than an extra sensor. Trick: large outer tags (readable far away) and a small centre tag (in view to the very end).\n- **The docking sequence** described phase by phase, and handling the \"final centimetres\" where sensors lose their target.\n\n**Article illustrations:** the robot approaching in simulation with the three-AprilTag bundle, and the final alignment phase with a green line marking the approach axis."
+    },
+    {
+      "type": "text",
+      "contentFr": "Crédits — Article rédigé par **Matthieu Vinet**, publié sur le blog de Botshare (juin 2026), dans le cadre du projet open-source OpenAMRobot.",
+      "contentEn": "Credits — Article written by **Matthieu Vinet**, published on the Botshare blog (June 2026), as part of the open-source OpenAMRobot project."
+    }
+  ]
+}

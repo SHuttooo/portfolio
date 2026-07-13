@@ -1,0 +1,44 @@
+---
+import SKILL_GROUPS from '../data/skills.json';
+---
+
+<section id="skills">
+  <div class="sw">
+    <div class="rv">
+      <div class="sec-ey"><span class="fr">Compétences</span><span class="en">Skills</span></div>
+      <h2 class="sec-h2"><span class="fr">Mes outils <em>&amp;</em> technologies</span><span class="en">My tools <em>&amp;</em> technologies</span></h2>
+      <div class="sk-legend">
+        <div class="sk-legend-item"><span class="sk-dot on" style="background:var(--muted)"></span><span class="sk-dot"></span><span class="sk-dot"></span><span class="fr">Notions</span><span class="en">Basics</span></div>
+        <div class="sk-legend-item"><span class="sk-dot on" style="background:var(--muted)"></span><span class="sk-dot on" style="background:var(--muted)"></span><span class="sk-dot"></span><span class="fr">Intermédiaire</span><span class="en">Intermediate</span></div>
+        <div class="sk-legend-item"><span class="sk-dot on" style="background:var(--muted)"></span><span class="sk-dot on" style="background:var(--muted)"></span><span class="sk-dot on" style="background:var(--muted)"></span><span class="fr">Maîtrise</span><span class="en">Proficient</span></div>
+      </div>
+    </div>
+    <div class="sk-g" id="sk-g">
+      {SKILL_GROUPS.map((g: any) => {
+        const skillsFr: string[] = g.skillsFr ?? g.skills ?? [];
+        const skillsEn: string[] = g.skillsEn ?? g.skills ?? [];
+        const lvls: number[] = g.levels ?? [];
+        return (
+          <div class="sk-card rv">
+            <div class="sk-top">
+              <div class="sk-ico" style={`background:${g.color}20`}>{g.icon}</div>
+              <div class="sk-nm"><span class="fr">{g.nameFr}</span><span class="en">{g.nameEn}</span></div>
+            </div>
+            <div class="sk-tags">
+              {skillsFr.map((_s: string, i: number) => (
+                <span class="sk-tag">
+                  <span class="sk-tag-name"><span class="fr">{skillsFr[i]}</span><span class="en">{skillsEn[i] ?? skillsFr[i]}</span></span>
+                  <span class="sk-dots">
+                    {[1, 2, 3].map((d) => (
+                      <span class:list={['sk-dot', { on: d <= (lvls[i] || 0) }]} style={d <= (lvls[i] || 0) ? `background:${g.color}` : undefined}></span>
+                    ))}
+                  </span>
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

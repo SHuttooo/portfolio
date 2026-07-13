@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string; // chemin canonique, ex "/" ou "/projets/serre/"
+}
+const {
+  title = 'Matthieu Vinet — Étudiant Ingénieur en Robotique | ROS2 · Navigation autonome',
+  description = "Étudiant ingénieur en Robotique à Polytech Sorbonne, en stage chez Botshare.ai (Berlin). Projets ROS2, navigation autonome, SLAM, vision et systèmes embarqués. Recherche stage 5A robotique — Paris, 2027.",
+  path = '/',
+} = Astro.props;
+const canonical = new URL(path, 'https://matthieu-vinet.fr').href;
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Matthieu Vinet" />
+  <meta name="theme-color" content="#1a2fff" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://matthieu-vinet.fr/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://matthieu-vinet.fr/og-image.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Applique le thème avant le rendu pour éviter le flash clair/sombre -->
+  <script is:inline>
+    (function () {
+      var s = localStorage.getItem('theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (s === 'dark' || (!s && d)) document.documentElement.classList.add('dark');
+    })();
+  </script>
+</head>
+<body class="lang-fr">
+  <slot />
+
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <button class="lb-close">&#x2715;</button>
+    <img id="lb-img" src="" alt="" />
+  </div>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

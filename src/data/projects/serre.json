@@ -1,0 +1,132 @@
+{
+  "id": "serre",
+  "titleFr": "AGRI-BOT — Robot mobile de supervision agricole",
+  "titleEn": "AGRI-BOT — Agricultural Supervision Mobile Robot",
+  "category": "robotics",
+  "source": "industrial",
+  "featured": true,
+  "date": "2026-04",
+  "descFr": "Projet industriel ROB4 — AGRI-BOT, robot mobile autonome pour la télésurveillance de la serre connectée de Polytech Sorbonne. Navigation GPS RTK, téléopération, flux vidéo temps réel. Soutenance avril 2026.",
+  "descEn": "Industrial project ROB4 — AGRI-BOT, autonomous mobile robot for remote supervision of Polytech Sorbonne's connected greenhouse. GPS RTK navigation, teleoperation, real-time video. Defended April 2026.",
+  "stack": [
+    "ROS2",
+    "Python",
+    "C++",
+    "HTML/CSS/JS",
+    "GPS RTK",
+    "LiDAR",
+    "Arduino",
+    "Gazebo",
+    "SolidWorks"
+  ],
+  "thumb": "serre/images/ihm_dashboard.png",
+  "link": "https://github.com/SHuttooo/ros2_ws",
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "## En bref\n\n**Problème —** Polytech Sorbonne exploite une serre connectée sur le campus de Saint-Cyr, distant de Jussieu. Besoin : un robot mobile autonome capable de surveiller visuellement les cultures et d'être téléopéré à distance, en intérieur comme en extérieur, sur terrain mixte (herbe/gravier) et par tous temps.\n\n**Approche —** Base mobile étanche Curt Mini (IP68), localisation GPS RTK fusionnée par filtre de Kalman étendu (EKF), LiDAR reconverti en bouclier de sécurité, et simulation Gazebo fidèle au site réel. Mon périmètre personnel : l'IHM web de téléopération (conçue de A à Z) et la conception/fabrication du bras pantographe motorisé.\n\n**Résultat —** Dashboard web fonctionnel (flux vidéo < 0,5 s de latence, téléopération + contrôle PTZ, missions de navigation sur carte 2D, galerie synchronisée hors-ligne, accès sécurisé Tailscale) ; bras pantographe (prototype MDF) asservi en position et piloté depuis l'IHM ; localisation GPS RTK vérifiée à 1–5 cm (40 points croisés). Structure finale en plexiglas découpée au laser (assemblage à venir). Projet open-source, 4 documentations livrées, défendu en avril 2026.",
+      "contentEn": "## At a glance\n\n**Problem —** Polytech Sorbonne runs a connected greenhouse on the Saint-Cyr campus, far from Jussieu. The need: an autonomous mobile robot able to visually monitor crops and be teleoperated remotely, indoors and outdoors, on mixed terrain (grass/gravel) and in any weather.\n\n**Approach —** Waterproof Curt Mini mobile base (IP68), RTK GPS localization fused with an Extended Kalman Filter (EKF), LiDAR repurposed as a safety shield, and a Gazebo simulation faithful to the real site. My personal scope: the web teleoperation HMI (built from scratch) and the design/fabrication of the motorized pantograph arm.\n\n**Result —** Functional web dashboard (video stream < 0.5 s latency, teleoperation + PTZ control, 2D-map navigation missions, offline-synced gallery, secure Tailscale access); pantograph arm (MDF prototype) under position control and driven from the HMI; RTK GPS localization verified at 1–5 cm (40 cross-checked points). Final plexiglass structure laser-cut (assembly pending). Open-source project, 4 documentations delivered, defended in April 2026."
+    },
+    {
+      "type": "text",
+      "contentFr": "Projet industriel de 2ème année à Polytech Sorbonne, réalisé en équipe avec **Fatoumata Diallo** et **Pierre-Louis Pasutto**, encadré par Aline Baudry. Soutenance finale en avril 2026.\n\nL'objectif : concevoir **AGRI-BOT**, un robot mobile capable de circuler à l'intérieur et à l'extérieur de la serre connectée du campus de Saint-Cyr, d'assurer le suivi visuel des cultures et de permettre une téléopération complète depuis Jussieu. Projet open-source, ROS2-compatible, documenté pour être repris par les futures promotions.\n\nLa base mobile retenue est le **Curt Mini (Fraunhofer IPA)** — moteurs IP68, garde au sol 15,5 cm, 30 kg de charge utile, compatibilité native ROS2 Jazzy. Après comparaison avec le Jackal (Clearpath) et le Scout Mini (Agilex), c'est le seul à répondre simultanément aux contraintes d'étanchéité (IP68), de terrain mixte herbe/gravier et de charge utile suffisante pour le bras et les équipements.",
+      "contentEn": "Second-year industrial project at Polytech Sorbonne, carried out as a team with **Fatoumata Diallo** and **Pierre-Louis Pasutto**, supervised by Aline Baudry. Final presentation in April 2026.\n\nThe goal: design **AGRI-BOT**, a mobile robot able to navigate inside and outside the connected greenhouse on the Saint-Cyr campus, monitor crops visually, and enable full teleoperation from Jussieu. Open-source project, ROS2-compatible, fully documented for future teams.\n\nThe chosen mobile base is the **Curt Mini (Fraunhofer IPA)** — IP68 motors, 15.5 cm ground clearance, 30 kg payload, native ROS2 Jazzy support. After comparing it with the Jackal (Clearpath) and Scout Mini (Agilex), it was the only one meeting all constraints simultaneously: waterproofing (IP68), mixed terrain, and sufficient payload."
+    },
+    {
+      "type": "gallery",
+      "images": [
+        "serre/images/photo_generer_ia_robot_pantographe.JPG",
+        "serre/images/CURT.jpg"
+      ],
+      "columns": 2,
+      "autoHeight": true,
+      "captionFr": "Concept AGRI-BOT (image IA) — base mobile Curt Mini (Fraunhofer IPA)",
+      "captionEn": "AGRI-BOT concept (AI image) — Curt Mini mobile base (Fraunhofer IPA)"
+    },
+    {
+      "type": "image",
+      "src": "serre/images/demo_serre.png",
+      "captionFr": "La serre géodésique connectée du campus de Saint-Cyr",
+      "captionEn": "The connected geodesic greenhouse on Saint-Cyr campus"
+    },
+    {
+      "type": "text",
+      "contentFr": "## Mon rôle — Interface de supervision (IHM)\n\nJ'ai conçu et développé le **dashboard web de téléopération** de A à Z. Stack : HTML, CSS, JavaScript côté client — Python pour la passerelle ROS2/WebSocket.\n\nFonctionnalités intégrées :\n- **Flux vidéo temps réel** (< 0,5 s de latence) via MediaMTX + caméra Reolink TrackMix 4K PTZ\n- **Téléopération clavier** du robot et **contrôle PTZ** de la caméra (pan/tilt/zoom/focus)\n- **Navigation par carte 2D** — composition de missions complexes point par point, zones interdites détectées automatiquement, vue intérieure/extérieure\n- **Arrêt d'urgence**, réglages vitesse/bras/caméra\n- **Galerie photos/vidéos** avec synchronisation automatique hors-ligne : le robot continue de capturer même sans réseau, puis synchronise au retour (purge automatique tous les 10 jours)\n- Accès sécurisé via VPN **Tailscale** — IP fixe, pas d'ouverture de port, traverse les pare-feux du campus",
+      "contentEn": "## My role — Supervision Interface (HMI)\n\nI designed and built the full **web teleoperation dashboard** from scratch. Stack: HTML, CSS, JavaScript client-side — Python for the ROS2/WebSocket bridge.\n\nFeatures:\n- **Real-time video stream** (< 0.5 s latency) via MediaMTX + Reolink TrackMix 4K PTZ camera\n- **Keyboard teleoperation** of the robot and **PTZ control** of the camera (pan/tilt/zoom/focus)\n- **2D map navigation** — compose complex missions point by point, forbidden zones detected automatically, indoor/outdoor view\n- **Emergency stop**, speed/arm/camera adjustments\n- **Photo/video gallery** with automatic offline sync: the robot keeps capturing without network and syncs on reconnection (auto-purge every 10 days)\n- Secure access via **Tailscale** VPN — fixed IP, no port forwarding, bypasses campus firewalls"
+    },
+    {
+      "type": "image",
+      "src": "serre/images/Ihm_page_principal.png",
+      "captionFr": "Page principale — flux vidéo temps réel, téléopération clavier, contrôle PTZ et réglages du robot",
+      "captionEn": "Main page — real-time video stream, keyboard teleoperation, PTZ control and robot settings"
+    },
+    {
+      "type": "gallery",
+      "images": [
+        "serre/images/ihm_page_navigation.png",
+        "serre/images/ihm_avec_simulation_navigation.png"
+      ],
+      "columns": 2,
+      "captionFr": "Page navigation — carte 2D interactive et simulation de navigation avec le robot virtuel",
+      "captionEn": "Navigation page — interactive 2D map and navigation simulation with virtual robot"
+    },
+    {
+      "type": "image",
+      "src": "serre/images/ihm_page_galerie.png",
+      "captionFr": "Page galerie — synchronisation automatique des photos et vidéos du robot",
+      "captionEn": "Gallery page — automatic photo and video sync from the robot"
+    },
+    {
+      "type": "text",
+      "contentFr": "## Mon rôle — Bras pantographe motorisé\n\nJ'ai conçu et fabriqué le **bras pantographe** permettant d'ajuster la hauteur de la caméra de 30 cm (replié) à 140 cm déployé (robot + caméra inclus), pour s'adapter à la hauteur variable des cultures.\n\n**Deux prototypes en MDF** (fraiseuse) :\n- Prototype 1 : 3 étages, tiges courtes\n- Prototype 2 (final) : 2 étages, diagonales plus longues — moins de pertes aux rotations, contrainte de hauteur largement atteinte\n\n**Actionnement :** vérin récupéré d'un ancien projet (étanche, 12 V) fixé entre la base et la première intersection — optimise l'espace occupé au repos.\n\n**Architecture de contrôle (Arduino Mega + RoboClaw) :**\n- Pont Python ROS2 ↔ série USB, filtré à 5 Hz max, reconnexion automatique\n- Asservissement en position : correcteur proportionnel avec profil trapézoïdal (limites d'accélération et de vitesse min/max) — démarrage en douceur, pas de choc mécanique\n- Relais 5 V commandé par Arduino : coupe le RoboClaw dès que la cible est atteinte (erreur < 2 % pendant 2 s) → économie de batterie. Possible car le vérin est irréversible (fort rapport de réduction)\n- Fusible 2,5 A pour protéger le vérin (3 A max)\n\n**→ Toutes les photos et vidéos ci-dessous montrent le prototype en MDF.**",
+      "contentEn": "## My role — Motorized pantograph arm\n\nI designed and built the **pantograph arm** to adjust camera height from 30 cm (folded) to 140 cm deployed (robot + camera), adapting to varying crop heights.\n\n**Two MDF prototypes** (CNC router):\n- Prototype 1: 3 stages, short rods\n- Prototype 2 (final): 2 stages, longer diagonals — fewer rotation losses, height target easily met\n\n**Actuation:** recycled linear actuator from a previous project (waterproof, 12 V), mounted between the base end and the first intersection — minimizes footprint at rest.\n\n**Control architecture (Arduino Mega + RoboClaw):**\n- Python bridge ROS2 ↔ USB serial, filtered to 5 Hz max, auto-reconnect\n- Position control: proportional controller with trapezoidal profile (acceleration and min/max speed limits) — smooth start, no mechanical shock\n- 5 V relay driven by Arduino: cuts the RoboClaw once target is reached (< 2% error for 2 s) → battery saving. Safe because the actuator is mechanically irreversible\n- 2.5 A fuse to protect the actuator (3 A max)\n\n**→ All photos and videos below show the MDF prototype.**"
+    },
+    {
+      "type": "image",
+      "hero": true,
+      "src": "serre/images/pantographe_ihm.jpg",
+      "captionFr": "Commande du pantographe depuis l'IHM — prototype MDF en mouvement via le dashboard web",
+      "captionEn": "Pantograph controlled from the HMI — MDF prototype in motion via the web dashboard"
+    },
+    {
+      "type": "image",
+      "size": "medium",
+      "src": "serre/images/simulation_solidworks_pantographe.gif",
+      "captionFr": "Simulation SolidWorks — cinématique de déploiement du pantographe",
+      "captionEn": "SolidWorks simulation — pantograph deployment kinematics"
+    },
+    {
+      "type": "gallery",
+      "images": [
+        "serre/images/pantographe.jpg",
+        "serre/images/box_electronique.jpg"
+      ],
+      "columns": 2,
+      "captionFr": "Prototype MDF du bras (2 étages, vérin récupéré) — boîtier électronique (Arduino Mega, RoboClaw, relais 5 V, fusible 2,5 A)",
+      "captionEn": "MDF arm prototype (2 stages, recycled actuator) — electronics box (Arduino Mega, RoboClaw, 5 V relay, 2.5 A fuse)"
+    },
+    {
+      "type": "video",
+      "src": "serre/videos/presentation_test_pantographe_ihm.mp4",
+      "captionFr": "Démonstration du prototype MDF — déploiement du bras commandé depuis l'IHM web",
+      "captionEn": "MDF prototype demo — arm deployment controlled from the web HMI"
+    },
+    {
+      "type": "text",
+      "contentFr": "## Navigation — travail d'équipe\n\n- **Localisation :** GPS RTK (simpleRTK2B, précision 1–5 cm vérifiée à Saint-Cyr, 40 points croisés avec Google Maps) utilisé partout — y compris à l'intérieur de la serre dont la structure laisse passer le signal. Fusion GPS RTK + odométrie + IMU via filtre de Kalman étendu (EKF).\n- **LiDAR Hokuyo :** rôle redéfini après test terrain — le SLAM était impossible (géométrie trop symétrique). Utilisé exclusivement comme bouclier de sécurité (270°, 40 Hz), zone d'arrêt d'urgence de 50 × 60 cm.\n- **Simulation Gazebo :** réplique fidèle du site de Saint-Cyr (coordonnées GPS réelles, bâtiments, obstacles) — tout se transfère directement sur le robot réel sans réécriture.\n- **Missions autonomes :** Nav2 (A* / DWA), retour automatique au point home, mode hors-ligne.\n- **4 documentations** livrées sur GitHub : livret d'utilisation, configuration, problèmes récurrents, explication du code.",
+      "contentEn": "## Navigation — team work\n\n- **Localization:** RTK GPS (simpleRTK2B, 1–5 cm precision at Saint-Cyr, 40 points cross-checked with Google Maps) used everywhere — including inside the greenhouse. GPS RTK + odometry + IMU fusion via EKF.\n- **Hokuyo LiDAR:** role redefined after field testing — SLAM was impossible (symmetric geometry). Used exclusively as a safety shield (270°, 40 Hz), 50 × 60 cm emergency stop zone.\n- **Gazebo simulation:** faithful replica of the Saint-Cyr site (real GPS coordinates) — transfers directly to the real robot without rewriting.\n- **Autonomous missions:** Nav2 (A* / DWA), automatic return to home point, offline mode.\n- **4 documentations** on GitHub: user guide, configuration, recurring issues, code explanation."
+    },
+    {
+      "type": "video",
+      "src": "serre/videos/decoupage_de_la_structure_en_plexiglass.mp4",
+      "captionFr": "Découpe laser de la structure finale en plexiglas — toutes les pièces sont prêtes, l'assemblage sera réalisé prochainement",
+      "captionEn": "Laser cutting of the final plexiglass structure — all parts are ready, assembly coming soon"
+    },
+    {
+      "type": "text",
+      "contentFr": "Crédits — **Matthieu Vinet** (IHM · bras pantographe) · **Pierre-Louis Pasutto** (navigation autonome · simulation Gazebo) · **Fatoumata Diallo** (caméra PTZ · intégration LiDAR) — Encadrant : Aline Baudry",
+      "contentEn": "Credits — **Matthieu Vinet** (HMI · pantograph arm) · **Pierre-Louis Pasutto** (autonomous navigation · Gazebo simulation) · **Fatoumata Diallo** (PTZ camera · LiDAR integration) — Supervisor: Aline Baudry"
+    }
+  ]
+}

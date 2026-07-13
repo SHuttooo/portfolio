@@ -1,0 +1,26 @@
+{
+  "id": "echecs",
+  "date": "2025-01",
+  "titleFr": "Jeu d'échecs en C avec IA",
+  "titleEn": "Chess Game in C with AI",
+  "category": "software",
+  "source": "school",
+  "descFr": "Jeu d'échecs complet en C en terminal — toutes les règles implémentées, promotion des pions, détection d'échec, et une IA par exploration des coups sur 3 niveaux de profondeur.",
+  "descEn": "Full chess game in C in terminal — all rules implemented, pawn promotion, check detection, and an AI exploring moves at 3 levels of depth.",
+  "stack": [
+    "C",
+    "Algorithms",
+    "Minimax",
+    "Linux"
+  ],
+  "thumb": null,
+  "link": null,
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Projet de cours d'algorithmique et programmation bas niveau à Polytech Sorbonne, réalisé en binôme.\n\n**Fonctionnalités implémentées**\n\n- Affichage du plateau en terminal avec notation standard (K, Q, B, N, R, P / k, q, b, n, r, p)\n- Toutes les règles de déplacement légales : roque, prise en passant, promotion des pions\n- Détection des situations d'échec\n- Sauvegarde et chargement d'une partie\n- Calcul et affichage de la valeur des pièces\n\n**IA adversaire**\n\nJ'ai implémenté une IA par exploration exhaustive de toutes les séquences de coups possibles sur **3 niveaux de profondeur**. À chaque position, je calcule une **moyenne du score des meilleurs coups** à partir d'une fonction d'évaluation simple (valeur des pièces sur le plateau).\n\nL'IA n'est pas très forte — mais elle joue des coups légaux, elle a une stratégie basique, et elle peut battre un joueur vraiment distrait. Un bon point de départ pour comprendre concrètement comment fonctionne une IA de jeu de plateau.",
+      "contentEn": "Algorithms and low-level programming course project at Polytech Sorbonne, carried out in pairs.\n\n**Implemented features**\n\n- Terminal board display with standard notation (K, Q, B, N, R, P / k, q, b, n, r, p)\n- All legal movement rules: castling, en passant, pawn promotion\n- Check detection\n- Save and load a game\n- Piece value calculation and display\n\n**Adversarial AI**\n\nI implemented an AI by exhaustively exploring all possible move sequences at **3 levels of depth**. At each position, I compute an **average of the best move scores** from a simple evaluation function (piece values on the board).\n\nThe AI is not very strong — but it plays legal moves, has basic strategy, and can beat a distracted player. A solid starting point for concretely understanding how a board game AI works."
+    }
+  ]
+}

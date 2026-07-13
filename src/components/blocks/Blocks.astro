@@ -1,0 +1,102 @@
+---
+// Moteur de blocs — rend chaque bloc d'un projet (texte, image, vidéo, galerie,
+// video-duo, code). Reproduit l'ancien renderBlocks() mais en STATIQUE : les deux
+// langues (FR/EN) sont écrites dans le DOM, la bascule se fait en CSS (comme avant).
+import { renderText, esc, media } from '../../lib/render';
+
+interface Props {
+  blocks: any[];
+}
+const { blocks = [] } = Astro.props;
+---
+
+{blocks.map((b, i) => {
+  // ── Caption bilingue partagée ──
+  const capFr = b.captionFr ?? b.caption ?? '';
+  const capEn = b.captionEn ?? b.caption ?? '';
+
+  if (b.type === 'text') {
+    const fr = b.contentFr ?? b.content ?? '';
+    const en = b.contentEn ?? b.content ?? '';
+    return (
+      <div class="block-text">
+        <div class="fr" set:html={renderText(fr)} />
+        <div class="en" set:html={renderText(en)} />
+      </div>
+    );
+  }
+
+  if (b.type === 'image') {
+    const cls = ['block-img', b.hero && 'hero', b.size && `size-${b.size}`].filter(Boolean).join(' ');
+    return (
+      <div class={cls}>
+        <img src={media(b.src)} alt={capFr} onclick="openLb(this)" loading="lazy" />
+        {(capFr || capEn) && (
+          <div class="caption"><span class="fr">{capFr}</span><span class="en">{capEn}</span></div>
+        )}
+      </div>
+    );
+  }
+
+  if (b.type === 'video') {
+    return (
+      <div class="block-video">
+        <video controls src={media(b.src)} style="width:100%;border-radius:6px;display:block"></video>
+        {(capFr || capEn) && (
+          <div class="caption"><span class="fr">{capFr}</span><span class="en">{capEn}</span></div>
+        )}
+      </div>
+    );
+  }
+
+  if (b.type === 'gallery') {
+    const gridStyle = b.columns === 2 ? 'grid-template-columns:1fr 1fr' : '';
+    const cls = b.autoHeight ? 'block-gallery auto-height' : 'block-gallery';
+    return (
+      <>
+        <div class={cls} style={gridStyle}>
+          {(b.images ?? []).map((src: string) => (
+            <img src={media(src)} alt="" onclick="openLb(this)" loading="lazy" />
+          ))}
+        </div>
+        {(capFr || capEn) && (
+          <div class="caption" style="font-size:.78rem;color:var(--muted);margin-top:.5rem;text-align:center;font-style:italic">
+            <span class="fr">{capFr}</span><span class="en">{capEn}</span>
+          </div>
+        )}
+      </>
+    );
+  }
+
+  if (b.type === 'video-duo') {
+    return (
+      <div class="block-video-duo">
+        {(b.videos ?? []).map((v: any) => (
+          <div class="block-video-duo-item">
+            <video controls src={media(v.src)} style="width:100%;border-radius:6px;display:block"></video>
+            {(v.captionFr || v.captionEn) && (
+              <div class="caption"><span class="fr">{v.captionFr ?? ''}</span><span class="en">{v.captionEn ?? ''}</span></div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (b.type === 'code') {
+    const id = `code-${Astro.props.blocks === blocks ? i : i}-${Math.random().toString(36).slice(2, 8)}`;
+    return (
+      <div class="block-code">
+        <button class="code-toggle" onclick={`this.classList.toggle('open');document.getElementById('${id}').classList.toggle('open')`}>
+          <span class="fr">{b.titleFr ?? 'Code'}</span><span class="en">{b.titleEn ?? b.titleFr ?? 'Code'}</span>
+          <span class="code-arrow">▶</span>
+        </button>
+        <div class="code-body" id={id}>
+          <pre><code set:html={esc(b.content ?? '')} /></pre>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+})}

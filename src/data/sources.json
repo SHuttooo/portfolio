@@ -1,0 +1,37 @@
+{
+  "stage": {
+    "fr": "Stage",
+    "en": "Internship",
+    "color": "#475569",
+    "bg": "#f1f5f9",
+    "icon": "💼"
+  },
+  "industrial": {
+    "fr": "Projet industriel",
+    "en": "Industrial project",
+    "color": "#475569",
+    "bg": "#f1f5f9",
+    "icon": "🏭"
+  },
+  "school": {
+    "fr": "Projet de cours",
+    "en": "Course project",
+    "color": "#475569",
+    "bg": "#f1f5f9",
+    "icon": "🎓"
+  },
+  "robotech": {
+    "fr": "Robotech",
+    "en": "Robotech",
+    "color": "#475569",
+    "bg": "#f1f5f9",
+    "icon": "🔧"
+  },
+  "perso": {
+    "fr": "Projet perso",
+    "en": "Personal project",
+    "color": "#475569",
+    "bg": "#f1f5f9",
+    "icon": "⚡"
+  }
+}

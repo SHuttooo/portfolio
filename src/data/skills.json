@@ -1,0 +1,194 @@
+[
+  {
+    "nameFr": "Programmation",
+    "nameEn": "Programming",
+    "icon": "💻",
+    "color": "#1a2fff",
+    "skills": [
+      "C",
+      "C++",
+      "Python",
+      "JavaScript · HTML · CSS",
+      "Git · Linux · Makefile",
+      "IA · Claude Code"
+    ],
+    "skillsEn": [
+      "C",
+      "C++",
+      "Python",
+      "JavaScript · HTML · CSS",
+      "Git · Linux · Makefile",
+      "AI · Claude Code"
+    ],
+    "levels": [
+      3,
+      3,
+      3,
+      3,
+      2,
+      3
+    ]
+  },
+  {
+    "nameFr": "Robotique & Navigation",
+    "nameEn": "Robotics & Navigation",
+    "icon": "🤖",
+    "color": "#1a2fff",
+    "skills": [
+      "ROS2",
+      "Nav2",
+      "SLAM",
+      "Modélisation cinématique",
+      "Odométrie",
+      "Suivi de trajectoire",
+      "PID · Correcteur P",
+      "Machine à états"
+    ],
+    "skillsEn": [
+      "ROS2",
+      "Nav2",
+      "SLAM",
+      "Kinematic modelling",
+      "Odometry",
+      "Path following",
+      "PID · P controller",
+      "State machine"
+    ],
+    "levels": [
+      3,
+      2,
+      2,
+      2,
+      2,
+      2,
+      3,
+      2
+    ]
+  },
+  {
+    "nameFr": "Traitement du signal & Vision",
+    "nameEn": "Signal Processing & Vision",
+    "icon": "👁️",
+    "color": "#1a2fff",
+    "skills": [
+      "OpenCV",
+      "AprilTag · Asservissement visuel",
+      "Image processing",
+      "Analyse de Fourier",
+      "Filtrage numérique",
+      "Reinforcement Learning",
+      "Apprentissage par imitation"
+    ],
+    "skillsEn": [
+      "OpenCV",
+      "AprilTag · Visual servoing",
+      "Image processing",
+      "Fourier analysis",
+      "Digital filtering",
+      "Reinforcement Learning",
+      "Imitation learning"
+    ],
+    "levels": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1
+    ]
+  },
+  {
+    "nameFr": "Mécanique & CAO",
+    "nameEn": "Mechanics & CAD",
+    "icon": "⚙️",
+    "color": "#1a2fff",
+    "skills": [
+      "SolidWorks",
+      "Éléments finis",
+      "Laser cutting",
+      "3D printing",
+      "Mécanique des solides",
+      "Conception de mécanismes"
+    ],
+    "skillsEn": [
+      "SolidWorks",
+      "Finite elements",
+      "Laser cutting",
+      "3D printing",
+      "Solid mechanics",
+      "Mechanism design"
+    ],
+    "levels": [
+      3,
+      1,
+      3,
+      2,
+      2,
+      3
+    ]
+  },
+  {
+    "nameFr": "Électronique & Embarqué",
+    "nameEn": "Electronics & Embedded",
+    "icon": "⚡",
+    "color": "#1a2fff",
+    "skills": [
+      "Analog electronics",
+      "Électronique de puissance",
+      "Arduino · ESP32",
+      "micro-ROS",
+      "Capteurs · Actionneurs",
+      "CAN Bus · PWM",
+      "Servomoteurs · Brushless"
+    ],
+    "skillsEn": [
+      "Analog electronics",
+      "Power electronics",
+      "Arduino · ESP32",
+      "micro-ROS",
+      "Sensors · Actuators",
+      "CAN Bus · PWM",
+      "Servomotors · Brushless"
+    ],
+    "levels": [
+      2,
+      2,
+      3,
+      2,
+      3,
+      2,
+      2
+    ]
+  },
+  {
+    "nameFr": "Automatique & Maths",
+    "nameEn": "Control Theory & Maths",
+    "icon": "📊",
+    "color": "#1a2fff",
+    "skills": [
+      "Matlab / Simulink",
+      "Systèmes linéaires",
+      "Identification paramétrique",
+      "Probabilités · Statistiques",
+      "Filtre de Kalman (EKF)",
+      "Minimax · Monte Carlo"
+    ],
+    "skillsEn": [
+      "Matlab / Simulink",
+      "Linear systems",
+      "Parameter identification",
+      "Probability · Statistics",
+      "Kalman filter (EKF)",
+      "Minimax · Monte Carlo"
+    ],
+    "levels": [
+      2,
+      2,
+      1,
+      2,
+      2,
+      2
+    ]
+  }
+]

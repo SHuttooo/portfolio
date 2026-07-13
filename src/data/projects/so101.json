@@ -1,0 +1,50 @@
+{
+  "id": "so101",
+  "date": "2026-01",
+  "titleFr": "Robot SO-101 — Hugging Face",
+  "titleEn": "SO-101 Robot — Hugging Face",
+  "category": "robotics",
+  "source": "robotech",
+  "descFr": "Impression 3D et assemblage du robot open-source SO-101 de Hugging Face — bras manipulateur 6 axes avec servomoteurs, conçu pour l'apprentissage par imitation (LeRobot).",
+  "descEn": "Design and assembly of the open-source SO-101 robot from Hugging Face — 6-axis manipulator arm with servomotors, designed for imitation learning (LeRobot).",
+  "stack": [
+    "3D printing",
+    "Servomotors",
+    "Python",
+    "LeRobot",
+    "Linux"
+  ],
+  "thumb": "so101/images/so101_1.jpg",
+  "link": "https://huggingface.co/docs/lerobot/so101",
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Impression 3D et assemblage complet du robot **SO-101** de Hugging Face, dans le cadre de l'association Robotech.\n\nLe SO-101 est un bras manipulateur open-source à 6 degrés de liberté (DDL), conçu pour être utilisé avec le framework **LeRobot** de Hugging Face. L'objectif est d'entraîner le robot par **apprentissage par imitation** : on guide le bras manuellement pour lui apprendre des tâches, et il les reproduit ensuite de façon autonome.\n\nL'ensemble des pièces structurelles a été imprimé en 3D au FabLab de Polytech. Deux robots ont été fabriqués simultanément (violet et noir) pour constituer un système maître-esclave : l'un sert de télécommande manuelle, l'autre exécute les mouvements.",
+      "contentEn": "3D printing and full assembly of the **SO-101** robot by Hugging Face, at Robotech.\n\nThe SO-101 is an open-source 6-DOF manipulator arm, designed to work with Hugging Face's **LeRobot** framework. The goal is to train the robot through **imitation learning**: manually guiding the arm to teach it tasks, which it then reproduces autonomously.\n\nAll structural parts were 3D-printed at Polytech's FabLab. Two robots were built simultaneously (purple and black) to form a leader-follower system: one acts as the manual controller, the other executes the movements."
+    },
+    {
+      "type": "gallery",
+      "columns": 2,
+      "images": [
+        "so101/images/so101_1.jpg",
+        "so101/images/so101_2.jpg",
+        "so101/images/so101_3.jpg",
+        "so101/images/so101_4.jpg"
+      ],
+      "captionFr": "Les deux bras SO-101 assemblés — violet (leader) et noir (follower)",
+      "captionEn": "Both SO-101 arms assembled — purple (leader) and black (follower)"
+    },
+    {
+      "type": "video",
+      "src": "so101/videos/demo.mp4",
+      "captionFr": "Démonstration du robot SO-101",
+      "captionEn": "SO-101 robot demo"
+    },
+    {
+      "type": "text",
+      "contentFr": "**Crédits** : Design original par Hugging Face.",
+      "contentEn": "**Credits**: Original design by Hugging Face."
+    }
+  ]
+}

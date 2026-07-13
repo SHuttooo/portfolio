@@ -1,0 +1,54 @@
+{
+  "id": "voitures-rc",
+  "date": "2026-01",
+  "titleFr": "Robot mobile télécommandé via ESP-NOW",
+  "titleEn": "ESP-NOW Remote-Controlled Robot",
+  "category": "robotics",
+  "source": "robotech",
+  "descFr": "Véhicule robotique à 2 roues piloté par une manette personnalisée via le protocole ESP-NOW — communication directe P2P entre deux ESP32, sans Wi-Fi ni Bluetooth.",
+  "descEn": "2-wheel robotic vehicle controlled by a custom joystick via ESP-NOW — direct P2P communication between two ESP32s, no Wi-Fi or Bluetooth needed.",
+  "stack": [
+    "ESP32",
+    "ESP-NOW",
+    "C++",
+    "DRV8833",
+    "PWM",
+    "Li-Ion"
+  ],
+  "thumb": "petites_voitures_esp32/images/voiture.jpg",
+  "link": null,
+  "wip": false,
+  "blocks": [
+    {
+      "type": "image",
+      "src": "petites_voitures_esp32/images/voiture.jpg",
+      "captionFr": "Le robot — ESP32, driver DRV8833, batteries Li-Ion 18650",
+      "captionEn": "The robot — ESP32, DRV8833 driver, Li-Ion 18650 batteries"
+    },
+    {
+      "type": "text",
+      "contentFr": "**Concept**\n\nL'idée était de créer un véhicule rapide et réactif en utilisant deux ESP32 qui communiquent en direct via le protocole ESP-NOW, sans avoir besoin de Wi-Fi ou de Bluetooth. Ce protocole Peer-to-Peer garantit une portée élevée et une latence quasi nulle, idéale pour le pilotage en temps réel.\n\n**Matériel**\n\nLe robot utilise deux moteurs DC avec réducteur (type \"jaune TT\", rapport 1:48), pilotés par un driver DRV8833 (double pont en H) — plus compact que le L298N classique, avec moins de chauffe. L'alimentation est assurée par 3 batteries Li-Ion 18650 en série (11,1V) abaissées à 5V par un régulateur L7805CV pour l'électronique.\n\nLa manette est un ESP32 avec un joystick analogique 2 axes + bouton (turbo).\n\n**Pilotage différentiel (type tank)**\n\nLe robot n'a pas de roues directrices — il tourne en créant une différence de vitesse entre les deux roues :\nVitesse moteur gauche = Avancement + Rotation\nVitesse moteur droit = Avancement - Rotation\n\n**Sécurités intégrées**\n\nZone morte logicielle pour éviter le drift au repos, atténuation de la direction (60%) pour des virages plus fluides, PWM à 30 kHz (inaudible), et failsafe automatique : si la connexion est perdue plus d'1 seconde, le robot s'arrête immédiatement.\n\n**Évolutions prévues**\n\nRemplacer le régulateur linéaire L7805CV (qui chauffe) par un régulateur à découpage (Buck Converter) pour améliorer le rendement et l'autonomie.",
+      "contentEn": "**Concept**\n\nThe goal was to build a fast, responsive vehicle using two ESP32s communicating directly via ESP-NOW — no Wi-Fi or Bluetooth required. This Peer-to-Peer protocol ensures high range and near-zero latency, ideal for real-time control.\n\n**Hardware**\n\nThe robot uses two DC motors with gearbox (1:48 \"yellow TT\" type), driven by a DRV8833 module (dual H-bridge) — more compact than the classic L298N, with better thermal efficiency. Power comes from 3x Li-Ion 18650 cells in series (11.1V), stepped down to 5V by an L7805CV regulator for the electronics.\n\nThe controller is an ESP32 with a 2-axis analog joystick and push button (turbo).\n\n**Differential drive (tank mode)**\n\nNo steering wheels — the robot turns by creating a speed difference between the two motors:\nLeft motor speed = Throttle + Steering\nRight motor speed = Throttle - Steering\n\n**Built-in safety features**\n\nSoftware deadzone to prevent drift at rest, steering attenuation (60%) for smoother turns, 30 kHz PWM (silent to human ears), and automatic failsafe: if the connection is lost for more than 1 second, the robot cuts power immediately.\n\n**Planned improvements**\n\nReplace the linear L7805CV regulator (which overheats) with a switching Buck Converter for better efficiency and battery life."
+    },
+    {
+      "type": "video",
+      "src": "petites_voitures_esp32/videos/demo.mp4",
+      "captionFr": "Démonstration du robot télécommandé",
+      "captionEn": "Remote-controlled robot demo"
+    },
+    {
+      "type": "code",
+      "titleFr": "📡 Code Émetteur (Manette)",
+      "titleEn": "📡 Emitter Code (Controller)",
+      "language": "cpp",
+      "content": "#include <esp_now.h>\n#include <WiFi.h>\n\n// --- PINS JOYSTICK ---\nconst int VRX_PIN = 34;\nconst int VRY_PIN = 35;\nconst int SW_PIN  = 32;\n\n// --- ADRESSE MAC DU ROBOT ---\nuint8_t broadcastAddress[] = {0x4C, 0xC3, 0x82, 0xDB, 0x0F, 0xC0};\n\ntypedef struct struct_message {\n  int x;\n  int y;\n  bool switchPressed;\n} struct_message;\n\nstruct_message myData;\nesp_now_peer_info_t peerInfo;\n\nvoid OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {}\n\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(VRX_PIN, INPUT);\n  pinMode(VRY_PIN, INPUT);\n  pinMode(SW_PIN, INPUT_PULLUP);\n  WiFi.mode(WIFI_STA);\n  if (esp_now_init() != ESP_OK) return;\n  esp_now_register_send_cb(OnDataSent);\n  memcpy(peerInfo.peer_addr, broadcastAddress, 6);\n  peerInfo.channel = 0;\n  peerInfo.encrypt = false;\n  esp_now_add_peer(&peerInfo);\n}\n\nvoid loop() {\n  myData.x = map(analogRead(VRX_PIN), 0, 4095, 255, -255);\n  myData.y = map(analogRead(VRY_PIN), 0, 4095, -255, 255);\n  if (abs(myData.x) < 30) myData.x = 0;\n  if (abs(myData.y) < 30) myData.y = 0;\n  myData.switchPressed = (digitalRead(SW_PIN) == LOW);\n  esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));\n  delay(20);\n}"
+    },
+    {
+      "type": "code",
+      "titleFr": "🤖 Code Récepteur (Robot)",
+      "titleEn": "🤖 Receiver Code (Robot)",
+      "language": "cpp",
+      "content": "#include <esp_now.h>\n#include <WiFi.h>\n\n// --- PINS MOTEURS ---\nconst int IN1 = 13, IN2 = 12, IN3 = 14, IN4 = 27;\nconst int freq = 30000, resolution = 8;\nconst int ch_IN1 = 0, ch_IN2 = 1, ch_IN3 = 2, ch_IN4 = 3;\n\ntypedef struct struct_message {\n  int x, y;\n  bool switchPressed;\n} struct_message;\n\nstruct_message myData;\nunsigned long lastRecvTime = 0;\n\nvoid driveMotor(int ch_A, int ch_B, int speed) {\n  if (speed > 0)      { ledcWrite(ch_A, speed);  ledcWrite(ch_B, 0); }\n  else if (speed < 0) { ledcWrite(ch_A, 0);      ledcWrite(ch_B, -speed); }\n  else                { ledcWrite(ch_A, 0);      ledcWrite(ch_B, 0); }\n}\n\nvoid OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) {\n  memcpy(&myData, incomingData, sizeof(myData));\n  lastRecvTime = millis();\n  int throttle = myData.y, steering = myData.x;\n  if (abs(throttle) < 30) throttle = 0;\n  if (abs(steering) < 30) steering = 0;\n  if (steering != 0) steering = steering * 0.6;\n  int L = constrain(throttle + steering, -255, 255);\n  int R = constrain(throttle - steering, -255, 255);\n  driveMotor(ch_IN1, ch_IN2, L);\n  driveMotor(ch_IN3, ch_IN4, R);\n}\n\nvoid setup() {\n  ledcSetup(ch_IN1, freq, resolution); ledcAttachPin(IN1, ch_IN1);\n  ledcSetup(ch_IN2, freq, resolution); ledcAttachPin(IN2, ch_IN2);\n  ledcSetup(ch_IN3, freq, resolution); ledcAttachPin(IN3, ch_IN3);\n  ledcSetup(ch_IN4, freq, resolution); ledcAttachPin(IN4, ch_IN4);\n  driveMotor(ch_IN1, ch_IN2, 0);\n  driveMotor(ch_IN3, ch_IN4, 0);\n  WiFi.mode(WIFI_STA);\n  if (esp_now_init() != ESP_OK) return;\n  esp_now_register_recv_cb(OnDataRecv);\n}\n\nvoid loop() {\n  if (millis() - lastRecvTime > 1000) {\n    driveMotor(ch_IN1, ch_IN2, 0);\n    driveMotor(ch_IN3, ch_IN4, 0);\n  }\n  delay(10);\n}"
+    }
+  ]
+}

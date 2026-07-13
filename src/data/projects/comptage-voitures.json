@@ -1,0 +1,32 @@
+{
+  "id": "comptage-voitures",
+  "date": "2025-11",
+  "titleFr": "Comptage de voitures par traitement d'image",
+  "titleEn": "Car Counting via Image Processing",
+  "category": "software",
+  "source": "school",
+  "descFr": "Script C++ avec OpenCV pour détecter et compter en temps réel les voitures passant sur une autoroute, par traitement de couleur et d'image.",
+  "descEn": "C++ script with OpenCV to detect and count in real time cars passing on a highway, using color and image processing.",
+  "stack": [
+    "C++",
+    "OpenCV",
+    "Image processing",
+    "Vision"
+  ],
+  "thumb": "comptage_voitures/images/thumb.jpg",
+  "link": null,
+  "wip": false,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "Développement d'un script de vision par ordinateur en C++ avec OpenCV pour le suivi et le **comptage en temps réel** du nombre de voitures passant sur une autoroute.\n\n**Approche technique**\n\nLe script utilise du traitement de couleur et d'image : détection par différence de fond, filtrage morphologique pour réduire le bruit, puis détection des contours et suivi des objets entre les frames pour comptabiliser les passages.\n\nProjet réalisé dans le cadre du module ROS2 / systèmes autonomes à Polytech Sorbonne.",
+      "contentEn": "Development of a computer vision script in C++ with OpenCV for real-time **tracking and counting** of cars on a highway.\n\n**Technical approach**\n\nThe script uses color and image processing: background subtraction, morphological filtering to reduce noise, then contour detection and object tracking between frames to count passing vehicles.\n\nProject carried out as part of the ROS2 / autonomous systems module at Polytech Sorbonne."
+    },
+    {
+      "type": "video",
+      "src": "comptage_voitures/videos/demo.mp4",
+      "captionFr": "Démonstration du comptage de voitures en temps réel",
+      "captionEn": "Real-time car counting demo"
+    }
+  ]
+}
