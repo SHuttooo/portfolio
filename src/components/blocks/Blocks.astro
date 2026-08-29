@@ -3,6 +3,9 @@
 // video-duo, code). Reproduit l'ancien renderBlocks() mais en STATIQUE : les deux
 // langues (FR/EN) sont écrites dans le DOM, la bascule se fait en CSS (comme avant).
 import { renderText, esc, media } from '../../lib/render';
+// Voir ProjectCard : couleurs de bord extraites par scripts/media-colors.mjs.
+import MEDIA_COLORS from '../../data/media-colors.json';
+const COLORS = MEDIA_COLORS as Record<string, string>;
 
 interface Props {
   blocks: any[];
@@ -52,11 +55,18 @@ const { blocks = [] } = Astro.props;
   if (b.type === 'gallery') {
     const gridStyle = b.columns === 2 ? 'grid-template-columns:1fr 1fr' : '';
     const cls = b.autoHeight ? 'block-gallery auto-height' : 'block-gallery';
+    // En autoHeight les images gardent leur hauteur naturelle : il n'y a aucune
+    // bande à peindre, et un fond inline surclasserait la règle CSS qui l'annule
+    // — c'est ce qui remplissait le vide sous les images les moins hautes.
+    const galBg = (src: string) =>
+      !b.autoHeight && COLORS[src] ? `background:${COLORS[src]}` : undefined;
     return (
       <>
         <div class={cls} style={gridStyle}>
           {(b.images ?? []).map((src: string) => (
-            <img src={media(src)} alt="" onclick="openLb(this)" loading="lazy" />
+            <div class="gal-item" style={galBg(src)}>
+              <img src={media(src)} alt="" onclick="openLb(this)" loading="lazy" />
+            </div>
           ))}
         </div>
         {(capFr || capEn) && (

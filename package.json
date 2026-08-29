@@ -7,7 +7,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "convert": "node scripts/convert-projects.mjs"
+    "convert": "node scripts/convert-projects.mjs",
+    "colors": "node scripts/media-colors.mjs",
+    "predev": "node scripts/media-colors.mjs",
+    "prebuild": "node scripts/media-colors.mjs"
   },
   "devDependencies": {
     "astro": "^5.6.0"

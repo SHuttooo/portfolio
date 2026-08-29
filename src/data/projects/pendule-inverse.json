@@ -1,0 +1,119 @@
+{
+  "id": "pendule-inverse",
+  "titleFr": "Robot pendule inversé — régulation en cascade sur ESP32",
+  "titleEn": "Inverted Pendulum Robot — Cascade Control on ESP32",
+  "category": "robotics",
+  "source": "perso",
+  "featured": true,
+  "wip": true,
+  "date": "2026-08",
+  "descFr": "Robot deux roues en équilibre instable, régulé à 200 Hz sur ESP32. Erreur d'angle ramenée de 0,293° à 0,064° — non pas en réglant des gains au hasard, mais en démontrant qu'une architecture ne pouvait pas fonctionner, puis en remontant jusqu'à un bug dans le pilote I2C du fabricant.",
+  "descEn": "Two-wheeled robot in unstable equilibrium, controlled at 200 Hz on an ESP32. Angle error cut from 0.293° to 0.064° — not by tuning gains at random, but by proving an architecture could not work, then tracing a crash down to a bug in the vendor's own I2C driver.",
+  "stack": [
+    "ESP32",
+    "C++",
+    "Temps réel",
+    "MPU-6050",
+    "NEMA 17",
+    "A4988",
+    "I2C",
+    "Impression 3D",
+    "SolidWorks"
+  ],
+  "thumb": "pendule_inverse/images/robot.jpg",
+  "link": null,
+  "blocks": [
+    {
+      "type": "text",
+      "contentFr": "## En bref\n\n**Problème —** Un pendule inversé sur deux roues est en équilibre instable : il doit corriger sa position deux cents fois par seconde pour ne pas tomber. C'est l'exercice classique de l'automatique appliquée — sauf qu'ici tout est à faire, de la mécanique au firmware.\n\n**Approche —** Rien n'a été réglé à l'œil. Chaque décision s'appuie sur un chiffre extrait des journaux du robot : taux d'échec du bus, fréquence d'oscillation, vitesse réelle déduite de l'odométrie, durée de survie sous charge. Quand la première architecture refusait de converger, le diagnostic n'est pas venu du réglage mais du calcul.\n\n**Résultat —** Le robot tient debout, revient à son point de départ après avoir été poussé, se relève seul et exécute un déplacement commandé avec retour automatique. L'erreur d'angle est passée de **0,293° à 0,064°** d'écart-type, les plantages logiciels de **5 par heure à zéro** sur 40 minutes de test.",
+      "contentEn": "## At a glance\n\n**Problem —** A two-wheeled inverted pendulum sits in unstable equilibrium: it must correct itself two hundred times per second or fall over. It's the classic exercise of applied control theory — except that here everything has to be built, from the mechanics to the firmware.\n\n**Approach —** Nothing was tuned by eye. Every decision rests on a number pulled from the robot's own logs: bus failure rate, oscillation frequency, real speed derived from odometry, survival time under load. When the first architecture refused to converge, the diagnosis came from the maths, not from the tuning.\n\n**Result —** The robot stands, returns to its starting point after being pushed, gets back up on its own, and executes a commanded move with automatic return. Angle error went from **0.293° down to 0.064°** standard deviation, and software crashes from **5 per hour to zero** over 40 minutes of testing."
+    },
+    {
+      "type": "image",
+      "src": "pendule_inverse/images/robot.jpg",
+      "hero": true,
+      "captionFr": "Le robot assemblé — châssis imprimé en 3D, ESP32 sur carte de dérivation, MPU-6050 et deux NEMA 17",
+      "captionEn": "The assembled robot — 3D-printed chassis, ESP32 on a breakout board, MPU-6050 and two NEMA 17 steppers"
+    },
+    {
+      "type": "text",
+      "contentFr": "## Le montage\n\n**Matériel —** ESP32-WROOM-32D · centrale inertielle MPU-6050 · deux moteurs pas-à-pas NEMA 17 pilotés par drivers A4988 · alimentation lithium. Le châssis a été conçu sous SolidWorks et imprimé en 3D.\n\n**Logiciel —** C++ embarqué (Arduino / ESP-IDF), environ 1000 lignes, sans aucune bibliothèque de régulation externe. L'estimation d'angle fusionne accéléromètre et gyroscope par filtre complémentaire, cadencée par l'interruption matérielle du capteur.",
+      "contentEn": "## The build\n\n**Hardware —** ESP32-WROOM-32D · MPU-6050 inertial measurement unit · two NEMA 17 stepper motors driven by A4988 drivers · lithium power supply. The chassis was designed in SolidWorks and 3D-printed.\n\n**Software —** Embedded C++ (Arduino / ESP-IDF), roughly 1000 lines, with no external control library. Angle estimation fuses accelerometer and gyroscope through a complementary filter, clocked by the sensor's hardware interrupt."
+    },
+    {
+      "type": "video-duo",
+      "videos": [
+        {
+          "src": "pendule_inverse/videos/equilibre_1.mp4",
+          "captionFr": "Le robot en équilibre — il encaisse une poussée et revient à sa position",
+          "captionEn": "The robot balancing — it absorbs a push and returns to position"
+        },
+        {
+          "src": "pendule_inverse/videos/equilibre_2.mp4",
+          "captionFr": "Maintien en position et déplacement commandé avec retour automatique",
+          "captionEn": "Position hold and commanded move with automatic return"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "contentFr": "## Le point de départ : une architecture qui ne pouvait pas fonctionner\n\nLa première version commandait une **vitesse** de roue proportionnelle à l'inclinaison. Elle oscillait sans jamais se stabiliser. Le réflexe aurait été de continuer à triturer les gains — le calcul a montré que c'était inutile.\n\nL'équation du pendule inversé s'écrit **θ̈ = (g/L)·sin θ − (a/L)·cos θ**. C'est l'**accélération** du point d'appui qui redresse le corps, pas sa vitesse.\n\nEn imposant **v = Kp·θ + Kd·θ̇**, l'accélération réelle devient **a = Kp·θ̇ + Kd·θ̈** : il ne reste plus aucun terme en θ. L'équation caractéristique de la boucle fermée garde alors une racine réelle positive **quelles que soient les valeurs des gains** — le système est structurellement instable, aucun réglage ne pouvait le sauver.\n\nCe qui donnait l'illusion que ça marchait un peu, c'était la limite d'accélération du moteur, qui recréait accidentellement le bon comportement.\n\n**Correction —** la sortie du régulateur devient une accélération, et la vitesse des roues en est l'intégrale.",
+      "contentEn": "## The starting point: an architecture that could not work\n\nThe first version commanded wheel **velocity** proportional to tilt. It oscillated without ever settling. The reflex would have been to keep fiddling with gains — the maths showed that was pointless.\n\nThe inverted pendulum equation reads **θ̈ = (g/L)·sin θ − (a/L)·cos θ**. It is the **acceleration** of the support point that rights the body, not its velocity.\n\nImposing **v = Kp·θ + Kd·θ̇** makes the real acceleration **a = Kp·θ̇ + Kd·θ̈**: no term in θ survives. The closed-loop characteristic equation then keeps a positive real root **whatever the gain values** — the system is structurally unstable, and no amount of tuning could have saved it.\n\nWhat gave the illusion it half-worked was the motor's acceleration limit, which accidentally recreated the right behaviour.\n\n**Fix —** the controller's output becomes an acceleration, and wheel velocity is its integral."
+    },
+    {
+      "type": "text",
+      "contentFr": "## L'architecture retenue\n\nQuatre boucles imbriquées, chacune environ dix fois plus lente que celle qu'elle contient — condition nécessaire pour qu'elles coopèrent au lieu de se battre.\n\n**Microsecondes · timer matériel** — génère les impulsions de pas, en tâche de fond.\n**5 ms · boucle d'angle** — empêche la chute : angle → accélération des roues.\n**25 ms · boucle de position** — empêche la dérive : agit en déplaçant l'angle cible.\n**Dizaines de secondes · auto-calibration** — apprend le point d'équilibre réel.\n\nLe point non évident : la boucle de position ne commande **jamais** les moteurs. Son seul levier est de déplacer la consigne d'angle — elle pilote la position *à travers* l'équilibre.",
+      "contentEn": "## The architecture\n\nFour nested loops, each about ten times slower than the one it contains — a necessary condition for them to cooperate rather than fight.\n\n**Microseconds · hardware timer** — generates the step pulses in the background.\n**5 ms · angle loop** — prevents falling: angle → wheel acceleration.\n**25 ms · position loop** — prevents drift: acts by shifting the target angle.\n**Tens of seconds · self-calibration** — learns the real equilibrium point.\n\nThe non-obvious part: the position loop **never** commands the motors. Its only lever is to move the angle setpoint — it steers position *through* the equilibrium."
+    },
+    {
+      "type": "text",
+      "contentFr": "## Résultats mesurés\n\n**Erreur d'angle (écart-type)** — 0,293° → **0,064°**\n**Bruit vu par le gyroscope** — 3,48 °/s → **1,08 °/s**\n**Échecs de lecture capteur** — 2,0 /s → **0**\n**Plantages logiciels** — 5 par heure → **0 sur 40 min de test**\n**Maintien en position** — dérive continue → bande de quelques millimètres\n\nLes gains ont été trouvés par balayage systématique, une variable à la fois, avec mesure de l'écart-type à chaque valeur.",
+      "contentEn": "## Measured results\n\n**Angle error (std. dev.)** — 0.293° → **0.064°**\n**Noise seen by the gyroscope** — 3.48 °/s → **1.08 °/s**\n**Sensor read failures** — 2.0 /s → **0**\n**Software crashes** — 5 per hour → **0 over 40 min of testing**\n**Position hold** — continuous drift → a band of a few millimetres\n\nGains were found by systematic sweep, one variable at a time, measuring the standard deviation at each value."
+    },
+    {
+      "type": "text",
+      "contentFr": "## Enquête 1 · Un plantage dans le pilote du fabricant\n\nDes redémarrages aléatoires, sans message. La cause de reset imprimée par la puce distinguait deux familles de pannes ; les plantages logiciels montraient toujours la **même adresse d'exception sur trois binaires différents** — donc un bug déterministe, pas du hasard.\n\nRésolution de l'adresse avec **addr2line** sur le fichier ELF :\n\ni2c_ll_read_rxfifo → i2c_isr_receive_handler → i2c_master_isr_handler_default\n\nUne écriture dans un tampon nul, **à l'intérieur de la routine d'interruption du pilote I2C d'Espressif**. Trois mitigations ont supprimé l'exposition — dont une faute personnelle : des appels au pilote timer effectués deux cents fois par seconde à l'intérieur d'une section critique, interruptions coupées, ce qui allongeait la latence et faisait déraper la machine à états du bus.\n\n**Résultat : zéro plantage sur les 40 minutes de test suivantes.**",
+      "contentEn": "## Investigation 1 · A crash inside the vendor's driver\n\nRandom reboots, with no message. The reset cause printed by the chip separated two families of failures; the software crashes always showed the **same exception address across three different binaries** — a deterministic bug, not chance.\n\nResolving the address with **addr2line** on the ELF file:\n\ni2c_ll_read_rxfifo → i2c_isr_receive_handler → i2c_master_isr_handler_default\n\nA write to a null buffer, **inside the interrupt service routine of Espressif's I2C driver**. Three mitigations removed the exposure — including one fault of my own: timer-driver calls made two hundred times per second inside a critical section with interrupts disabled, which stretched latency and derailed the bus state machine.\n\n**Result: zero crashes over the following 40 minutes of testing.**"
+    },
+    {
+      "type": "text",
+      "contentFr": "## Enquête 2 · La géométrie du robot déduite de son propre comportement\n\nLe robot oscillait à une fréquence mesurable sur les passages par zéro de l'erreur : **1,35 Hz**. Or la fréquence propre d'un pendule vaut **f = √(g/L)/2π**.\n\nEn inversant : le centre de masse se trouve à **13,6 cm** au-dessus de l'axe des roues. Une mesure obtenue sans jamais toucher au robot.\n\nCette valeur a immédiatement servi : le filtre de la boucle externe coupait à 1,06 Hz, soit **exactement dans la bande où le pendule résonne**. Il entretenait le mode propre au lieu de l'ignorer.",
+      "contentEn": "## Investigation 2 · The robot's geometry, deduced from its own behaviour\n\nThe robot oscillated at a frequency measurable on the error's zero crossings: **1.35 Hz**. The natural frequency of a pendulum is **f = √(g/L)/2π**.\n\nInverting it: the centre of mass sits **13.6 cm** above the wheel axis. A measurement obtained without ever touching the robot.\n\nThe value paid off immediately: the outer loop's filter cut off at 1.06 Hz — **exactly in the band where the pendulum resonates**. It was sustaining the natural mode instead of ignoring it."
+    },
+    {
+      "type": "text",
+      "contentFr": "## Enquête 3 · Une expérience contrôlée pour isoler une panne matérielle\n\nLa carte mourait par intermittence, sans laisser de trace. Plutôt que de changer des composants au hasard : deux phases de 180 secondes, même code, même montage — **seule la commande moteur change**.\n\n**Moteurs à l'arrêt** — 180 s sans une seule interruption.\n**Moteurs à 1200 pas/s** — mort au bout de 17 secondes.\n\nLa cause exacte a été tranchée par une observation sur vidéo : après la panne, **les roues continuent de tourner à la dernière vitesse connue**. Si l'interruption du timer bat encore, la puce est alimentée et ses interruptions sont servies — ce n'est donc ni une coupure d'alimentation, ni un reset. C'est un **blocage de la tâche principale**, pendant que le reste du système continue.\n\nCe détail a réinterprété toutes les données précédentes : les redémarrages enregistrés étaient **les recouvrements manuels, pas la panne**.\n\nLa réponse d'ingénierie a été de rendre la panne inoffensive plutôt que d'attendre d'en éliminer la cause : un **homme mort dans la routine d'interruption**, qui arrête les moteurs si la boucle de commande cesse de donner signe de vie, et un **chien de garde matériel** qui redémarre la carte au bout de deux secondes de blocage. Le robot se relève alors tout seul — et le message de cause au redémarrage suivant confirmera le diagnostic.",
+      "contentEn": "## Investigation 3 · A controlled experiment to isolate a hardware fault\n\nThe board died intermittently, leaving no trace. Rather than swapping components at random: two 180-second phases, same code, same wiring — **only the motor command changes**.\n\n**Motors idle** — 180 s without a single interruption.\n**Motors at 1200 steps/s** — dead after 17 seconds.\n\nThe exact cause was settled by an observation on video: after the failure, **the wheels keep turning at the last known speed**. If the timer interrupt is still firing, the chip is powered and its interrupts are being served — so this is neither a power cut nor a reset. It is a **hang of the main task**, while the rest of the system carries on.\n\nThat detail reinterpreted all the earlier data: the reboots on record were **the manual recoveries, not the failure itself**.\n\nThe engineering answer was to make the failure harmless rather than wait to eliminate its cause: a **deadman inside the interrupt service routine**, which stops the motors if the control loop stops signalling life, and a **hardware watchdog** that restarts the board after two seconds of hang. The robot then gets back up on its own — and the reset-cause message on the next boot will confirm the diagnosis."
+    },
+    {
+      "type": "video-duo",
+      "videos": [
+        {
+          "src": "pendule_inverse/videos/fail_1.mp4",
+          "captionFr": "Première signature — à la chute, les roues s'arrêtent net : la puce entière a cessé de tourner.",
+          "captionEn": "First signature — as it falls, the wheels stop dead: the whole chip has stopped running."
+        },
+        {
+          "src": "pendule_inverse/videos/fail_2.mp4",
+          "captionFr": "Seconde signature, l'indice décisif — ici les roues continuent de tourner à la dernière vitesse connue. La puce est donc alimentée et ses interruptions sont servies : ce n'est pas un reset, mais un blocage de la seule tâche principale.",
+          "captionEn": "Second signature, the decisive clue — here the wheels keep turning at the last known speed. So the chip is powered and its interrupts are being served: not a reset, but a hang of the main task alone."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "contentFr": "## Méthode de travail\n\nRien n'a été réglé à l'œil. Un moniteur série développé pour l'occasion enregistre l'intégralité du port série horodaté à la milliseconde et permet d'envoyer des commandes ; chaque paramètre est modifiable en direct et sauvegardé en mémoire flash.\n\nC'est ce qui rend les enquêtes ci-dessus possibles : sans journal horodaté, la fréquence d'oscillation à 1,35 Hz et les 17 secondes de survie sous charge n'auraient été que des impressions.",
+      "contentEn": "## Working method\n\nNothing was tuned by eye. A purpose-built serial monitor records the entire serial port timestamped to the millisecond and allows commands to be sent; every parameter can be changed live and saved to flash memory.\n\nThat is what makes the investigations above possible: without a timestamped log, the 1.35 Hz oscillation and the 17-second survival under load would have been nothing but impressions."
+    },
+    {
+      "type": "text",
+      "contentFr": "## État actuel et suite\n\n**Projet en cours.** Le robot fonctionne, mais une limite est identifiée et pas encore éliminée : **le bruit des moteurs corrompt le bus du capteur, ce qui finit par bloquer la tâche principale** — c'est la panne des deux vidéos ci-dessus. Les garde-fous (homme mort et chien de garde) la rendent récupérable, mais la vitesse exploitable reste plafonnée à environ **60 %** de ce que les moteurs encaissent.\n\n**Prochaines étapes —** découplage de cette ligne, puis relèvement des limites de vitesse et d'accélération, et télémétrie sans fil pour tester sans câble.\n\n**Réserve d'honnêteté —** deux paramètres n'ont pas encore été vérifiés (le micropas réel des drivers et le diamètre des roues). Ils n'affectent aucun réglage, mais les distances en centimètres restent à confirmer.",
+      "contentEn": "## Current status and next steps\n\n**Work in progress.** The robot works, but one limitation is identified and not yet eliminated: **motor noise corrupts the sensor bus, which eventually hangs the main task** — that is the failure shown in the two videos above. The safeguards (deadman and watchdog) make it recoverable, but usable speed stays capped at roughly **60 %** of what the motors can take.\n\n**Next steps —** decoupling that line, then raising the speed and acceleration limits, and wireless telemetry to test without a cable.\n\n**Honest caveat —** two parameters have not been verified yet (the drivers' real microstepping and the wheel diameter). They affect no tuning, but the distances in centimetres remain to be confirmed."
+    },
+    {
+      "type": "text",
+      "contentFr": "## Compétences mises en œuvre\n\n**Automatique** — régulation en cascade, séparation des bandes passantes, anti-emballement, analyse de stabilité.\n**Temps réel embarqué** — interruptions, timers matériels, sections critiques, latence d'interruption.\n**Fusion de capteurs** — filtre complémentaire, calibration, rejet de mesures aberrantes.\n**Débogage bas niveau** — lecture de dump d'exception, addr2line, analyse de causes de reset.\n**Électronique** — bus I2C, drivers de moteurs pas-à-pas, intégrité de l'alimentation, compatibilité électromagnétique.\n**Démarche expérimentale** — mesure avant hypothèse, une variable à la fois.",
+      "contentEn": "## Skills applied\n\n**Control theory** — cascade control, bandwidth separation, anti-windup, stability analysis.\n**Real-time embedded** — interrupts, hardware timers, critical sections, interrupt latency.\n**Sensor fusion** — complementary filter, calibration, outlier rejection.\n**Low-level debugging** — exception dump reading, addr2line, reset cause analysis.\n**Electronics** — I2C bus, stepper motor drivers, power integrity, electromagnetic compatibility.\n**Experimental method** — measure before hypothesis, one variable at a time."
+    }
+  ]
+}

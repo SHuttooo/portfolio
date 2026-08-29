@@ -1,6 +1,10 @@
 ---
 import { CATS, SOURCES } from '../lib/config';
 import { media } from '../lib/render';
+// Couleurs de bord extraites des images par scripts/media-colors.mjs : elles
+// peignent les bandes laissées par object-fit:contain, pour que l'image se
+// fonde dans sa carte au lieu de flotter sur un fond arbitraire.
+import MEDIA_COLORS from '../data/media-colors.json';
 
 interface Props { p: any; index?: number; }
 const { p, index = 0 } = Astro.props;
@@ -10,6 +14,7 @@ const s = p.source ? SOURCES[p.source] : null;
 
 const imgBlock = (p.blocks ?? []).find((b: any) => b.type === 'image');
 const thumb = p.thumb || (imgBlock && imgBlock.src) || null;
+const thumbBg = thumb ? (MEDIA_COLORS as Record<string, string>)[thumb] : null;
 
 const repo = p.link && String(p.link).includes('github.com') ? p.link : null;
 const dataStack = (p.stack ?? []).join('|');
@@ -26,7 +31,9 @@ const dataStack = (p.stack ?? []).join('|');
   tabindex="0"
 >
   {thumb
-    ? <img class="proj-thumb-img" src={media(thumb)} alt={p.titleFr} loading="lazy" />
+    ? <div class="proj-thumb" style={thumbBg ? `background:${thumbBg}` : undefined}>
+        <img class="proj-thumb-img" src={media(thumb)} alt={p.titleFr} loading="lazy" />
+      </div>
     : <div class="proj-thumb-ph">{c.icon}</div>}
 
   <div class="proj-body">
