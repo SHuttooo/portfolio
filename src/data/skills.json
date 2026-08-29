@@ -66,6 +66,27 @@
     ]
   },
   {
+    "nameFr": "IA & Apprentissage",
+    "nameEn": "AI & Machine Learning",
+    "icon": "🧠",
+    "color": "#1a2fff",
+    "skills": [
+      "Apprentissage par imitation (LeRobot)",
+      "Reinforcement Learning (Sarsa(λ), Q-learning)",
+      "Téléopération"
+    ],
+    "skillsEn": [
+      "Imitation learning (LeRobot)",
+      "Reinforcement learning (Sarsa(λ), Q-learning)",
+      "Teleoperation"
+    ],
+    "levels": [
+      1,
+      2,
+      2
+    ]
+  },
+  {
     "nameFr": "Traitement du signal & Vision",
     "nameEn": "Signal Processing & Vision",
     "icon": "👁️",
@@ -75,27 +96,21 @@
       "AprilTag · Asservissement visuel",
       "Image processing",
       "Analyse de Fourier",
-      "Filtrage numérique",
-      "Reinforcement Learning",
-      "Apprentissage par imitation"
+      "Filtrage numérique"
     ],
     "skillsEn": [
       "OpenCV",
       "AprilTag · Visual servoing",
       "Image processing",
       "Fourier analysis",
-      "Digital filtering",
-      "Reinforcement Learning",
-      "Imitation learning"
+      "Digital filtering"
     ],
     "levels": [
       2,
       2,
       2,
       2,
-      2,
-      2,
-      1
+      2
     ]
   },
   {
@@ -190,5 +205,45 @@
       2,
       2
     ]
+  },
+  {
+    "nameFr": "En cours d’apprentissage",
+    "nameEn": "Currently Learning",
+    "icon": "🌱",
+    "color": "#1a2fff",
+    "wish": true,
+    "skills": [
+      "PyTorch",
+      "LeRobot — entraînement de politiques",
+      "Collecte de datasets",
+      "Sim-to-real"
+    ],
+    "skillsEn": [
+      "PyTorch",
+      "LeRobot — policy training",
+      "Dataset collection",
+      "Sim-to-real"
+    ],
+    "levels": []
+  },
+  {
+    "nameFr": "Prochaines étapes",
+    "nameEn": "Up Next",
+    "icon": "🎯",
+    "color": "#1a2fff",
+    "wish": true,
+    "skills": [
+      "Modèles fondation robotiques (VLA)",
+      "Apprentissage par renforcement sur robot réel",
+      "Manipulation dextre",
+      "Télémétrie sans fil"
+    ],
+    "skillsEn": [
+      "Robot foundation models (VLA)",
+      "Reinforcement learning on real hardware",
+      "Dexterous manipulation",
+      "Wireless telemetry"
+    ],
+    "levels": []
   }
 ]

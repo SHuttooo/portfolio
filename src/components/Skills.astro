@@ -28,11 +28,15 @@ import SKILL_GROUPS from '../data/skills.json';
               {skillsFr.map((_s: string, i: number) => (
                 <span class="sk-tag">
                   <span class="sk-tag-name"><span class="fr">{skillsFr[i]}</span><span class="en">{skillsEn[i] ?? skillsFr[i]}</span></span>
+                  {/* Rubrique « à venir » (wish) : aucun point, sans quoi trois
+                      pastilles vides se liraient comme un niveau déjà acquis. */}
+                  {!g.wish && (
                   <span class="sk-dots">
                     {[1, 2, 3].map((d) => (
                       <span class:list={['sk-dot', { on: d <= (lvls[i] || 0) }]} style={d <= (lvls[i] || 0) ? `background:${g.color}` : undefined}></span>
                     ))}
                   </span>
+                  )}
                 </span>
               ))}
             </div>

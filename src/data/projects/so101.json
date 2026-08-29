@@ -6,13 +6,14 @@
   "category": "robotics",
   "source": "robotech",
   "featured": true,
-  "descFr": "Impression 3D et assemblage du robot open-source SO-101 de Hugging Face — bras manipulateur 5 axes + pince avec servomoteurs, conçu pour l'apprentissage par imitation (LeRobot).",
-  "descEn": "Design and assembly of the open-source SO-101 robot from Hugging Face — 5-axis manipulator arm with gripper, driven by servomotors, designed for imitation learning (LeRobot).",
+  "descFr": "Bras manipulateur open-source 5 DoF + pince (design Rob Knight / The Robot Studio), imprimé, assemblé et calibré. Téléopération leader/follower fiable avec LeRobot — la plateforme est prête à servir de banc d'expérimentation en apprentissage par imitation.",
+  "descEn": "Open-source 5-DoF manipulator arm with gripper (designed by Rob Knight / The Robot Studio), 3D-printed, assembled and calibrated. Reliable leader/follower teleoperation with LeRobot — the platform is ready to serve as a testbed for imitation learning.",
   "stack": [
-    "3D printing",
-    "Servomotors",
-    "Python",
     "LeRobot",
+    "Python",
+    "Téléopération",
+    "Feetech servos",
+    "3D printing",
     "Linux"
   ],
   "thumb": "so101/images/so101_1.jpg",
@@ -21,8 +22,8 @@
   "blocks": [
     {
       "type": "text",
-      "contentFr": "Impression 3D et assemblage complet du robot **SO-101** de Hugging Face, dans le cadre de l'association Robotech.\n\nLe SO-101 est un bras manipulateur open-source à 5 degrés de liberté (DDL) + une pince, conçu pour être utilisé avec le framework **LeRobot** de Hugging Face. L'objectif est d'entraîner le robot par **apprentissage par imitation** : on guide le bras manuellement pour lui apprendre des tâches, et il les reproduit ensuite de façon autonome.\n\nL'ensemble des pièces structurelles a été imprimé en 3D au FabLab de Polytech. Deux robots ont été fabriqués simultanément (violet et noir) pour constituer un système maître-esclave : l'un sert de télécommande manuelle, l'autre exécute les mouvements.",
-      "contentEn": "3D printing and full assembly of the **SO-101** robot by Hugging Face, at Robotech.\n\nThe SO-101 is an open-source 5-DOF manipulator arm with a gripper, designed to work with Hugging Face's **LeRobot** framework. The goal is to train the robot through **imitation learning**: manually guiding the arm to teach it tasks, which it then reproduces autonomously.\n\nAll structural parts were 3D-printed at Polytech's FabLab. Two robots were built simultaneously (purple and black) to form a leader-follower system: one acts as the manual controller, the other executes the movements."
+      "contentFr": "Le **SO-101** est un bras manipulateur open-source à **5 degrés de liberté plus une pince**, conçu par **Rob Knight (The Robot Studio)** et intégré au framework **LeRobot** de Hugging Face. Il est actionné par **6 servomoteurs Feetech**.\n\nJ'ai imprimé en 3D l'ensemble des pièces structurelles au FabLab de Polytech, assemblé et **calibré** deux exemplaires (violet et noir) dans le cadre de l'association Robotech, afin de constituer un couple **leader/follower** : on manipule le premier à la main, le second reproduit le mouvement.\n\nLa **téléopération fonctionne de façon fiable** sous LeRobot — c'est elle qui sert d'interface de démonstration dans une chaîne d'apprentissage par imitation.\n\nLe bras constitue donc une **plateforme prête** pour ce type d'expérimentation. Je n'ai à ce jour **ni collecté de dataset, ni entraîné de politique** : c'est l'étape suivante que je veux mener.",
+      "contentEn": "The **SO-101** is an open-source manipulator arm with **5 degrees of freedom plus a gripper**, designed by **Rob Knight (The Robot Studio)** and supported by Hugging Face's **LeRobot** framework. It is driven by **6 Feetech servomotors**.\n\nI 3D-printed all structural parts at Polytech's FabLab, then assembled and **calibrated** two units (purple and black) at Robotech, forming a **leader/follower** pair: the first is moved by hand, the second reproduces the motion.\n\n**Teleoperation runs reliably** under LeRobot — it is the demonstration interface an imitation-learning pipeline is built on.\n\nThe arm is therefore a **ready testbed** for that kind of experimentation. To date I have **neither collected a dataset nor trained a policy**: that is the next step I want to take."
     },
     {
       "type": "gallery",
@@ -44,8 +45,8 @@
     },
     {
       "type": "text",
-      "contentFr": "**Crédits** : Design original par Hugging Face.",
-      "contentEn": "**Credits**: Original design by Hugging Face."
+      "contentFr": "**Crédits** : design original du SO-101 par Rob Knight (The Robot Studio) · framework LeRobot par Hugging Face.",
+      "contentEn": "**Credits**: original SO-101 design by Rob Knight (The Robot Studio) · LeRobot framework by Hugging Face."
     }
   ]
 }
