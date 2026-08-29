@@ -5,8 +5,8 @@
   "titleEn": "Autonomous Mobile Robot with Arm and Gripper (ROB3)",
   "category": "robotics",
   "source": "school",
-  "descFr": "Projet ROB3 — Robot mobile autonome capable de détecter, saisir et déposer un objet dans une arène. Suivi de mur, bras 1DDL en parallélogramme, pince préhensile. Plus gros projet de 1ère année spécialité Robotique.",
-  "descEn": "ROB3 Project — Autonomous mobile robot capable of detecting, grasping and placing an object in an arena. Wall following, 1-DOF parallelogram arm, gripper. Biggest project of 1st year Robotics specialty.",
+  "descFr": "Projet ROB3 — Robot mobile autonome capable de détecter, saisir et déposer un objet dans une arène. Suivi de mur, bras 1DDL en parallélogramme, pince préhensile. Plus gros projet de 1ère année du cycle ingénieur (ROB3, année 3 sur 5).",
+  "descEn": "ROB3 Project — Autonomous mobile robot capable of detecting, grasping and placing an object in an arena. Wall following, 1-DOF parallelogram arm, gripper. Biggest project of the first year of the engineering cycle (ROB3, year 3 of 5).",
   "stack": [
     "C++",
     "Arduino",
@@ -22,8 +22,8 @@
   "blocks": [
     {
       "type": "text",
-      "contentFr": "Projet ROB3, le plus gros projet de première année spécialité Robotique à Polytech Sorbonne (3ème année post-bac), réalisé en équipe de 6 : Diyana, Émile, Rayan, Matthieu, Pierre-Louis, Esteban.\n\n**Objectif** : concevoir un robot mobile autonome capable de se déplacer dans une arène, détecter un objet (totem) dont la position est inconnue à l'avance, le saisir précisément et le déposer à un emplacement défini, sans aucune interaction humaine.\n\nLe robot est composé d'un chariot unicycle, d'un bras à 1 DDL en parallélogramme vertical et d'une pince montée à l'avant.",
-      "contentEn": "ROB3 Project, the biggest project of the first year Robotics specialty at Polytech Sorbonne (3rd year post-bac), carried out by a team of 6: Diyana, Émile, Rayan, Matthieu, Pierre-Louis, Esteban.\n\n**Goal**: design an autonomous mobile robot capable of navigating an arena, detecting an object (totem) at an unknown position, grasping it precisely and dropping it at a defined location, with no human interaction.\n\nThe robot consists of a unicycle cart, a 1-DOF parallelogram vertical arm and a gripper mounted at the front."
+      "contentFr": "Projet ROB3, le plus gros projet de 1ère année du cycle ingénieur à Polytech Sorbonne (année 3 sur 5), réalisé en équipe de 6 : Diyana, Émile, Rayan, Matthieu, Pierre-Louis, Esteban.\n\n**Objectif** : concevoir un robot mobile autonome capable de se déplacer dans une arène, détecter un objet (totem) dont la position est inconnue à l'avance, le saisir précisément et le déposer à un emplacement défini, sans aucune interaction humaine.\n\nLe robot est composé d'un chariot unicycle, d'un bras à 1 DDL en parallélogramme vertical et d'une pince montée à l'avant.",
+      "contentEn": "ROB3 Project, the biggest project of the first year of the engineering cycle at Polytech Sorbonne (year 3 of 5), carried out by a team of 6: Diyana, Émile, Rayan, Matthieu, Pierre-Louis, Esteban.\n\n**Goal**: design an autonomous mobile robot capable of navigating an arena, detecting an object (totem) at an unknown position, grasping it precisely and dropping it at a defined location, with no human interaction.\n\nThe robot consists of a unicycle cart, a 1-DOF parallelogram vertical arm and a gripper mounted at the front."
     },
     {
       "type": "image",

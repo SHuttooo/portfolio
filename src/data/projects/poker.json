@@ -5,8 +5,8 @@
   "titleEn": "Poker AI — Monte Carlo",
   "category": "software",
   "source": "school",
-  "descFr": "Jeu de poker Texas Hold'em en Python avec interface graphique et une IA adversaire basée sur la méthode de Monte Carlo. Nombre de joueurs et agressivité de l'IA paramétrables. (Polytech Tours, PEIP — 2024)",
-  "descEn": "Python Texas Hold'em game with a graphical interface and an opponent AI based on the Monte Carlo method. Configurable number of players and AI aggressiveness.",
+  "descFr": "Jeu de poker Texas Hold'em en Python avec interface graphique et une IA adversaire basée sur la méthode de Monte Carlo. Nombre de joueurs et agressivité de l'IA paramétrables. (Polytech Tours, cycle préparatoire PEIP — 2024)",
+  "descEn": "Python Texas Hold'em game with a graphical interface and an opponent AI based on the Monte Carlo method. Configurable number of players and AI aggressiveness. (Polytech Tours, PEIP preparatory cycle — 2024)",
   "stack": [
     "Python",
     "Monte Carlo",
@@ -20,8 +20,8 @@
   "blocks": [
     {
       "type": "text",
-      "contentFr": "Projet développé lors de ma première année de cycle préparatoire (PEIP) à Polytech Tours.\n\nIl s'agit d'un jeu de poker (Texas Hold'em) codé en Python, avec interface graphique, implémentant une intelligence artificielle adversaire. L'IA utilise une **méthode de Monte Carlo** pour simuler aléatoirement de nombreuses fins de parties possibles et estimer statistiquement sa probabilité de victoire avant de prendre une décision (se coucher, suivre ou relancer).",
-      "contentEn": "Project from my first preparatory year (PEIP) at Polytech Tours.\n\nA Texas Hold'em poker game in Python with a graphical interface and an adversarial AI. The AI uses a **Monte Carlo method** to randomly simulate many possible endings and statistically estimate its winning probability before deciding to fold, call or raise."
+      "contentFr": "Projet développé lors de ma 1ère année de cycle préparatoire intégré (PEIP, année 1 sur 5) à Polytech Tours.\n\nIl s'agit d'un jeu de poker (Texas Hold'em) codé en Python, avec interface graphique, implémentant une intelligence artificielle adversaire. L'IA utilise une **méthode de Monte Carlo** pour simuler aléatoirement de nombreuses fins de parties possibles et estimer statistiquement sa probabilité de victoire avant de prendre une décision (se coucher, suivre ou relancer).",
+      "contentEn": "Project from my first year in the integrated preparatory cycle (PEIP, year 1 of 5) at Polytech Tours.\n\nA Texas Hold'em poker game in Python with a graphical interface and an adversarial AI. The AI uses a **Monte Carlo method** to randomly simulate many possible endings and statistically estimate its winning probability before deciding to fold, call or raise."
     },
     {
       "type": "text",

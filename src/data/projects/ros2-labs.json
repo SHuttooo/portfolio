@@ -5,8 +5,8 @@
   "titleEn": "Weather Exploration Robot",
   "category": "robotics",
   "source": "school",
-  "descFr": "Petite base roulante autonome (2 roues + bille) qui collecte et stocke des données météorologiques tout en naviguant et esquivant les obstacles. Projet de cours à Polytech Tours (PEIP).",
-  "descEn": "Small autonomous wheeled base (2 wheels + caster) that collects and stores weather data while navigating and avoiding obstacles. Course project at Polytech Tours (PEIP).",
+  "descFr": "Petite base roulante autonome (2 roues + bille) qui collecte et stocke des données météorologiques tout en naviguant et esquivant les obstacles. Projet de cours à Polytech Tours (cycle préparatoire PEIP, année 1 sur 5).",
+  "descEn": "Small autonomous wheeled base (2 wheels + caster) that collects and stores weather data while navigating and avoiding obstacles. Course project at Polytech Tours (PEIP preparatory cycle, year 1 of 5).",
   "stack": [
     "C",
     "Arduino",
@@ -19,8 +19,8 @@
   "blocks": [
     {
       "type": "text",
-      "contentFr": "Projet de cours à Polytech Tours pendant la première année de PEIP (2022).\n\nConception et réalisation d'une petite base roulante à 2 roues motrices et une bille folle, dont la mission était de **collecter et stocker des données météorologiques** (température, humidité...) tout en naviguant de façon autonome et en évitant les obstacles.\n\nLe robot embarque des capteurs météo et un capteur de distance pour la détection d'obstacles. Les données collectées sont enregistrées au fil du déplacement. Le décor avec le ballon et le drapeau français était un clin d'œil à la Coupe du Monde 2022.",
-      "contentEn": "Course project at Polytech Tours during the first year of PEIP (2022).\n\nDesign and build of a small 2-wheel + caster wheeled base, whose mission was to **collect and store weather data** (temperature, humidity...) while navigating autonomously and avoiding obstacles.\n\nThe robot carries weather sensors and a distance sensor for obstacle detection. The collected data is logged throughout the run. The balloon and French flag decoration was a nod to the 2022 FIFA World Cup."
+      "contentFr": "Projet de cours à Polytech Tours pendant ma 1ère année de cycle préparatoire intégré (PEIP, année 1 sur 5), en 2022.\n\nConception et réalisation d'une petite base roulante à 2 roues motrices et une bille folle, dont la mission était de **collecter et stocker des données météorologiques** (température, humidité...) tout en naviguant de façon autonome et en évitant les obstacles.\n\nLe robot embarque des capteurs météo et un capteur de distance pour la détection d'obstacles. Les données collectées sont enregistrées au fil du déplacement. Le décor avec le ballon et le drapeau français était un clin d'œil à la Coupe du Monde 2022.",
+      "contentEn": "Course project at Polytech Tours during my first year in the integrated preparatory cycle (PEIP, year 1 of 5), in 2022.\n\nDesign and build of a small 2-wheel + caster wheeled base, whose mission was to **collect and store weather data** (temperature, humidity...) while navigating autonomously and avoiding obstacles.\n\nThe robot carries weather sensors and a distance sensor for obstacle detection. The collected data is logged throughout the run. The balloon and French flag decoration was a nod to the 2022 FIFA World Cup."
     },
     {
       "type": "gallery",
