@@ -10,7 +10,7 @@
       "Python",
       "JavaScript · HTML · CSS",
       "Git · Linux · Makefile",
-      "IA · Claude Code"
+      "Assistants de code (Claude Code)"
     ],
     "skillsEn": [
       "C",
@@ -18,7 +18,7 @@
       "Python",
       "JavaScript · HTML · CSS",
       "Git · Linux · Makefile",
-      "AI · Claude Code"
+      "Coding assistants (Claude Code)"
     ],
     "levels": [
       3,
@@ -214,15 +214,15 @@
     "wish": true,
     "skills": [
       "PyTorch",
-      "LeRobot — entraînement de politiques",
-      "Collecte de datasets",
-      "Sim-to-real"
+      "LeRobot — collecte de dataset & entraînement",
+      "Politiques d'imitation (ACT, Diffusion Policy)",
+      "Évaluation de politique sur robot réel"
     ],
     "skillsEn": [
       "PyTorch",
-      "LeRobot — policy training",
-      "Dataset collection",
-      "Sim-to-real"
+      "LeRobot — dataset collection & training",
+      "Imitation policies (ACT, Diffusion Policy)",
+      "Policy evaluation on real hardware"
     ],
     "levels": []
   },
@@ -233,15 +233,15 @@
     "color": "#1a2fff",
     "wish": true,
     "skills": [
-      "Modèles fondation robotiques (VLA)",
-      "Apprentissage par renforcement sur robot réel",
-      "Manipulation dextre",
+      "RL en simulation (MuJoCo, PPO)",
+      "Sim-to-real & domain randomization",
+      "ML embarqué (inférence temps réel sur MCU)",
       "Télémétrie sans fil"
     ],
     "skillsEn": [
-      "Robot foundation models (VLA)",
-      "Reinforcement learning on real hardware",
-      "Dexterous manipulation",
+      "RL in simulation (MuJoCo, PPO)",
+      "Sim-to-real & domain randomization",
+      "Embedded ML (real-time inference on MCU)",
       "Wireless telemetry"
     ],
     "levels": []
