@@ -71,18 +71,30 @@
     "icon": "🧠",
     "color": "#1a2fff",
     "skills": [
+      "Apprentissage par renforcement (PPO, MuJoCo)",
+      "Sim-to-real (identification, correction de modèle)",
+      "ML embarqué (inférence temps réel sur MCU)",
+      "PyTorch · stable-baselines3",
+      "Conception de récompense & curriculum",
       "Apprentissage par imitation (LeRobot)",
-      "Reinforcement Learning (Sarsa(λ), Q-learning)",
       "Téléopération"
     ],
     "skillsEn": [
+      "Reinforcement learning (PPO, MuJoCo)",
+      "Sim-to-real (identification, model correction)",
+      "Embedded ML (real-time inference on MCU)",
+      "PyTorch · stable-baselines3",
+      "Reward design & curriculum",
       "Imitation learning (LeRobot)",
-      "Reinforcement learning (Sarsa(λ), Q-learning)",
       "Teleoperation"
     ],
     "levels": [
-      1,
       2,
+      2,
+      2,
+      2,
+      2,
+      1,
       2
     ]
   },
@@ -184,7 +196,7 @@
     "skills": [
       "Matlab / Simulink",
       "Systèmes linéaires",
-      "Identification paramétrique",
+      "Identification de système (interspectres)",
       "Probabilités · Statistiques",
       "Filtre de Kalman (EKF)",
       "Minimax · Monte Carlo"
@@ -192,7 +204,7 @@
     "skillsEn": [
       "Matlab / Simulink",
       "Linear systems",
-      "Parameter identification",
+      "System identification (cross-spectra)",
       "Probability · Statistics",
       "Kalman filter (EKF)",
       "Minimax · Monte Carlo"
@@ -200,7 +212,7 @@
     "levels": [
       2,
       2,
-      1,
+      2,
       2,
       2,
       2
@@ -213,13 +225,11 @@
     "color": "#1a2fff",
     "wish": true,
     "skills": [
-      "PyTorch",
       "LeRobot — collecte de dataset & entraînement",
       "Politiques d'imitation (ACT, Diffusion Policy)",
       "Évaluation de politique sur robot réel"
     ],
     "skillsEn": [
-      "PyTorch",
       "LeRobot — dataset collection & training",
       "Imitation policies (ACT, Diffusion Policy)",
       "Policy evaluation on real hardware"
@@ -233,16 +243,16 @@
     "color": "#1a2fff",
     "wish": true,
     "skills": [
-      "RL en simulation (MuJoCo, PPO)",
-      "Sim-to-real & domain randomization",
-      "ML embarqué (inférence temps réel sur MCU)",
-      "Télémétrie sans fil"
+      "Locomotion à pattes par renforcement",
+      "Contrôle du mouvement sur humanoïde",
+      "Domain randomization",
+      "Simulation massivement parallèle"
     ],
     "skillsEn": [
-      "RL in simulation (MuJoCo, PPO)",
-      "Sim-to-real & domain randomization",
-      "Embedded ML (real-time inference on MCU)",
-      "Wireless telemetry"
+      "Legged locomotion with reinforcement learning",
+      "Motion control on humanoids",
+      "Domain randomization",
+      "Massively parallel simulation"
     ],
     "levels": []
   }
