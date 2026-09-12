@@ -364,6 +364,28 @@ html.dark .proj-gh { border-color:var(--border); }
 
 
 /* ── CODE BLOCK ── */
+/* ── CHAPITRES EN ONGLETS ── */
+.chap-lead { text-align:center; font-size:.92rem; color:var(--muted); font-weight:500; margin:4.2rem 0 1.1rem; padding-top:2.8rem; border-top:1px solid var(--border); }
+.chap-tabs { display:flex; flex-wrap:wrap; justify-content:center; gap:.7rem; margin:0 0 2.8rem; }
+.chap-tab {
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.85rem 1.7rem; border-radius:6px;
+  border:1.5px solid var(--border); background:transparent;
+  color:var(--text); font-family:'Inter',sans-serif;
+  font-size:.95rem; font-weight:600; cursor:pointer; transition:all .2s;
+}
+.chap-tab::before { content:''; width:9px; height:9px; border-radius:50%; background:var(--border); transition:background .2s; flex:none; }
+.chap-tab:hover { border-color:var(--red); color:var(--red); background:var(--red-f); }
+.chap-tab:hover::before { background:var(--red); }
+.chap-tab.on { background:var(--red); border-color:var(--red); color:white; }
+.chap-tab.on::before { background:white; }
+.chap-block { display:none; }
+.chap-block.on { display:block; }
+@media(max-width:580px) {
+  .chap-lead { font-size:.84rem; margin-top:3rem; padding-top:2rem; }
+  .chap-tabs { gap:.5rem; }
+  .chap-tab { padding:.7rem 1rem; font-size:.85rem; }
+}
 .block-code { margin-bottom:1.8rem; }
 .code-toggle {
   width:100%; text-align:left;

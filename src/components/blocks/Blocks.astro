@@ -1,7 +1,12 @@
 ---
 // Moteur de blocs — rend chaque bloc d'un projet (texte, image, vidéo, galerie,
-// video-duo, code). Reproduit l'ancien renderBlocks() mais en STATIQUE : les deux
-// langues (FR/EN) sont écrites dans le DOM, la bascule se fait en CSS (comme avant).
+// video-duo, code, chapters). Reproduit l'ancien renderBlocks() mais en STATIQUE :
+// les deux langues (FR/EN) sont écrites dans le DOM, la bascule se fait en CSS.
+//
+// Chapitres : un bloc « chapters » pose la barre d'onglets, et tout bloc portant
+// un champ « chapter » n'est visible que lorsque son onglet est actif. Les blocs
+// sans « chapter » restent affichés en permanence (introduction, conclusion).
+// Le chapitre 1 est ouvert côté serveur, donc la page reste lisible sans JS.
 import { renderText, esc, media } from '../../lib/render';
 // Voir ProjectCard : couleurs de bord extraites par scripts/media-colors.mjs.
 import MEDIA_COLORS from '../../data/media-colors.json';
@@ -17,11 +22,12 @@ const { blocks = [] } = Astro.props;
   // ── Caption bilingue partagée ──
   const capFr = b.captionFr ?? b.caption ?? '';
   const capEn = b.captionEn ?? b.caption ?? '';
+  let inner: any = null;
 
   if (b.type === 'text') {
     const fr = b.contentFr ?? b.content ?? '';
     const en = b.contentEn ?? b.content ?? '';
-    return (
+    inner = (
       <div class="block-text">
         <div class="fr" set:html={renderText(fr)} />
         <div class="en" set:html={renderText(en)} />
@@ -29,9 +35,33 @@ const { blocks = [] } = Astro.props;
     );
   }
 
-  if (b.type === 'image') {
+  else if (b.type === 'chapters') {
+    inner = (
+      <>
+      {(b.leadFr || b.leadEn) && (
+        <div class="chap-lead"><span class="fr">{b.leadFr}</span><span class="en">{b.leadEn ?? b.leadFr}</span></div>
+      )}
+      <div class="chap-tabs" role="tablist">
+        {(b.tabs ?? []).map((t: any, k: number) => (
+          <button
+            type="button"
+            role="tab"
+            aria-selected={k === 0 ? 'true' : 'false'}
+            class:list={['chap-tab', { on: k === 0 }]}
+            data-chap={String(k + 1)}
+            onclick={`switchChap(this)`}
+          >
+            <span class="fr">{t.labelFr}</span><span class="en">{t.labelEn ?? t.labelFr}</span>
+          </button>
+        ))}
+      </div>
+      </>
+    );
+  }
+
+  else if (b.type === 'image') {
     const cls = ['block-img', b.hero && 'hero', b.size && `size-${b.size}`].filter(Boolean).join(' ');
-    return (
+    inner = (
       <div class={cls}>
         <img src={media(b.src)} alt={capFr} onclick="openLb(this)" loading="lazy" />
         {(capFr || capEn) && (
@@ -41,8 +71,8 @@ const { blocks = [] } = Astro.props;
     );
   }
 
-  if (b.type === 'video') {
-    return (
+  else if (b.type === 'video') {
+    inner = (
       <div class="block-video">
         <video controls src={media(b.src)} style="width:100%;border-radius:6px;display:block"></video>
         {(capFr || capEn) && (
@@ -52,7 +82,7 @@ const { blocks = [] } = Astro.props;
     );
   }
 
-  if (b.type === 'gallery') {
+  else if (b.type === 'gallery') {
     const gridStyle = b.columns === 2 ? 'grid-template-columns:1fr 1fr' : '';
     const cls = b.autoHeight ? 'block-gallery auto-height' : 'block-gallery';
     // En autoHeight les images gardent leur hauteur naturelle : il n'y a aucune
@@ -60,7 +90,7 @@ const { blocks = [] } = Astro.props;
     // — c'est ce qui remplissait le vide sous les images les moins hautes.
     const galBg = (src: string) =>
       !b.autoHeight && COLORS[src] ? `background:${COLORS[src]}` : undefined;
-    return (
+    inner = (
       <>
         <div class={cls} style={gridStyle}>
           {(b.images ?? []).map((src: string) => (
@@ -78,8 +108,8 @@ const { blocks = [] } = Astro.props;
     );
   }
 
-  if (b.type === 'video-duo') {
-    return (
+  else if (b.type === 'video-duo') {
+    inner = (
       <div class="block-video-duo">
         {(b.videos ?? []).map((v: any) => (
           <div class="block-video-duo-item">
@@ -93,9 +123,9 @@ const { blocks = [] } = Astro.props;
     );
   }
 
-  if (b.type === 'code') {
-    const id = `code-${Astro.props.blocks === blocks ? i : i}-${Math.random().toString(36).slice(2, 8)}`;
-    return (
+  else if (b.type === 'code') {
+    const id = `code-${i}-${Math.random().toString(36).slice(2, 8)}`;
+    inner = (
       <div class="block-code">
         <button class="code-toggle" onclick={`this.classList.toggle('open');document.getElementById('${id}').classList.toggle('open')`}>
           <span class="fr">{b.titleFr ?? 'Code'}</span><span class="en">{b.titleEn ?? b.titleFr ?? 'Code'}</span>
@@ -108,5 +138,11 @@ const { blocks = [] } = Astro.props;
     );
   }
 
-  return null;
+  if (!inner) return null;
+  if (!b.chapter) return inner;
+  return (
+    <div class:list={['chap-block', { on: b.chapter === 1 }]} data-chap={String(b.chapter)}>
+      {inner}
+    </div>
+  );
 })}

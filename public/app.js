@@ -227,3 +227,20 @@ window.addEventListener('resize', () => {
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
 else init();
+
+// ── CHAPITRES EN ONGLETS (fiche projet) ──
+function switchChap(btn) {
+  var n = btn.getAttribute('data-chap');
+  var root = btn.closest('.proj-detail') || document;
+  root.querySelectorAll('.chap-tab').forEach(function (b) {
+    var on = b === btn;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  root.querySelectorAll('.chap-block').forEach(function (el) {
+    el.classList.toggle('on', el.getAttribute('data-chap') === n);
+  });
+  // Une vidéo laissée en lecture dans l'onglet qu'on quitte continuerait de jouer.
+  root.querySelectorAll('.chap-block:not(.on) video').forEach(function (v) { v.pause(); });
+}
+window.switchChap = switchChap;
