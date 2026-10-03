@@ -76,7 +76,7 @@
       "ML embarqué (inférence temps réel sur MCU)",
       "PyTorch · stable-baselines3",
       "Conception de récompense & curriculum",
-      "Apprentissage par imitation (LeRobot)",
+      "Apprentissage par imitation (LeRobot, ACT)",
       "Téléopération"
     ],
     "skillsEn": [
@@ -85,7 +85,7 @@
       "Embedded ML (real-time inference on MCU)",
       "PyTorch · stable-baselines3",
       "Reward design & curriculum",
-      "Imitation learning (LeRobot)",
+      "Imitation learning (LeRobot, ACT)",
       "Teleoperation"
     ],
     "levels": [
@@ -94,7 +94,7 @@
       1,
       1,
       1,
-      1,
+      2,
       2
     ]
   },
@@ -225,14 +225,14 @@
     "color": "#1a2fff",
     "wish": true,
     "skills": [
-      "LeRobot — collecte de dataset & entraînement",
-      "Politiques d'imitation (ACT, Diffusion Policy)",
-      "Évaluation de politique sur robot réel"
+      "Évaluation de politique sur robot réel",
+      "Diffusion Policy",
+      "Datasets plus larges et plus variés"
     ],
     "skillsEn": [
-      "LeRobot — dataset collection & training",
-      "Imitation policies (ACT, Diffusion Policy)",
-      "Policy evaluation on real hardware"
+      "Policy evaluation on real hardware",
+      "Diffusion Policy",
+      "Larger and more varied datasets"
     ],
     "levels": []
   },

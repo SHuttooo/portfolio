@@ -1,15 +1,18 @@
 {
   "id": "so101",
-  "date": "2026-01",
+  "date": "2026-10",
   "titleFr": "Robot SO-101 — Hugging Face",
   "titleEn": "SO-101 Robot — Hugging Face",
   "category": "robotics",
   "source": "robotech",
   "featured": true,
-  "descFr": "Bras manipulateur open-source 5 DoF + pince (design Rob Knight / The Robot Studio), imprimé, assemblé et calibré. Téléopération leader/follower fiable avec LeRobot — la plateforme est prête à servir de banc d'expérimentation en apprentissage par imitation.",
-  "descEn": "Open-source 5-DoF manipulator arm with gripper (designed by Rob Knight / The Robot Studio), 3D-printed, assembled and calibrated. Reliable leader/follower teleoperation with LeRobot — the platform is ready to serve as a testbed for imitation learning.",
+  "descFr": "Bras manipulateur open-source 5 DoF plus pince (design Rob Knight / The Robot Studio), imprimé, assemblé et calibré. Téléopération leader/follower avec LeRobot, puis première politique d'apprentissage par imitation : 40 démonstrations, politique ACT entraînée sur 20 000 pas. Elle attrape parfois un rouleau de scotch, elle échoue souvent. L'évaluation propre reste à faire.",
+  "descEn": "Open-source 5-DoF manipulator arm with gripper (designed by Rob Knight / The Robot Studio), 3D-printed, assembled and calibrated. Leader/follower teleoperation with LeRobot, then a first imitation learning policy: 40 demonstrations, an ACT policy trained for 20,000 steps. It sometimes picks up a roll of tape, it often fails. A proper evaluation is still to be done.",
   "stack": [
     "LeRobot",
+    "ACT",
+    "Apprentissage par imitation",
+    "PyTorch",
     "Python",
     "Téléopération",
     "Feetech servos",
@@ -18,12 +21,62 @@
   ],
   "thumb": "so101/images/so101_1.jpg",
   "link": "https://huggingface.co/docs/lerobot/so101",
-  "wip": false,
+  "wip": true,
   "blocks": [
     {
       "type": "text",
-      "contentFr": "Le **SO-101** est un bras manipulateur open-source à **5 degrés de liberté plus une pince**, conçu par **Rob Knight (The Robot Studio)** et intégré au framework **LeRobot** de Hugging Face. Il est actionné par **6 servomoteurs Feetech**.\n\nJ'ai imprimé en 3D l'ensemble des pièces structurelles au FabLab de Polytech, assemblé et **calibré** deux exemplaires (violet et noir) dans le cadre de l'association Robotech, afin de constituer un couple **leader/follower** : on manipule le premier à la main, le second reproduit le mouvement.\n\nLa **téléopération fonctionne de façon fiable** sous LeRobot — c'est elle qui sert d'interface de démonstration dans une chaîne d'apprentissage par imitation.\n\nLe bras constitue donc une **plateforme prête** pour ce type d'expérimentation. Je n'ai à ce jour **ni collecté de dataset, ni entraîné de politique** : c'est l'étape suivante que je veux mener.",
-      "contentEn": "The **SO-101** is an open-source manipulator arm with **5 degrees of freedom plus a gripper**, designed by **Rob Knight (The Robot Studio)** and supported by Hugging Face's **LeRobot** framework. It is driven by **6 Feetech servomotors**.\n\nI 3D-printed all structural parts at Polytech's FabLab, then assembled and **calibrated** two units (purple and black) at Robotech, forming a **leader/follower** pair: the first is moved by hand, the second reproduces the motion.\n\n**Teleoperation runs reliably** under LeRobot — it is the demonstration interface an imitation-learning pipeline is built on.\n\nThe arm is therefore a **ready testbed** for that kind of experimentation. To date I have **neither collected a dataset nor trained a policy**: that is the next step I want to take."
+      "contentFr": "Le **SO-101** est un bras manipulateur open-source à **5 degrés de liberté plus une pince**, conçu par **Rob Knight (The Robot Studio)** et supporté par le framework **LeRobot** de Hugging Face.\n\nJ'en ai imprimé, assemblé et calibré deux exemplaires pour former un couple leader/follower, puis enregistré des démonstrations en téléopération et entraîné une première politique par **apprentissage par imitation**. Elle fonctionne parfois, elle échoue souvent. C'est le sujet de cette page.",
+      "contentEn": "The **SO-101** is an open-source manipulator arm with **5 degrees of freedom plus a gripper**, designed by **Rob Knight (The Robot Studio)** and supported by Hugging Face's **LeRobot** framework.\n\nI 3D-printed, assembled and calibrated two of them to form a leader/follower pair, then recorded demonstrations by teleoperation and trained a first **imitation learning** policy. It sometimes works, it often fails. That is what this page is about."
+    },
+    {
+      "type": "text",
+      "contentFr": "## Premier apprentissage par imitation (ACT)\n\n**La tâche.** Attraper un rouleau de scotch posé sur le bureau.\n\n**Les données.** 40 démonstrations enregistrées en téléopération, en guidant le bras leader à la main. C'est le seul signal d'apprentissage dont dispose la politique : elle n'a aucune description de la tâche, aucune règle écrite, rien d'autre que ces 40 exemples.\n\n**L'entraînement.** Une politique **ACT** (Action Chunking with Transformers) entraînée avec **LeRobot**, sur **20 000 pas**, sur un GPU AMD Radeon RX 7900 XTX.\n\n**Ce qu'elle voit.** Une caméra filme le plan de travail. C'est l'image qu'elle reçoit en entrée pour décider de son prochain geste.",
+      "contentEn": "## First imitation learning run (ACT)\n\n**The task.** Pick up a roll of tape sitting on the desk.\n\n**The data.** 40 demonstrations recorded by teleoperation, guiding the leader arm by hand. That is the only learning signal the policy gets: no task description, no written rules, nothing but those 40 examples.\n\n**The training.** An **ACT** policy (Action Chunking with Transformers) trained with **LeRobot**, for **20,000 steps**, on an AMD Radeon RX 7900 XTX GPU.\n\n**What it sees.** A camera films the work surface. That image is the input it uses to decide its next move."
+    },
+    {
+      "type": "video-duo",
+      "videos": [
+        {
+          "src": "so101/videos/act_reussite.mp4",
+          "captionFr": "Une réussite, filmée de côté. Le bras rejoint le rouleau, referme la pince et le soulève. Entre deux essais, le rouleau est reposé à un autre endroit du bureau, et la politique le retrouve.",
+          "captionEn": "A success, filmed from the side. The arm reaches the roll, closes the gripper and lifts it. Between attempts the roll is put down somewhere else on the desk, and the policy still finds it."
+        },
+        {
+          "src": "so101/videos/act_camera_politique.mp4",
+          "captionFr": "La même tâche vue par la caméra qui alimente la politique. C'est l'image sur laquelle elle décide : le rouleau, le plan de travail et la pince qui entre dans le champ.",
+          "captionEn": "The same task seen through the camera that feeds the policy. This is the image it decides from: the roll, the work surface, and the gripper coming into frame."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "contentFr": "## Ce qui ne marche pas encore\n\nLa politique n'est **ni fiable, ni robuste**. Sur les essais que j'ai filmés, elle échoue plus souvent qu'elle ne réussit.\n\nLes échecs ne se ressemblent pas. Le bras s'approche puis passe à côté du rouleau. Ou il s'arrête juste au-dessus sans refermer la pince. Ou il part dans une direction sans rapport avec l'objet.\n\n**Je n'avance aucun taux de réussite.** Je n'ai pas encore mené d'évaluation propre, avec un nombre d'essais fixé à l'avance et des positions de départ définies. Compter les réussites sur une poignée de vidéos ne voudrait rien dire, et 40 démonstrations restent très peu de données.",
+      "contentEn": "## What does not work yet\n\nThe policy is **neither reliable nor robust**. Across the attempts I filmed, it fails more often than it succeeds.\n\nThe failures do not look alike. The arm approaches then goes past the roll. Or it stops just above it without closing the gripper. Or it heads somewhere unrelated to the object.\n\n**I am not claiming any success rate.** I have not run a proper evaluation yet, with a number of attempts fixed in advance and defined starting positions. Counting successes across a handful of videos would mean nothing, and 40 demonstrations is very little data."
+    },
+    {
+      "type": "video-duo",
+      "videos": [
+        {
+          "src": "so101/videos/act_echec_1.mp4",
+          "captionFr": "Un échec. Le bras s'approche du rouleau mais ne le saisit pas, et le rouleau reste sur le bureau.",
+          "captionEn": "A failure. The arm approaches the roll but does not grasp it, and the roll stays on the desk."
+        },
+        {
+          "src": "so101/videos/act_echec_2.mp4",
+          "captionFr": "Un autre échec. La pince passe au-dessus du rouleau sans se refermer dessus.",
+          "captionEn": "Another failure. The gripper passes above the roll without closing on it."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "contentFr": "## La suite\n\n**Évaluer proprement.** Un protocole fixe : un nombre d'essais décidé à l'avance, des positions de départ du rouleau choisies avant de lancer, et un taux de réussite qui veut enfin dire quelque chose.\n\n**Agrandir le dataset.** 40 démonstrations, c'est peu. Il manque surtout de la variété : positions de départ, éclairage, encombrement du plan de travail.\n\n**Comparer.** ACT n'est pas la seule option sur ce type de tâche. Diffusion Policy est le point de comparaison que je veux essayer ensuite.",
+      "contentEn": "## Next steps\n\n**Evaluate properly.** A fixed protocol: a number of attempts decided in advance, starting positions for the roll chosen before the run, and a success rate that finally means something.\n\n**Grow the dataset.** 40 demonstrations is very little. What it lacks most is variety: starting positions, lighting, clutter on the work surface.\n\n**Compare.** ACT is not the only option for this kind of task. Diffusion Policy is the comparison I want to try next."
+    },
+    {
+      "type": "text",
+      "contentFr": "## Le bras, et d'où viennent les démonstrations\n\nToutes les pièces structurelles ont été imprimées en 3D au FabLab de Polytech. J'ai assemblé et **calibré** deux exemplaires, violet et noir, dans le cadre de l'association Robotech, pour constituer un couple **leader/follower** : on manipule le premier à la main, le second reproduit le mouvement. Le bras est actionné par **6 servomoteurs Feetech**.\n\nC'est ce dispositif qui sert à enregistrer les données. Chaque geste fait à la main sur le bras leader devient un exemple d'apprentissage.",
+      "contentEn": "## The arm, and where the demonstrations come from\n\nAll structural parts were 3D-printed at Polytech's FabLab. I assembled and **calibrated** two units, purple and black, at the Robotech association, to form a **leader/follower** pair: the first is moved by hand, the second reproduces the motion. The arm is driven by **6 Feetech servomotors**.\n\nThis is the setup used to record the data. Every motion made by hand on the leader arm becomes a training example."
     },
     {
       "type": "gallery",
@@ -40,8 +93,8 @@
     {
       "type": "video",
       "src": "so101/videos/demo.mp4",
-      "captionFr": "Démonstration du robot SO-101",
-      "captionEn": "SO-101 robot demo"
+      "captionFr": "Téléopération leader/follower. C'est avec ce dispositif que les 40 démonstrations ont été enregistrées.",
+      "captionEn": "Leader/follower teleoperation. This is the setup used to record the 40 demonstrations."
     },
     {
       "type": "text",
