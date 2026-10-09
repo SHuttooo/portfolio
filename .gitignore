@@ -9,3 +9,8 @@ dist/
 *.log
 .DS_Store
 .env
+
+# Local design trials and verification outputs
+/experiments/
+/verification/
+/scripts/site-checks.json

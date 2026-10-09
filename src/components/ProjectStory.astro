@@ -1,0 +1,28 @@
+---
+import Blocks from './blocks/Blocks.astro';
+const { blocks, projectId } = Astro.props;
+// Explicit pairs keep each explanation next to its own media, never an unrelated one.
+const pairs: Record<string, number[]> = {
+  'stage-openamr': [2, 4, 6],
+  'so101': [6],
+  'pendule-inverse': [0, 13, 17, 22],
+  'serre': [4, 8],
+  'robot-bras': [],
+};
+const sections: any[] = [];
+for (let i = 0; i < blocks.length; i++) {
+  const block = blocks[i];
+  if (block.type === 'chapters') continue;
+  const next = blocks[i + 1];
+  const paired = (pairs[projectId] ?? []).includes(i) && next && block.chapter === next.chapter;
+  const heading = (block.contentFr ?? block.content ?? '').match(/^## ([^\n]+)/)?.[1] ?? '';
+  const callout = /^(En bref|Résultats mesurés|Ce qui ne marche pas encore|État actuel)/.test(heading);
+  sections.push({ index: i, chapter: block.chapter, paired, callout, items: paired ? [block, next] : [block] });
+  if (paired) i++;
+}
+---
+<div class="project-story">
+  {sections.map(section=><section id={`project-section-${section.index}`} class:list={['story-section', {'story-pair':section.paired,'story-callout':section.callout,'chap-block':section.chapter,'on':section.chapter===1}]} data-chap={section.chapter?String(section.chapter):undefined}>
+    {section.items.map((block:any)=><div class:list={['story-item',`story-${block.type}`]}><Blocks blocks={[{...block,chapter:undefined}]}/></div>)}
+  </section>)}
+</div>

@@ -1,0 +1,27 @@
+---
+import voting from '../data/voting.json';
+const surveyUrl = voting.surveyUrl;
+---
+<details class="style-picker">
+  <summary><span aria-hidden="true">◐</span> Styles <span class="current-style">Atelier</span></summary>
+  <div class="style-panel">
+    <h2><span class="fr">Quel style préfères-tu ?</span><span class="en">Which style do you prefer?</span></h2>
+    <p class="style-intro"><span class="fr">Même contenu, quatre ambiances. Essaie-les avant de voter.</span><span class="en">Same content, four looks. Try them before voting.</span></p>
+    <div class="style-options">
+      <button type="button" data-visual-style="atelier" aria-pressed="false"><span class="style-swatch swatch-atelier" aria-hidden="true"></span><span><strong>Atelier</strong><span class="style-description"><span class="fr">Bleu · sobre · sans empattements</span><span class="en">Blue · clean · sans serif</span></span></span><span class="style-selected" aria-hidden="true">✓</span></button>
+      <button type="button" data-visual-style="studio" aria-pressed="false"><span class="style-swatch swatch-studio" aria-hidden="true"></span><span><strong>Studio</strong><span class="style-description"><span class="fr">Vert clair · ardoise sombre · arrondi</span><span class="en">Light green · dark slate · rounded</span></span></span><span class="style-selected" aria-hidden="true">✓</span></button>
+      <button type="button" data-visual-style="editorial" aria-pressed="false"><span class="style-swatch swatch-editorial" aria-hidden="true"></span><span><strong><span class="fr">Éditorial</span><span class="en">Editorial</span></strong><span class="style-description"><span class="fr">Violet · contrasté · titres à empattements</span><span class="en">Purple · contrast · serif headings</span></span></span><span class="style-selected" aria-hidden="true">✓</span></button>
+      <button type="button" data-visual-style="solaire" aria-pressed="false"><span class="style-swatch swatch-solaire" aria-hidden="true"></span><span><strong><span class="fr">Solaire</span><span class="en">Solar</span></strong><span class="style-description"><span class="fr">Jaune · graphite · sans empattements</span><span class="en">Yellow · graphite · sans serif</span></span></span><span class="style-selected" aria-hidden="true">✓</span></button>
+    </div>
+    {surveyUrl ? <a class="style-vote" href={surveyUrl} target="_blank" rel="noopener"><span class="fr">Donner mon avis sur Tally</span><span class="en">Share my preference on Tally</span> ↗</a> : <p class="style-vote-pending"><span class="fr">Le sondage sera bientôt ouvert.</span><span class="en">Voting will open soon.</span></p>}
+    <p class="style-privacy"><span class="fr">Tally s’ouvre dans un nouvel onglet. Aucun nom ni email demandé.</span><span class="en">Tally opens in a new tab. No name or email requested.</span></p>
+    <p class="style-privacy"><span class="fr">Ce sondage recueille des avis indicatifs : les votes répétés sont possibles et les réponses ne représentent pas tous les visiteurs.</span><span class="en">This survey collects informal feedback: repeat votes are possible, and responses do not represent all visitors.</span></p>
+  </div>
+</details>
+
+<aside class="style-invitation" hidden aria-label="Styles du portfolio">
+  <button type="button" class="invitation-close" aria-label="Fermer / Close">×</button>
+  <strong><span class="fr">Un style préféré ?</span><span class="en">Have a favourite style?</span></strong>
+  <p><span class="fr">Tu peux essayer les quatre versions et me donner ton avis.</span><span class="en">Try the four versions and tell me which one you prefer.</span></p>
+  <button type="button" class="invitation-open"><span class="fr">Comparer les styles</span><span class="en">Compare styles</span> →</button>
+</aside>

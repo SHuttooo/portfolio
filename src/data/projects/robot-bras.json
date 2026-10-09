@@ -59,5 +59,6 @@
       "captionFr": "Robot suivant un mur avec un correcteur PID",
       "captionEn": "Robot following a wall with a PID controller"
     }
-  ]
+  ],
+  "preview": "robot_bras_rob3/videos/bras_proportionnel.mp4"
 }

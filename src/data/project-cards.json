@@ -1,0 +1,20 @@
+{
+  "arcade": {"technologies": [1, 2, 4], "statusFr": "Finitions à venir", "statusEn": "Finishing touches pending"},
+  "avion-rc": {"technologies": [1, 2, 4], "statusFr": "En développement", "statusEn": "In development"},
+  "comptage-voitures": {"technologies": [0, 1, 2]},
+  "easy21-rl": {"technologies": [0, 3, 4]},
+  "echecs": {"technologies": [0, 2, 3]},
+  "minishell": {"technologies": [0, 2, 5]},
+  "moteur-brushless": {"technologies": [0, 2, 3]},
+  "pan-tilt-gestes": {"technologies": [0, 1, 3]},
+  "pendule-inverse": {"technologies": [0, 1, 5]},
+  "poker": {"technologies": [0, 1, 3]},
+  "publication-docking": {"technologies": [0, 2, 3], "statusFr": "Publié", "statusEn": "Published"},
+  "robot-bras": {"technologies": [0, 2, 4]},
+  "ros2-labs": {"technologies": [0, 1, 2]},
+  "serre": {"technologies": [0, 4, 7]},
+  "sites-vitrines": {"technologies": [0, 1, 4], "statusFr": "Activité en cours", "statusEn": "Ongoing activity"},
+  "so101": {"technologies": [0, 1, 3]},
+  "stage-openamr": {"technologies": [0, 1, 7], "statusFr": "Stage réalisé", "statusEn": "Internship completed"},
+  "voitures-rc": {"technologies": [0, 1, 2]}
+}

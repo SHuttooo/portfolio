@@ -1,4 +1,5 @@
 ---
+import StylePicker from "./StylePicker.astro";
 // Barre de navigation + sélecteur de langue / dark mode.
 // Les liens pointent vers /#ancre pour fonctionner depuis n'importe quelle page.
 ---
@@ -16,5 +17,7 @@
     <li><a href="/#projects"><span class="fr">Projets</span><span class="en">Projects</span></a></li>
     <li><a href="/#contact" class="nav-cta">Contact</a></li>
   </ul>
-  <div class="hbg" onclick="toggleNav()" role="button" tabindex="0" aria-label="Ouvrir le menu"><span></span><span></span><span></span></div>
+  <button type="button" class="hbg" onclick="toggleNav()" aria-controls="nav-ul" aria-expanded="false" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
 </nav>
+
+<StylePicker />

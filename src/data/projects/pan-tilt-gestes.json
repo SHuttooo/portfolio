@@ -30,5 +30,6 @@
       "captionFr": "Démonstration — suivi de main et déclenchement sur geste",
       "captionEn": "Demo — hand tracking and gesture-triggered movement"
     }
-  ]
+  ],
+  "preview": "pan_tilt_gestes/videos/demo.mp4"
 }

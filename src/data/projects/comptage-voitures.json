@@ -28,5 +28,6 @@
       "captionFr": "Démonstration du comptage de voitures en temps réel",
       "captionEn": "Real-time car counting demo"
     }
-  ]
+  ],
+  "preview": "comptage_voitures/videos/demo.mp4"
 }

@@ -10,6 +10,8 @@
 import { renderText, esc, media } from '../../lib/render';
 // Voir ProjectCard : couleurs de bord extraites par scripts/media-colors.mjs.
 import MEDIA_COLORS from '../../data/media-colors.json';
+import VIDEO_POSTERS from '../../data/video-posters.json';
+const videoInfo = (src: string) => (VIDEO_POSTERS as Record<string, {poster: string; width: number; height: number}>)[src];
 const COLORS = MEDIA_COLORS as Record<string, string>;
 
 interface Props {
@@ -63,7 +65,7 @@ const { blocks = [] } = Astro.props;
     const cls = ['block-img', b.hero && 'hero', b.size && `size-${b.size}`].filter(Boolean).join(' ');
     inner = (
       <div class={cls}>
-        <img src={media(b.src)} alt={capFr} onclick="openLb(this)" loading="lazy" />
+        <button type="button" class="media-zoom" aria-label="Agrandir l’image / Enlarge image" onclick="openLb(this.querySelector('img'))"><img src={media(b.src)} alt={capFr} loading="lazy" /></button>
         {(capFr || capEn) && (
           <div class="caption"><span class="fr">{capFr}</span><span class="en">{capEn}</span></div>
         )}
@@ -74,7 +76,7 @@ const { blocks = [] } = Astro.props;
   else if (b.type === 'video') {
     inner = (
       <div class="block-video">
-        <video controls src={media(b.src)} style="width:100%;border-radius:6px;display:block"></video>
+        <video controls playsinline preload="none" data-load-metadata poster={b.poster ? media(b.poster) : media(videoInfo(b.src)?.poster)} width={videoInfo(b.src)?.width} height={videoInfo(b.src)?.height} src={media(b.src)} style="width:100%;border-radius:6px;display:block"></video>
         {(capFr || capEn) && (
           <div class="caption"><span class="fr">{capFr}</span><span class="en">{capEn}</span></div>
         )}
@@ -95,12 +97,12 @@ const { blocks = [] } = Astro.props;
         <div class={cls} style={gridStyle}>
           {(b.images ?? []).map((src: string) => (
             <div class="gal-item" style={galBg(src)}>
-              <img src={media(src)} alt="" onclick="openLb(this)" loading="lazy" />
+              <button type="button" class="media-zoom" aria-label="Agrandir l’image / Enlarge image" onclick="openLb(this.querySelector('img'))"><img src={media(src)} alt="" loading="lazy" /></button>
             </div>
           ))}
         </div>
         {(capFr || capEn) && (
-          <div class="caption" style="font-size:.78rem;color:var(--muted);margin-top:.5rem;text-align:center;font-style:italic">
+          <div class="caption" >
             <span class="fr">{capFr}</span><span class="en">{capEn}</span>
           </div>
         )}
@@ -113,7 +115,7 @@ const { blocks = [] } = Astro.props;
       <div class="block-video-duo">
         {(b.videos ?? []).map((v: any) => (
           <div class="block-video-duo-item">
-            <video controls src={media(v.src)} style="width:100%;border-radius:6px;display:block"></video>
+            <video controls playsinline preload="none" data-load-metadata poster={v.poster ? media(v.poster) : media(videoInfo(v.src)?.poster)} width={videoInfo(v.src)?.width} height={videoInfo(v.src)?.height} src={media(v.src)} style="width:100%;border-radius:6px;display:block"></video>
             {(v.captionFr || v.captionEn) && (
               <div class="caption"><span class="fr">{v.captionFr ?? ''}</span><span class="en">{v.captionEn ?? ''}</span></div>
             )}

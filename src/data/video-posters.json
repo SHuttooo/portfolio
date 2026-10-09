@@ -1,0 +1,137 @@
+{
+  "avion_rc_polystyrene/videos/test_moteur.mp4": {
+    "poster": "video-posters/8d58c8930c2f.jpg",
+    "width": 480,
+    "height": 854
+  },
+  "avion_rc_polystyrene/videos/avion_2.mp4": {
+    "poster": "video-posters/08289ad012f0.jpg",
+    "width": 480,
+    "height": 854
+  },
+  "avion_rc_polystyrene/videos/final.mp4": {
+    "poster": "video-posters/2d60257bdc48.jpg",
+    "width": 478,
+    "height": 850
+  },
+  "comptage_voitures/videos/demo.mp4": {
+    "poster": "video-posters/5fad86569413.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  "moteur_brushless/videos/demo.mp4": {
+    "poster": "video-posters/d1e51f08c216.jpg",
+    "width": 480,
+    "height": 854
+  },
+  "pan_tilt_gestes/videos/demo.mp4": {
+    "poster": "video-posters/3d21c0f4de1f.jpg",
+    "width": 480,
+    "height": 864
+  },
+  "pendule_inverse/videos/equilibre_1.mp4": {
+    "poster": "video-posters/c19aea8555df.jpg",
+    "width": 478,
+    "height": 850
+  },
+  "pendule_inverse/videos/equilibre_2.mp4": {
+    "poster": "video-posters/088ad17e78d7.jpg",
+    "width": 478,
+    "height": 850
+  },
+  "pendule_inverse/videos/fail_1.mp4": {
+    "poster": "video-posters/5e2c82ec1412.jpg",
+    "width": 478,
+    "height": 850
+  },
+  "pendule_inverse/videos/fail_2.mp4": {
+    "poster": "video-posters/777a4b0c06a9.jpg",
+    "width": 478,
+    "height": 850
+  },
+  "pendule_inverse/videos/rl_montage.mp4": {
+    "poster": "video-posters/7b388ecb7e25.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  "pendule_inverse/videos/rl_duel_agent_cascade.mp4": {
+    "poster": "video-posters/7761956c0cff.jpg",
+    "width": 1280,
+    "height": 720
+  },
+  "pendule_inverse/videos/rl_ancien_vs_nouveau.mp4": {
+    "poster": "video-posters/546f62011580.jpg",
+    "width": 1280,
+    "height": 720
+  },
+  "openamr/videos/accostage-final.mp4": {
+    "poster": "video-posters/b33470accc20.jpg",
+    "width": 720,
+    "height": 1280
+  },
+  "robot_bras_rob3/videos/bras_proportionnel.mp4": {
+    "poster": "video-posters/d8449d3c5c26.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  "robot_bras_rob3/videos/robot_mur.mp4": {
+    "poster": "video-posters/4c5ece543956.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  "robot_meteo/videos/demo.mp4": {
+    "poster": "video-posters/f5d40fa65f29.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  "serre/videos/presentation_test_pantographe_ihm.mp4": {
+    "poster": "video-posters/a3c7a566694e.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  "serre/videos/decoupage_de_la_structure_en_plexiglass.mp4": {
+    "poster": "video-posters/8f1cc9bb198b.jpg",
+    "width": 1080,
+    "height": 1920
+  },
+  "so101/videos/act_reussite.mp4": {
+    "poster": "video-posters/fe98c0efa747.jpg",
+    "width": 1280,
+    "height": 720
+  },
+  "so101/videos/act_camera_politique.mp4": {
+    "poster": "video-posters/1115c403ecd5.jpg",
+    "width": 640,
+    "height": 480
+  },
+  "so101/videos/act_echec_1.mp4": {
+    "poster": "video-posters/9f99794f4037.jpg",
+    "width": 1280,
+    "height": 720
+  },
+  "so101/videos/act_echec_2.mp4": {
+    "poster": "video-posters/3693cc8ff5ab.jpg",
+    "width": 1280,
+    "height": 720
+  },
+  "so101/videos/demo.mp4": {
+    "poster": "video-posters/a76ffe9737e2.jpg",
+    "width": 478,
+    "height": 850
+  },
+  "openamr/videos/navigation-esquive.mp4": {
+    "poster": "video-posters/46cbbb3cb5a3.jpg",
+    "width": 720,
+    "height": 1280
+  },
+  "openamr/videos/approche-dock.mp4": {
+    "poster": "video-posters/e643f8f09ba8.jpg",
+    "width": 720,
+    "height": 1280
+  },
+  "petites_voitures_esp32/videos/demo.mp4": {
+    "poster": "video-posters/d124d7a7fd43.jpg",
+    "width": 480,
+    "height": 854
+  }
+}

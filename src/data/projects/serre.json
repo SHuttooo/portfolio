@@ -128,5 +128,6 @@
       "contentFr": "Crédits — **Matthieu Vinet** (IHM · bras pantographe) · **Pierre-Louis Pasutto** (navigation autonome · simulation Gazebo) · **Fatoumata Diallo** (caméra PTZ · intégration LiDAR) — Encadrant : Aline Baudry",
       "contentEn": "Credits — **Matthieu Vinet** (HMI · pantograph arm) · **Pierre-Louis Pasutto** (autonomous navigation · Gazebo simulation) · **Fatoumata Diallo** (PTZ camera · LiDAR integration) — Supervisor: Aline Baudry"
     }
-  ]
+  ],
+  "preview": "serre/videos/presentation_test_pantographe_ihm.mp4"
 }

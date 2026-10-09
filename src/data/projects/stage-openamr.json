@@ -20,7 +20,7 @@
     "Vision",
     "EKF"
   ],
-  "thumb": "openamr/images/robot.png",
+  "thumb": "openamr/images/accostage-robot.jpg",
   "link": "https://github.com/openAMRobot",
   "wip": false,
   "blocks": [
@@ -84,5 +84,7 @@
       "contentFr": "Crédits — **Matthieu Vinet** (firmware, navigation, accostage). Contributeur des dépôts publics de la plateforme : travail développé, intégré via **pull requests** et **merges** sur **openamr-platform-sw** (logiciel), **openamr-platform-fw** (firmware) et **openamr-platform-hw** (hardware). Projet open-source OpenAMRobot · Encadrant : Oleksii « Alex » Reznichenko — Botshare · MotionLab Berlin. Contributeur occasionnel : Raj (fusion des environnements de simulation).",
       "contentEn": "Credits — **Matthieu Vinet** (firmware, navigation, docking). Contributor to the platform's public repositories: work developed and integrated through **pull requests** and **merges** on **openamr-platform-sw** (software), **openamr-platform-fw** (firmware) and **openamr-platform-hw** (hardware). Open-source project OpenAMRobot · Supervisor: Oleksii \"Alex\" Reznichenko — Botshare · MotionLab Berlin. Occasional contributor: Raj (merging the simulation environments)."
     }
-  ]
+  ],
+  "preview": "openamr/videos/accostage-final.mp4",
+  "featuredLayout": "wide"
 }

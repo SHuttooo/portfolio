@@ -13,18 +13,12 @@ export function esc(s: string): string {
  *   "\n\n"      -> nouveau paragraphe
  */
 export function renderText(content: string): string {
-  return content
-    .split('\n\n')
-    .filter(Boolean)
-    .map((p) => {
-      if (p.startsWith('## ')) {
-        const h = p.slice(3).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-        return `<h3 class="block-section-title">${h}</h3>`;
-      }
-      const html = p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-      return `<p>${html}</p>`;
-    })
-    .join('');
+  const inline=(text:string)=>esc(text).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*([^*]+)\*/g,'<em>$1</em>').replace(/`([^`]+)`/g,'<code>$1</code>');
+  return content.split('\n\n').filter(Boolean).map(p=>{
+    if(p.startsWith('## '))return `<h2 class="block-section-title">${inline(p.slice(3))}</h2>`;
+    if(p.startsWith('- '))return `<ul>${p.split('\n').map(line=>`<li>${inline(line.replace(/^- /,''))}</li>`).join('')}</ul>`;
+    return `<p>${inline(p).replace(/\n/g,'<br>')}</p>`;
+  }).join('');
 }
 
 /** Préfixe un chemin de média (les données stockent "serre/images/x.png"). */

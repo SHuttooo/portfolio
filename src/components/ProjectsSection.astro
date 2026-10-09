@@ -11,6 +11,17 @@ const byDateDesc = (a: any, b: any) => (b.date ?? '').localeCompare(a.date ?? ''
 const featured = projects.filter((p) => p.featured).sort(byDateDesc);
 const others = projects.filter((p) => !p.featured).sort(byDateDesc);
 const ordered = [...featured, ...others];
+// A lone card before a wide format or at the end fills its row.
+const fillRowIds = new Set<string>();
+let pending: any = null;
+for (const project of featured) {
+  if (project.featuredLayout === 'wide') {
+    if (pending) fillRowIds.add(pending.id);
+    pending = null;
+  } else if (pending) pending = null;
+  else pending = project;
+}
+if (pending) fillRowIds.add(pending.id);
 ---
 
 <section id="projects" style="background:white">
@@ -37,13 +48,14 @@ const ordered = [...featured, ...others];
       ))}
     </div>
 
-    <div class="proj-g" id="proj-g">
-      {ordered.map((p, i) => <ProjectCard p={p} index={i} />)}
+    <div id="proj-g" data-sort="featured">
+      <div class="project-group" data-featured-group><h3 class="group-title"><span class="fr">À la une</span><span class="en">Featured projects</span></h3><div class="proj-g featured-projects">{featured.map(p=><ProjectCard p={p} fillRow={fillRowIds.has(p.id)}/>)}</div></div>
+      <div class="project-group" data-other-group><h3 class="group-title"><span class="fr">Autres projets</span><span class="en">More projects</span></h3><div class="proj-g other-projects">{others.map(p=><ProjectCard p={p}/>)}</div></div>
     </div>
 
-    <div id="proj-more-btn" style="display:none">
+    <button type="button" id="proj-more-btn" style="display:none" aria-expanded="false">
       <span class="proj-more-label"><span class="fr">Voir tous les projets</span><span class="en">View all projects</span></span>
       <span class="proj-more-arrow">▼</span>
-    </div>
+    </button>
   </div>
 </section>

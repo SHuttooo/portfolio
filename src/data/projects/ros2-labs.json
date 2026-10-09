@@ -38,5 +38,6 @@
       "captionFr": "Démonstration du robot en navigation autonome",
       "captionEn": "Robot autonomous navigation demo"
     }
-  ]
+  ],
+  "preview": "robot_meteo/videos/demo.mp4"
 }

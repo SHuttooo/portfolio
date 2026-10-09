@@ -101,5 +101,7 @@
       "contentFr": "**Crédits** : design original du SO-101 par Rob Knight (The Robot Studio) · framework LeRobot par Hugging Face.",
       "contentEn": "**Credits**: original SO-101 design by Rob Knight (The Robot Studio) · LeRobot framework by Hugging Face."
     }
-  ]
+  ],
+  "preview": "so101/videos/act_reussite.mp4",
+  "featuredLayout": "standard"
 }

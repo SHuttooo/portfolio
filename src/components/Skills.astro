@@ -1,5 +1,9 @@
 ---
 import SKILL_GROUPS from '../data/skills.json';
+import SkillTags from './SkillTags.astro';
+import { getCollection } from 'astro:content';
+const projectList=(await getCollection('projects')).map(entry=>entry.data);
+const projectById=new Map(projectList.map(project=>[project.id,project]));
 ---
 
 <section id="skills">
@@ -14,35 +18,31 @@ import SKILL_GROUPS from '../data/skills.json';
       </div>
     </div>
     <div class="sk-g" id="sk-g">
-      {SKILL_GROUPS.map((g: any) => {
-        const skillsFr: string[] = g.skillsFr ?? g.skills ?? [];
-        const skillsEn: string[] = g.skillsEn ?? g.skills ?? [];
-        const lvls: number[] = g.levels ?? [];
-        return (
-          <div class="sk-card rv">
-            <div class="sk-top">
-              <div class="sk-ico" style={`background:${g.color}20`}>{g.icon}</div>
-              <div class="sk-nm"><span class="fr">{g.nameFr}</span><span class="en">{g.nameEn}</span></div>
-            </div>
-            <div class="sk-tags">
-              {skillsFr.map((_s: string, i: number) => (
-                <span class="sk-tag">
-                  <span class="sk-tag-name"><span class="fr">{skillsFr[i]}</span><span class="en">{skillsEn[i] ?? skillsFr[i]}</span></span>
-                  {/* Rubrique « à venir » (wish) : aucun point, sans quoi trois
-                      pastilles vides se liraient comme un niveau déjà acquis. */}
-                  {!g.wish && (
-                  <span class="sk-dots">
-                    {[1, 2, 3].map((d) => (
-                      <span class:list={['sk-dot', { on: d <= (lvls[i] || 0) }]} style={d <= (lvls[i] || 0) ? `background:${g.color}` : undefined}></span>
-                    ))}
-                  </span>
-                  )}
-                </span>
-              ))}
-            </div>
-          </div>
-        );
+      {SKILL_GROUPS.filter(g=>!g.wish).map((g: any) => {
+        const skills: string[] = g.skillsFr ?? g.skills ?? [];
+        const visible=g.essentialSkills??[0,1,2];
+        const extra=skills.map((_,i)=>i).filter(i=>!visible.includes(i));
+        const projects=(g.projects??[]).map((id:string)=>projectById.get(id)).filter(Boolean);
+        return <article class="sk-card rv">
+          <div class="sk-top"><div class="sk-ico" style={`background:${g.color}20`}>{g.icon}</div><h3 class="sk-nm"><span class="fr">{g.nameFr}</span><span class="en">{g.nameEn}</span></h3></div>
+          <SkillTags g={g} indices={visible}/>
+          {(extra.length>0||g.noteFr)&&<details class="skill-details">
+            <summary><span class="fr">Détails</span><span class="en">Details</span> <span class="skill-more-sign" aria-hidden="true">+</span></summary>
+            <SkillTags g={g} indices={extra}/>
+            {g.noteFr&&<p class="skill-note"><span class="fr">{g.noteFr}</span><span class="en">{g.noteEn}</span></p>}
+            <button type="button" class="skill-collapse" onclick="this.closest('details').open=false;this.closest('details').querySelector('summary').focus()"><span class="fr">Réduire</span><span class="en">Show less</span> −</button>
+          </details>}
+          {projects.length>0&&<details class="skill-projects">
+            <summary><span class="fr">Projets liés à ce domaine</span><span class="en">Projects related to this field</span> <span class="skill-more-sign" aria-hidden="true">+</span></summary>
+            <p class="skill-proof-note"><span class="fr">Ces projets illustrent différentes compétences du domaine. Tous les outils ci-dessus ne sont pas utilisés dans chaque projet.</span><span class="en">These projects illustrate different skills in this field. Not every tool above is used in each project.</span></p>
+            <ul>{projects.map((project:any)=><li><a href={`/projets/${project.id}/`}><span class="fr">{project.titleFr}</span><span class="en">{project.titleEn}</span> →</a></li>)}</ul>
+          </details>}
+        </article>;
       })}
+      {SKILL_GROUPS.filter(g=>g.wish).map(g=><article class="sk-card skill-learning-card rv">
+        <div class="sk-top"><div class="sk-ico" style={`background:${g.color}20`} aria-hidden="true">{g.icon}</div><h3 class="sk-nm"><span class="fr">{g.nameFr}</span><span class="en">{g.nameEn}</span></h3></div>
+        <SkillTags g={g}/>
+      </article>)}
     </div>
   </div>
 </section>

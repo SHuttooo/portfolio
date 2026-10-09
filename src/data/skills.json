@@ -10,7 +10,7 @@
       "Python",
       "JavaScript · HTML · CSS",
       "Git · Linux · Makefile",
-      "Assistants de code (Claude Code)"
+      "Développement assisté par IA (Codex · Claude Code)"
     ],
     "skillsEn": [
       "C",
@@ -18,7 +18,7 @@
       "Python",
       "JavaScript · HTML · CSS",
       "Git · Linux · Makefile",
-      "Coding assistants (Claude Code)"
+      "AI-assisted development (Codex · Claude Code)"
     ],
     "levels": [
       3,
@@ -27,6 +27,31 @@
       3,
       2,
       3
+    ],
+    "project": "minishell",
+    "previewFr": "C · C++ · Python",
+    "previewEn": "C · C++ · Python",
+    "projects": [
+      "minishell",
+      "echecs",
+      "poker",
+      "easy21-rl",
+      "comptage-voitures",
+      "pan-tilt-gestes",
+      "robot-bras",
+      "ros2-labs",
+      "serre",
+      "stage-openamr",
+      "pendule-inverse",
+      "so101",
+      "voitures-rc",
+      "sites-vitrines"
+    ],
+    "essentialSkills": [
+      0,
+      1,
+      2,
+      5
     ]
   },
   {
@@ -63,6 +88,21 @@
       2,
       3,
       2
+    ],
+    "project": "stage-openamr",
+    "previewFr": "ROS 2 · Nav2 · SLAM",
+    "previewEn": "ROS 2 · Nav2 · SLAM",
+    "projects": [
+      "stage-openamr",
+      "robot-bras",
+      "ros2-labs",
+      "pendule-inverse"
+    ],
+    "essentialSkills": [
+      0,
+      1,
+      2,
+      3
     ]
   },
   {
@@ -90,12 +130,30 @@
     ],
     "levels": [
       1,
-      2,
       1,
       1,
       1,
-      2,
+      1,
+      1,
       2
+    ],
+    "noteFr": "Notions en robot learning, avec une importante assistance IA pour le code. Je pilote les essais et le diagnostic ; je n’ai pas encore étudié toute l’implémentation.",
+    "noteEn": "Foundational robot learning knowledge, with substantial AI coding assistance. I lead testing and diagnosis; I have not yet studied the full implementation.",
+    "project": "so101",
+    "previewFr": "PPO · MuJoCo · LeRobot",
+    "previewEn": "PPO · MuJoCo · LeRobot",
+    "projects": [
+      "easy21-rl",
+      "pendule-inverse",
+      "so101",
+      "poker"
+    ],
+    "essentialSkills": [
+      0,
+      1,
+      2,
+      3,
+      5
     ]
   },
   {
@@ -106,7 +164,7 @@
     "skills": [
       "OpenCV",
       "AprilTag · Asservissement visuel",
-      "Image processing",
+      "Traitement d’image",
       "Analyse de Fourier",
       "Filtrage numérique"
     ],
@@ -123,6 +181,20 @@
       2,
       2,
       2
+    ],
+    "project": "pan-tilt-gestes",
+    "previewFr": "OpenCV · AprilTag · Filtrage",
+    "previewEn": "OpenCV · AprilTag · Filtering",
+    "projects": [
+      "stage-openamr",
+      "publication-docking",
+      "pan-tilt-gestes",
+      "comptage-voitures"
+    ],
+    "essentialSkills": [
+      0,
+      1,
+      2
     ]
   },
   {
@@ -133,8 +205,8 @@
     "skills": [
       "SolidWorks",
       "Éléments finis",
-      "Laser cutting",
-      "3D printing",
+      "Découpe laser",
+      "Impression 3D",
       "Mécanique des solides",
       "Conception de mécanismes"
     ],
@@ -153,6 +225,22 @@
       2,
       2,
       3
+    ],
+    "project": "robot-bras",
+    "previewFr": "SolidWorks · Prototypage",
+    "previewEn": "SolidWorks · Prototyping",
+    "projects": [
+      "robot-bras",
+      "pendule-inverse",
+      "so101",
+      "moteur-brushless",
+      "avion-rc",
+      "arcade"
+    ],
+    "essentialSkills": [
+      0,
+      2,
+      3
     ]
   },
   {
@@ -161,7 +249,7 @@
     "icon": "⚡",
     "color": "#1a2fff",
     "skills": [
-      "Analog electronics",
+      "Électronique analogique",
       "Électronique de puissance",
       "Arduino · ESP32",
       "micro-ROS",
@@ -186,6 +274,26 @@
       3,
       2,
       2
+    ],
+    "project": "pendule-inverse",
+    "previewFr": "ESP32 · Arduino · micro-ROS",
+    "previewEn": "ESP32 · Arduino · micro-ROS",
+    "projects": [
+      "pendule-inverse",
+      "stage-openamr",
+      "robot-bras",
+      "voitures-rc",
+      "avion-rc",
+      "moteur-brushless",
+      "arcade",
+      "pan-tilt-gestes",
+      "ros2-labs"
+    ],
+    "essentialSkills": [
+      2,
+      3,
+      4,
+      5
     ]
   },
   {
@@ -216,6 +324,23 @@
       2,
       2,
       2
+    ],
+    "project": "pendule-inverse",
+    "previewFr": "Commande · Matlab · Identification",
+    "previewEn": "Control · Matlab · Identification",
+    "projects": [
+      "pendule-inverse",
+      "stage-openamr",
+      "robot-bras",
+      "pan-tilt-gestes",
+      "poker",
+      "easy21-rl"
+    ],
+    "essentialSkills": [
+      0,
+      1,
+      2,
+      4
     ]
   },
   {
@@ -234,7 +359,16 @@
       "Diffusion Policy",
       "Larger and more varied datasets"
     ],
-    "levels": []
+    "levels": [],
+    "project": null,
+    "previewFr": "Essais sur robot · Diffusion Policy",
+    "previewEn": "Robot testing · Diffusion Policy",
+    "projects": [],
+    "essentialSkills": [
+      0,
+      1,
+      2
+    ]
   },
   {
     "nameFr": "Prochaines étapes",
@@ -254,6 +388,15 @@
       "Domain randomization",
       "Massively parallel simulation"
     ],
-    "levels": []
+    "levels": [],
+    "project": null,
+    "previewFr": "Locomotion · Humanoïdes · Simulation",
+    "previewEn": "Locomotion · Humanoids · Simulation",
+    "projects": [],
+    "essentialSkills": [
+      0,
+      1,
+      2
+    ]
   }
 ]
