@@ -46,11 +46,17 @@ const headings=mainBlocks.flatMap((block:any,index:number)=>{
           <span class="fr">{c.fr}</span><span class="en">{c.en}</span>
         </div>
         <h1 class="detail-title"><span class="fr">{p.titleFr}</span><span class="en">{p.titleEn}</span></h1>
+        <details class="project-technologies" open data-mobile-fold>
+        <summary class="mobile-fold-toggle"><span><span class="fr">Technologies</span><span class="en">Technologies</span> ({(p.stack??[]).length})</span><span aria-hidden="true">⌄</span></summary>
         <div class="detail-stack">
           {(p.stack ?? []).map((t: string) => <span class="sb" style="font-size:.78rem;padding:.25rem .7rem">{t}</span>)}
         </div>
-
+        </details>
+        <p class="detail-intro-preview"><span class="fr">{p.descFr}</span><span class="en">{p.descEn}</span></p>
+        <details class="project-intro-details" open data-mobile-fold>
+        <summary class="mobile-fold-toggle"><span class="fr">Lire la présentation complète</span><span class="en">Read the full introduction</span><span aria-hidden="true">⌄</span></summary>
         <p class="detail-intro"><span class="fr">{p.descFr}</span><span class="en">{p.descEn}</span></p>
+        </details>
         </div>
         {hasHero&&<figure class="project-header-media">
           {p.preview?<Blocks blocks={[{type:'video',src:p.preview}]}/>:<img src={media(p.thumb)} alt={p.titleFr} decoding="async"/>}

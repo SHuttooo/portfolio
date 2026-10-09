@@ -1,0 +1,7 @@
+---
+import Blocks from './blocks/Blocks.astro';
+const { sections } = Astro.props;
+---
+{sections.map((section:any)=><section id={`project-section-${section.index}`} class:list={['story-section', {'story-pair':section.paired,'story-callout':section.callout,'chap-block':section.chapter,'on':section.chapter===1}]} data-chap={section.chapter?String(section.chapter):undefined}>
+  {section.items.map((block:any)=><div class:list={['story-item',`story-${block.type}`]}><Blocks blocks={[{...block,chapter:undefined}]}/></div>)}
+</section>)}

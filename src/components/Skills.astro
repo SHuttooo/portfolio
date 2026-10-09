@@ -1,9 +1,6 @@
 ---
 import SKILL_GROUPS from '../data/skills.json';
 import SkillTags from './SkillTags.astro';
-import { getCollection } from 'astro:content';
-const projectList=(await getCollection('projects')).map(entry=>entry.data);
-const projectById=new Map(projectList.map(project=>[project.id,project]));
 ---
 
 <section id="skills">
@@ -16,15 +13,17 @@ const projectById=new Map(projectList.map(project=>[project.id,project]));
         <div class="sk-legend-item"><span class="sk-dot on" style="background:var(--muted)"></span><span class="sk-dot on" style="background:var(--muted)"></span><span class="sk-dot"></span><span class="fr">Intermédiaire</span><span class="en">Intermediate</span></div>
         <div class="sk-legend-item"><span class="sk-dot on" style="background:var(--muted)"></span><span class="sk-dot on" style="background:var(--muted)"></span><span class="sk-dot on" style="background:var(--muted)"></span><span class="fr">Maîtrise</span><span class="en">Proficient</span></div>
       </div>
+      <p class="skill-click-hint"><span class="desktop-only"><span class="fr">Cliquez sur un outil pour voir des exemples en projet.</span><span class="en">Select a tool to see project examples.</span></span><span class="mobile-only"><span class="fr">Ouvrez un domaine, puis un outil pour voir ses projets.</span><span class="en">Open a field, then select a tool to see its projects.</span></span></p>
     </div>
     <div class="sk-g" id="sk-g">
       {SKILL_GROUPS.filter(g=>!g.wish).map((g: any) => {
         const skills: string[] = g.skillsFr ?? g.skills ?? [];
         const visible=g.essentialSkills??[0,1,2];
         const extra=skills.map((_,i)=>i).filter(i=>!visible.includes(i));
-        const projects=(g.projects??[]).map((id:string)=>projectById.get(id)).filter(Boolean);
         return <article class="sk-card rv">
-          <div class="sk-top"><div class="sk-ico" style={`background:${g.color}20`}>{g.icon}</div><h3 class="sk-nm"><span class="fr">{g.nameFr}</span><span class="en">{g.nameEn}</span></h3></div>
+          <details class="skill-domain" open data-mobile-fold data-fold-group="skill-domains">
+          <summary><div class="sk-top"><div class="sk-ico" style={`background:${g.color}20`}>{g.icon}</div><h3 class="sk-nm"><span class="fr">{g.nameFr}</span><span class="en">{g.nameEn}</span></h3><span class="mobile-fold-chevron" aria-hidden="true">⌄</span></div><p class="mobile-fold-preview"><span class="fr">{g.mobilePreviewFr}</span><span class="en">{g.mobilePreviewEn}</span></p></summary>
+          <div class="skill-domain-body">
           <SkillTags g={g} indices={visible}/>
           {(extra.length>0||g.noteFr)&&<details class="skill-details">
             <summary><span class="fr">Détails</span><span class="en">Details</span> <span class="skill-more-sign" aria-hidden="true">+</span></summary>
@@ -32,16 +31,14 @@ const projectById=new Map(projectList.map(project=>[project.id,project]));
             {g.noteFr&&<p class="skill-note"><span class="fr">{g.noteFr}</span><span class="en">{g.noteEn}</span></p>}
             <button type="button" class="skill-collapse" onclick="this.closest('details').open=false;this.closest('details').querySelector('summary').focus()"><span class="fr">Réduire</span><span class="en">Show less</span> −</button>
           </details>}
-          {projects.length>0&&<details class="skill-projects">
-            <summary><span class="fr">Projets liés à ce domaine</span><span class="en">Projects related to this field</span> <span class="skill-more-sign" aria-hidden="true">+</span></summary>
-            <p class="skill-proof-note"><span class="fr">Ces projets illustrent différentes compétences du domaine. Tous les outils ci-dessus ne sont pas utilisés dans chaque projet.</span><span class="en">These projects illustrate different skills in this field. Not every tool above is used in each project.</span></p>
-            <ul>{projects.map((project:any)=><li><a href={`/projets/${project.id}/`}><span class="fr">{project.titleFr}</span><span class="en">{project.titleEn}</span> →</a></li>)}</ul>
-          </details>}
+          </div></details>
         </article>;
       })}
       {SKILL_GROUPS.filter(g=>g.wish).map(g=><article class="sk-card skill-learning-card rv">
-        <div class="sk-top"><div class="sk-ico" style={`background:${g.color}20`} aria-hidden="true">{g.icon}</div><h3 class="sk-nm"><span class="fr">{g.nameFr}</span><span class="en">{g.nameEn}</span></h3></div>
+        <details class="skill-domain" open data-mobile-fold data-fold-group="skill-domains">
+        <summary><div class="sk-top"><div class="sk-ico" style={`background:${g.color}20`} aria-hidden="true">{g.icon}</div><h3 class="sk-nm"><span class="fr">{g.nameFr}</span><span class="en">{g.nameEn}</span></h3><span class="mobile-fold-chevron" aria-hidden="true">⌄</span></div></summary>
         <SkillTags g={g}/>
+        </details>
       </article>)}
     </div>
   </div>

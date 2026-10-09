@@ -1,5 +1,5 @@
 ---
-import Blocks from './blocks/Blocks.astro';
+import StorySections from './StorySections.astro';
 const { blocks, projectId } = Astro.props;
 // Explicit pairs keep each explanation next to its own media, never an unrelated one.
 const pairs: Record<string, number[]> = {
@@ -17,12 +17,22 @@ for (let i = 0; i < blocks.length; i++) {
   const paired = (pairs[projectId] ?? []).includes(i) && next && block.chapter === next.chapter;
   const heading = (block.contentFr ?? block.content ?? '').match(/^## ([^\n]+)/)?.[1] ?? '';
   const callout = /^(En bref|Résultats mesurés|Ce qui ne marche pas encore|État actuel)/.test(heading);
-  sections.push({ index: i, chapter: block.chapter, paired, callout, items: paired ? [block, next] : [block] });
+  const headingEn = (block.contentEn ?? block.content ?? '').match(/^## ([^\n]+)/)?.[1] ?? heading;
+  sections.push({ index: i, chapter: block.chapter, paired, callout, heading, headingEn, items: paired ? [block, next] : [block] });
   if (paired) i++;
+}
+// Each heading owns its original text and following media. Nothing is discarded.
+const groups:any[]=[];
+for(const section of sections){
+  const previous=groups[groups.length-1];
+  if(section.heading||!previous||previous.chapter!==section.chapter){
+    groups.push({index:section.index,chapter:section.chapter,heading:section.heading,headingEn:section.headingEn,sections:[section]});
+  }else previous.sections.push(section);
 }
 ---
 <div class="project-story">
-  {sections.map(section=><section id={`project-section-${section.index}`} class:list={['story-section', {'story-pair':section.paired,'story-callout':section.callout,'chap-block':section.chapter,'on':section.chapter===1}]} data-chap={section.chapter?String(section.chapter):undefined}>
-    {section.items.map((block:any)=><div class:list={['story-item',`story-${block.type}`]}><Blocks blocks={[{...block,chapter:undefined}]}/></div>)}
-  </section>)}
+  {groups.map(group=>group.heading?<details class:list={['story-fold',{'chap-block':group.chapter,'on':group.chapter===1}]} data-chap={group.chapter?String(group.chapter):undefined} open data-mobile-fold data-fold-group="project-reading">
+    <summary class="mobile-fold-toggle"><span><span class="fr">{group.heading}</span><span class="en">{group.headingEn}</span></span><span aria-hidden="true">⌄</span></summary>
+    <div class="story-fold-body"><StorySections sections={group.sections}/></div>
+  </details>:<StorySections sections={group.sections}/>)}
 </div>

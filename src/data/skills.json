@@ -52,7 +52,9 @@
       1,
       2,
       5
-    ]
+    ],
+    "mobilePreviewFr": "C · C++ · Python · Codex / Claude Code",
+    "mobilePreviewEn": "C · C++ · Python · Codex / Claude Code"
   },
   {
     "nameFr": "Robotique & Navigation",
@@ -103,7 +105,9 @@
       1,
       2,
       3
-    ]
+    ],
+    "mobilePreviewFr": "ROS2 · Nav2 · SLAM · Cinématique",
+    "mobilePreviewEn": "ROS2 · Nav2 · SLAM · Kinematics"
   },
   {
     "nameFr": "IA & Apprentissage",
@@ -154,7 +158,9 @@
       2,
       3,
       5
-    ]
+    ],
+    "mobilePreviewFr": "RL (PPO) · Sim-to-real · ML embarqué · PyTorch · Imitation (ACT)",
+    "mobilePreviewEn": "RL (PPO) · Sim-to-real · Embedded ML · PyTorch · Imitation (ACT)"
   },
   {
     "nameFr": "Traitement du signal & Vision",
@@ -195,7 +201,9 @@
       0,
       1,
       2
-    ]
+    ],
+    "mobilePreviewFr": "OpenCV · AprilTag · Traitement d’image",
+    "mobilePreviewEn": "OpenCV · AprilTag · Image processing"
   },
   {
     "nameFr": "Mécanique & CAO",
@@ -241,7 +249,9 @@
       0,
       2,
       3
-    ]
+    ],
+    "mobilePreviewFr": "SolidWorks · Découpe laser · Impression 3D",
+    "mobilePreviewEn": "SolidWorks · Laser cutting · 3D printing"
   },
   {
     "nameFr": "Électronique & Embarqué",
@@ -294,7 +304,9 @@
       3,
       4,
       5
-    ]
+    ],
+    "mobilePreviewFr": "Arduino / ESP32 · micro-ROS · Capteurs / Actionneurs · CAN / PWM",
+    "mobilePreviewEn": "Arduino / ESP32 · micro-ROS · Sensors / Actuators · CAN / PWM"
   },
   {
     "nameFr": "Automatique & Maths",
@@ -341,7 +353,9 @@
       1,
       2,
       4
-    ]
+    ],
+    "mobilePreviewFr": "Matlab · Systèmes linéaires · Identification · Kalman (EKF)",
+    "mobilePreviewEn": "Matlab · Linear systems · Identification · Kalman (EKF)"
   },
   {
     "nameFr": "En cours d’apprentissage",

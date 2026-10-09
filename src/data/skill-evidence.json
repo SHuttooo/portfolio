@@ -1,0 +1,420 @@
+{
+  "projects": {
+    "minishell": {
+      "fr": "Mini-shell Unix",
+      "en": "Unix mini-shell"
+    },
+    "echecs": {
+      "fr": "Échecs en C",
+      "en": "Chess in C"
+    },
+    "poker": {
+      "fr": "Poker IA",
+      "en": "Poker AI"
+    },
+    "easy21-rl": {
+      "fr": "Easy21",
+      "en": "Easy21"
+    },
+    "comptage-voitures": {
+      "fr": "Comptage de voitures",
+      "en": "Vehicle counting"
+    },
+    "pan-tilt-gestes": {
+      "fr": "Caméra pan-tilt",
+      "en": "Pan-tilt camera"
+    },
+    "robot-bras": {
+      "fr": "Robot avec bras — ROB3",
+      "en": "Robot arm — ROB3"
+    },
+    "serre": {
+      "fr": "AGRI-BOT",
+      "en": "AGRI-BOT"
+    },
+    "stage-openamr": {
+      "fr": "OpenAMR — stage à Berlin",
+      "en": "OpenAMR — Berlin internship"
+    },
+    "pendule-inverse": {
+      "fr": "Pendule inversé",
+      "en": "Inverted pendulum"
+    },
+    "so101": {
+      "fr": "Bras SO-101",
+      "en": "SO-101 arm"
+    },
+    "voitures-rc": {
+      "fr": "Robot ESP-NOW",
+      "en": "ESP-NOW robot"
+    },
+    "sites-vitrines": {
+      "fr": "Sites web vitrines",
+      "en": "Showcase websites"
+    },
+    "moteur-brushless": {
+      "fr": "Moteur brushless DIY",
+      "en": "DIY brushless motor"
+    },
+    "avion-rc": {
+      "fr": "Avion RC",
+      "en": "RC plane"
+    },
+    "arcade": {
+      "fr": "Borne d’arcade",
+      "en": "Arcade cabinet"
+    },
+    "ros2-labs": {
+      "fr": "Robot météo",
+      "en": "Weather robot"
+    }
+  },
+  "skills": {
+    "C": [
+      {
+        "id": "minishell"
+      },
+      {
+        "id": "echecs"
+      }
+    ],
+    "C++": [
+      {
+        "id": "pendule-inverse"
+      },
+      {
+        "id": "robot-bras"
+      },
+      {
+        "id": "comptage-voitures"
+      }
+    ],
+    "Python": [
+      {
+        "id": "so101"
+      },
+      {
+        "id": "poker"
+      },
+      {
+        "id": "pan-tilt-gestes"
+      }
+    ],
+    "JavaScript · HTML · CSS": [
+      {
+        "id": "sites-vitrines"
+      },
+      {
+        "id": "serre"
+      }
+    ],
+    "Git · Linux · Makefile": [
+      {
+        "id": "minishell",
+        "detailFr": "Linux",
+        "detailEn": "Linux"
+      },
+      {
+        "id": "sites-vitrines",
+        "detailFr": "Git",
+        "detailEn": "Git"
+      },
+      {
+        "id": "so101",
+        "detailFr": "Linux",
+        "detailEn": "Linux"
+      }
+    ],
+    "AI-assisted development (Codex · Claude Code)": [
+      {
+        "id": "pendule-inverse",
+        "detailFr": "Code assisté par Claude",
+        "detailEn": "Claude-assisted code",
+        "section": 26
+      }
+    ],
+    "ROS2": [
+      {
+        "id": "stage-openamr",
+        "section": 4
+      },
+      {
+        "id": "serre"
+      }
+    ],
+    "Nav2": [
+      {
+        "id": "stage-openamr",
+        "section": 4
+      }
+    ],
+    "SLAM": [
+      {
+        "id": "stage-openamr",
+        "section": 4
+      }
+    ],
+    "Kinematic modelling": [
+      {
+        "id": "serre"
+      },
+      {
+        "id": "robot-bras"
+      }
+    ],
+    "Odometry": [
+      {
+        "id": "stage-openamr",
+        "section": 4
+      }
+    ],
+    "Path following": [
+      {
+        "id": "stage-openamr",
+        "section": 4
+      }
+    ],
+    "PID · P controller": [
+      {
+        "id": "pendule-inverse"
+      },
+      {
+        "id": "robot-bras"
+      },
+      {
+        "id": "serre"
+      }
+    ],
+    "State machine": [],
+    "Reinforcement learning (PPO, MuJoCo)": [
+      {
+        "id": "pendule-inverse",
+        "section": 13
+      }
+    ],
+    "Sim-to-real (identification, model correction)": [
+      {
+        "id": "pendule-inverse",
+        "section": 19
+      }
+    ],
+    "Embedded ML (real-time inference on MCU)": [
+      {
+        "id": "pendule-inverse",
+        "section": 17
+      }
+    ],
+    "PyTorch · stable-baselines3": [
+      {
+        "id": "so101",
+        "detailFr": "PyTorch / ACT",
+        "detailEn": "PyTorch / ACT",
+        "section": 1
+      },
+      {
+        "id": "pendule-inverse",
+        "detailFr": "PPO / stable-baselines3",
+        "detailEn": "PPO / stable-baselines3",
+        "section": 16
+      }
+    ],
+    "Reward design & curriculum": [
+      {
+        "id": "pendule-inverse",
+        "section": 16
+      }
+    ],
+    "Imitation learning (LeRobot, ACT)": [
+      {
+        "id": "so101",
+        "section": 1
+      }
+    ],
+    "Teleoperation": [
+      {
+        "id": "so101"
+      },
+      {
+        "id": "serre"
+      }
+    ],
+    "OpenCV": [
+      {
+        "id": "comptage-voitures"
+      },
+      {
+        "id": "pan-tilt-gestes"
+      }
+    ],
+    "AprilTag · Visual servoing": [
+      {
+        "id": "stage-openamr",
+        "section": 6
+      }
+    ],
+    "Image processing": [
+      {
+        "id": "comptage-voitures"
+      },
+      {
+        "id": "pan-tilt-gestes"
+      }
+    ],
+    "Fourier analysis": [
+      {
+        "id": "pendule-inverse",
+        "section": 20
+      }
+    ],
+    "Digital filtering": [
+      {
+        "id": "pendule-inverse"
+      },
+      {
+        "id": "stage-openamr"
+      }
+    ],
+    "SolidWorks": [
+      {
+        "id": "robot-bras"
+      },
+      {
+        "id": "serre"
+      }
+    ],
+    "Finite elements": [],
+    "Laser cutting": [
+      {
+        "id": "robot-bras"
+      },
+      {
+        "id": "serre"
+      },
+      {
+        "id": "arcade"
+      }
+    ],
+    "3D printing": [
+      {
+        "id": "so101"
+      },
+      {
+        "id": "pendule-inverse"
+      },
+      {
+        "id": "moteur-brushless"
+      }
+    ],
+    "Solid mechanics": [
+      {
+        "id": "robot-bras"
+      }
+    ],
+    "Mechanism design": [
+      {
+        "id": "robot-bras"
+      },
+      {
+        "id": "serre"
+      }
+    ],
+    "Analog electronics": [],
+    "Power electronics": [
+      {
+        "id": "voitures-rc"
+      },
+      {
+        "id": "avion-rc"
+      }
+    ],
+    "Arduino · ESP32": [
+      {
+        "id": "pendule-inverse"
+      },
+      {
+        "id": "voitures-rc"
+      },
+      {
+        "id": "pan-tilt-gestes"
+      }
+    ],
+    "micro-ROS": [
+      {
+        "id": "stage-openamr",
+        "section": 2
+      }
+    ],
+    "Sensors · Actuators": [
+      {
+        "id": "pendule-inverse"
+      },
+      {
+        "id": "robot-bras"
+      },
+      {
+        "id": "ros2-labs"
+      }
+    ],
+    "CAN Bus · PWM": [
+      {
+        "id": "robot-bras",
+        "detailFr": "CAN Bus",
+        "detailEn": "CAN Bus"
+      },
+      {
+        "id": "voitures-rc",
+        "detailFr": "PWM",
+        "detailEn": "PWM"
+      }
+    ],
+    "Servomotors · Brushless": [
+      {
+        "id": "so101"
+      },
+      {
+        "id": "avion-rc"
+      },
+      {
+        "id": "moteur-brushless"
+      }
+    ],
+    "Matlab / Simulink": [],
+    "Linear systems": [
+      {
+        "id": "pendule-inverse",
+        "section": 4
+      }
+    ],
+    "System identification (cross-spectra)": [
+      {
+        "id": "pendule-inverse",
+        "section": 20
+      }
+    ],
+    "Probability · Statistics": [
+      {
+        "id": "easy21-rl"
+      },
+      {
+        "id": "poker"
+      }
+    ],
+    "Kalman filter (EKF)": [
+      {
+        "id": "stage-openamr",
+        "section": 4
+      }
+    ],
+    "Minimax · Monte Carlo": [
+      {
+        "id": "echecs"
+      },
+      {
+        "id": "poker"
+      },
+      {
+        "id": "easy21-rl"
+      }
+    ]
+  }
+}

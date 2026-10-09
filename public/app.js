@@ -225,6 +225,8 @@ function init() {
 
   initPreviews();
   initVideoMetadata();
+  initMobileFolds();
+  initProjectSectionLinks();
   applyFilterSort();
   observe();
 
@@ -280,6 +282,34 @@ function switchChap(btn) {
   root.querySelectorAll('.chap-block:not(.on) video').forEach(function (v) { v.pause(); });
 }
 window.switchChap = switchChap;
+
+// Skill examples can point into a chapter that is initially hidden.
+function initProjectSectionLinks(){
+ if(!document.querySelector('.proj-detail'))return;
+ const reveal=()=>{
+  if(!/^#project-section-\d+$/.test(location.hash))return;
+  const section=document.getElementById(location.hash.slice(1));if(!section)return;
+  const fold=section.closest('[data-mobile-fold]');if(fold)fold.open=true;
+  const chapter=section.getAttribute('data-chap');
+  if(chapter){const button=document.querySelector(`.chap-tab[data-chap="${chapter}"]`);if(button)switchChap(button);}
+  requestAnimationFrame(()=>section.scrollIntoView({block:'start'}));
+ };
+ window.addEventListener('hashchange',reveal);reveal();
+}
+
+// Keep full content on desktop; use concise, expandable previews on phones.
+function initMobileFolds(){
+ const folds=[...document.querySelectorAll('[data-mobile-fold]')];if(!folds.length)return;
+ const mobile=matchMedia('(max-width:700px)');
+ const update=()=>{
+  folds.forEach(fold=>fold.removeAttribute('name'));
+  folds.forEach(fold=>{
+   fold.open=!mobile.matches;
+   if(mobile.matches&&fold.dataset.foldGroup)fold.setAttribute('name',fold.dataset.foldGroup);
+  });
+ };
+ update();mobile.addEventListener('change',update);
+}
 
 // Lazy, muted previews: explicit controls remain available on touch and keyboard.
 function initPreviews(){

@@ -1,13 +1,33 @@
 ---
+import EVIDENCE from '../data/skill-evidence.json';
 const { g, start = 0, end, indices } = Astro.props;
 const fr: string[] = g.skillsFr ?? g.skills ?? [];
 const en: string[] = g.skillsEn ?? g.skills ?? [];
 const levels: number[] = g.levels ?? [];
 const chosen: number[] = indices ?? Array.from(fr.keys()).slice(start,end);
+const evidence = EVIDENCE.skills as Record<string, {id:string; section?:number; detailFr?:string; detailEn?:string}[]>;
+const projectNames = EVIDENCE.projects as Record<string, {fr:string; en:string}>;
+const accordionName = `skill-${g.nameEn.replace(/[^a-z0-9]+/gi,'-').toLowerCase()}`;
 ---
 <div class="sk-tags">
   {chosen.map((index)=>{
     const name=fr[index];
-    return <span class="sk-tag"><span class="sk-tag-name"><span class="fr">{name}</span><span class="en">{en[index]??name}</span></span>{!g.wish&&<><span class="sk-dots" aria-hidden="true">{[1,2,3].map(d=><span class:list={['sk-dot',{on:d<=(levels[index]||0)}]} style={d<=(levels[index]||0)?`background:${g.color}`:undefined}></span>)}</span><span class="sr-only"><span class="fr">Niveau {levels[index]||0} sur 3</span><span class="en">Level {levels[index]||0} of 3</span></span></>}</span>;
+    const examples=evidence[en[index]??name]??[];
+    return g.wish ? <span class="sk-tag"><span class="sk-tag-name"><span class="fr">{name}</span><span class="en">{en[index]??name}</span></span></span> :
+      <details class="skill-tool" name={accordionName}>
+        <summary class="sk-tag">
+          <span class="sk-tag-name"><span class="fr">{name}</span><span class="en">{en[index]??name}</span></span>
+          <span class="sk-dots" aria-hidden="true">{[1,2,3].map(d=><span class:list={['sk-dot',{on:d<=(levels[index]||0)}]} style={d<=(levels[index]||0)?`background:${g.color}`:undefined}></span>)}</span>
+          <span class="sr-only"><span class="fr">Niveau {levels[index]||0} sur 3</span><span class="en">Level {levels[index]||0} of 3</span></span>
+          <span class="skill-tool-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="skill-tool-examples">
+          {examples.length ? <ul>{examples.map(example=><li><a href={`/projets/${example.id}/${example.section===undefined?'':`#project-section-${example.section}`}`}>
+            <span><span class="fr">{projectNames[example.id].fr}</span><span class="en">{projectNames[example.id].en}</span>
+              {example.detailFr&&<small><span class="fr">{example.detailFr}</span><span class="en">{example.detailEn}</span></small>}
+            </span><span aria-hidden="true">→</span>
+          </a></li>)}</ul> : <p><span class="fr">Pas encore d’exemple publié associé à cet outil.</span><span class="en">No published example linked to this tool yet.</span></p>}
+        </div>
+      </details>;
   })}
 </div>
